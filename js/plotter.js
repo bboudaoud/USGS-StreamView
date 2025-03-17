@@ -3,7 +3,7 @@ const plotDiv = document.getElementById('plotDiv');
 const mapDiv = document.getElementById('mapDiv');
 const weatherDiv = document.getElementById("weatherDiv");
 
-function plot_data(div, flowData, heightData, tempData, printMissing = false){
+function plotData(div, flowData, heightData, tempData, printMissing = false){
     // Transform the data
     const flowValues = _get_time_series(flowData).map(v => v.value);
     const heightValues = _get_time_series(heightData).map(v => v.value);
@@ -116,9 +116,9 @@ function plot_data(div, flowData, heightData, tempData, printMissing = false){
     return [(traces.length > 0), siteLoc];
 }
 
-function update_view(flow, height, temp, verbose = false){
+function updateView(flow, height, temp, verbose = false){
     // Update the plot div and get valid/site location
-    const [valid, siteLoc] = plot_data('plotDiv', flow, height, temp, verbose);
+    const [valid, siteLoc] = plotData('plotDiv', flow, height, temp, verbose);
     
     if(!valid){
         // If not valid then we don't have a valid site location anyways

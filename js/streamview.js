@@ -121,7 +121,7 @@ function updateTimeSeries() {
             const tempData = JSON.parse(tempText);
 
             // This creates the plot in the right div
-            if(!update_view(flowData, heightData, tempData)){
+            if(!updateView(flowData, heightData, tempData)){
                 // This item has neither flow, height, or temperature, remove it and update
                 const siteLabel = siteSelect.options[siteSelect.selectedIndex].text;
                 console.warn(`No data found for the gauge ${siteLabel}... removing from list.`);
