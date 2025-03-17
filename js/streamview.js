@@ -150,10 +150,6 @@ function updateTimeSeries() {
                 // Schedule another call to us (will need to update)
                 setTimeout(updateTimeSeries, 10);
             }
-            else{
-                show_weather()
-            }
-            
         } 
         catch (error) {
             console.error('Error parsing JSON:', error);
