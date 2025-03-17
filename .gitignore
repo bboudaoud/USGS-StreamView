@@ -1,1 +1,6 @@
+# Files
+*.zip
+*.json
+
+# Plugins
 .history
