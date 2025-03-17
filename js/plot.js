@@ -121,7 +121,8 @@ function plotData(div, flowData, heightData, tempData, printMissing = false){
         responsive: true,
     };
 
-    // Create plot here
+    // Create plot here (currently import work here is sloppy)
+    // eslint-disable-next-line no-undef
     Plotly.newPlot(div, traces, layout, config);
 
     // Return whether we found any valid data
