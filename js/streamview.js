@@ -1,5 +1,9 @@
 "use strict";
 
+import { updateView } from './plot.js';
+import { getSites } from './parse.js';
+
+
 // Form elements
 const usgsForm = document.getElementById('usgsForm');
 const stateSelect = document.getElementById('state');
@@ -25,7 +29,8 @@ states.forEach(state => {
 var sites = {};
 
 // Callback from state select, updates the waterbody select options
-function updateWaterSelect(evt=undefined, siteId=undefined) {
+// eslint-disable-next-line no-unused-vars
+function updateWaterSelect(_evt=undefined, siteId=undefined) {
     waterSelect.innerHTML = '';
     const state = stateSelect.value;
     const siteUrl = `https://waterservices.usgs.gov/nwis/iv/?stateCd=${state}&format=json`;
@@ -34,7 +39,7 @@ function updateWaterSelect(evt=undefined, siteId=undefined) {
         .then(
             data => {
                 // Get dict of sites for this state
-                sites = parseSites(data.value.timeSeries);
+                sites = getSites(data.value.timeSeries);
                 // Populate the water drop down
                 Object.keys(sites).forEach(key => {
                     const option = document.createElement('option');
@@ -54,7 +59,8 @@ function updateWaterSelect(evt=undefined, siteId=undefined) {
 }
 
 // Callback from the waterbody select, updates the site select options
-function updateSiteSelect(evt=undefined, siteId=undefined) {
+// eslint-disable-next-line no-unused-vars
+function updateSiteSelect(_evt=undefined, siteId=undefined) {
     if(sites == undefined){
         console.warn("Site select update without sites defined!");
         return;
@@ -75,14 +81,6 @@ function updateSiteSelect(evt=undefined, siteId=undefined) {
         siteSelect.selectedIndex = 0;
     }
     updateTimeSeries();
-}
-
-// Utility method for reading a time series below
-function _get_time_series(data) {
-    if(data.value.timeSeries.length > 0) {
-        return data.value.timeSeries[0].values[0].value;
-    }
-    return [];
 }
 
 // Core method for updating the current time series

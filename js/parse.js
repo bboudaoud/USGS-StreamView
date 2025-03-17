@@ -1,3 +1,5 @@
+"use strict";
+
 // These are possible (core) waterbody types
 const WATER_BODY_TYPES = [
     "BRANCH",
@@ -55,7 +57,7 @@ function splitNameLoc(name) {
     // See if each location splitter is found first here
     LOC_SPLITTERS.forEach(s => {
         // Search for the splitter as a distinct word (spaces)
-        split_str = ` ${s} `;
+        let split_str = ` ${s} `;
         let idx = name.indexOf(split_str)
         if(idx > 0 && idx < first_idx){
             // Found this index before the first so far
@@ -87,7 +89,7 @@ function splitNameLoc(name) {
     return [body.trim(), loc.trim()];
 }
 
-function parseSites(siteList, valid_names = ["Gage height", "Streamflow", "Temperature, water"]){
+export function getSites(siteList, valid_names = ["Gage height", "Streamflow", "Temperature, water"]){
     let sites = {};
     for(let i = 0; i < siteList.length; i++){
         const site = siteList[i];

@@ -1,7 +1,19 @@
+"use strict";
+
+
 // Divs
-const plotDiv = document.getElementById('plotDiv');
+const PLOT_DIV_NAME = 'plotDiv';
+// const plotDiv = document.getElementById(PLOT_DIV_NAME);
 const mapDiv = document.getElementById('mapDiv');
-const weatherDiv = document.getElementById("weatherDiv");
+const weatherDiv = document.getElementById('weatherDiv');
+
+// Utility method for reading a time series below
+function _get_time_series(data) {
+    if(data.value.timeSeries.length > 0) {
+        return data.value.timeSeries[0].values[0].value;
+    }
+    return [];
+}
 
 function plotData(div, flowData, heightData, tempData, printMissing = false){
     // Transform the data
@@ -126,9 +138,9 @@ function drawMaps(loc){
     
 }
 
-function updateView(flow, height, temp, verbose = false){
+export function updateView(flow, height, temp, verbose = false){
     // Update the plot div and get valid/site location
-    const [valid, siteLoc] = plotData('plotDiv', flow, height, temp, verbose);
+    const [valid, siteLoc] = plotData(PLOT_DIV_NAME, flow, height, temp, verbose);
     
     if(!valid){
         // If not valid then we don't have a valid site location anyways
