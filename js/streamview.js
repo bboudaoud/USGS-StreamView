@@ -157,7 +157,9 @@ function updateTimeSeries() {
     return true;
 }
 
-function set_mobile_layout(){
+// Layout tweak for mobile
+const is_mobile = /Mobile|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
+if(is_mobile){
     // Split out elements
     const splits = document.getElementsByClassName("split_div");
     for(let i = 0; i < splits.length; i++){
@@ -166,12 +168,6 @@ function set_mobile_layout(){
     // Change alignment of these
     periodDaysEntry.style = {display: "block"};
     submitBtn.style = {display: "block"};
-}
-
-// Layout tweak for mobile
-const is_mobile = /Mobile|Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i.test(navigator.userAgent);
-if(is_mobile){
-    set_mobile_layout();
 }
 
 // Get behavior from URL params
