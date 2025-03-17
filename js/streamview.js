@@ -208,5 +208,5 @@ updateWaterSelect(undefined, siteId);
 // Set up event listeners
 stateSelect.addEventListener('change', updateWaterSelect);
 waterSelect.addEventListener('change', updateSiteSelect);
-usgsForm.addEventListener('submit', updateTimeSeries);
 siteSelect.addEventListener('change', updateTimeSeries);
+usgsForm.addEventListener('submit', updateTimeSeries);
