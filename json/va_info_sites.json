@@ -1,0 +1,3342 @@
+{
+    "ABRAMS CREEK": {
+        "NEAR WINCHESTER, VA": {
+            "name": "ABRAMS CREEK NEAR WINCHESTER, VA",
+            "id": "01616000",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "ACCOTINK CREEK": {
+        "NEAR RANGER ROAD AT FAIRFAX, VA": {
+            "name": "ACCOTINK CREEK NEAR RANGER ROAD AT FAIRFAX, VA",
+            "id": "0165389205",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "NEAR ANNANDALE, VA": {
+            "name": "ACCOTINK CREEK NEAR ANNANDALE, VA",
+            "id": "01654000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT KEENE MILL RD AT SPRINGFIELD, VA": {
+            "name": "ACCOTINK CREEK AT KEENE MILL RD AT SPRINGFIELD, VA",
+            "id": "01654670",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "ALBEMARLE AND CHESAPEAKE CN": {
+        "NR PRINCESS ANNE, VA": {
+            "name": "ALBEMARLE AND CHESAPEAKE CN NR PRINCESS ANNE, VA",
+            "id": "02043120",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "ALLEN CREEK": {
+        "NEAR BOYDTON, VA": {
+            "name": "ALLEN CREEK NEAR BOYDTON, VA",
+            "id": "02079640",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "APPOMATTOX RIVER": {
+        "AT FARMVILLE, VA": {
+            "name": "APPOMATTOX RIVER AT FARMVILLE, VA",
+            "id": "02039500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT MATTOAX, VA": {
+            "name": "APPOMATTOX RIVER AT MATTOAX, VA",
+            "id": "02040000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT ROUTE 602 NEAR MANNBORO, VA": {
+            "name": "APPOMATTOX RIVER AT ROUTE 602 NEAR MANNBORO, VA",
+            "id": "02040892",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT MATOACA, VA": {
+            "name": "APPOMATTOX RIVER AT MATOACA, VA",
+            "id": "02041650",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "AQUIA CREEK": {
+        "NEAR GARRISONVILLE, VA": {
+            "name": "AQUIA CREEK NEAR GARRISONVILLE, VA",
+            "id": "01660400",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BACK CREEK": {
+        "NEAR SWOOPE, VA": {
+            "name": "BACK CREEK NEAR SWOOPE, VA",
+            "id": "01622258",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR SUNRISE, VA": {
+            "name": "BACK CREEK NEAR SUNRISE, VA",
+            "id": "02011460",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT SUNRISE, VA": {
+            "name": "BACK CREEK AT SUNRISE, VA",
+            "id": "02011470",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR MOUNTAIN GROVE, VA": {
+            "name": "BACK CREEK NEAR MOUNTAIN GROVE, VA",
+            "id": "02011500",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR DUNDEE, VA": {
+            "name": "BACK CREEK NEAR DUNDEE, VA",
+            "id": "02056650",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BANISTER RIVER": {
+        "AT HALIFAX, VA": {
+            "name": "BANISTER RIVER AT HALIFAX, VA",
+            "id": "02077000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BAPTIST RUN": {
+        "AT RT 637 NEAR YORKTOWN, VA": {
+            "name": "BAPTIST RUN AT RT 637 NEAR YORKTOWN, VA",
+            "id": "0204278995",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "BATTLE RUN": {
+        "NEAR LAUREL MILLS, VA": {
+            "name": "BATTLE RUN NEAR LAUREL MILLS, VA",
+            "id": "01662800",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BEAVER CREEK": {
+        "NEAR OTTOBINE, VA": {
+            "name": "BEAVER CREEK NEAR OTTOBINE, VA",
+            "id": "01620821",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "AT BRISTOL, VA": {
+            "name": "BEAVER CREEK AT BRISTOL, VA",
+            "id": "03478400",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BEAVERDAM CREEK": {
+        "AT RT 734 NEAR MOUNTVILLE, VA": {
+            "name": "BEAVERDAM CREEK AT RT 734 NEAR MOUNTVILLE, VA",
+            "id": "01643880",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BEAVERDAM RUN": {
+        "NEAR GARRISONVILLE, VA": {
+            "name": "BEAVERDAM RUN NEAR GARRISONVILLE, VA",
+            "id": "01660500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "BIG ENTRY DCH": {
+        "ABOVE ROSEMARY DCH NR DEEP CREEK, VA": {
+            "name": "BIG ENTRY DCH ABOVE ROSEMARY DCH NR DEEP CREEK, VA",
+            "id": "364314076211900",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BIG ENTRY DCH W OF PORTSMOUTH DCH": {
+        "NR DEEP CR, VA": {
+            "name": "BIG ENTRY DCH W OF PORTSMOUTH DCH NR DEEP CR, VA",
+            "id": "364355076245000",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BIG OTTER RIVER": {
+        "NEAR BEDFORD, VA": {
+            "name": "BIG OTTER RIVER NEAR BEDFORD, VA",
+            "id": "02061000",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "NEAR EVINGTON, VA": {
+            "name": "BIG OTTER RIVER NEAR EVINGTON, VA",
+            "id": "02061500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BIG REED ISLAND CREEK": {
+        "NEAR ALLISONIA, VA": {
+            "name": "BIG REED ISLAND CREEK NEAR ALLISONIA, VA",
+            "id": "03167500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "BLACKS RUN": {
+        "AT RT 726 AT HARRISONBURG, VA": {
+            "name": "BLACKS RUN AT RT 726 AT HARRISONBURG, VA",
+            "id": "01621410",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "AT RT 704 NEAR MOUNT CRAWFORD, VA": {
+            "name": "BLACKS RUN AT RT 704 NEAR MOUNT CRAWFORD, VA",
+            "id": "01621470",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "BLACKWATER RIVER": {
+        "NEAR DENDRON, VA": {
+            "name": "BLACKWATER RIVER NEAR DENDRON, VA",
+            "id": "02047500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT ROUTE 620 NEAR ZUNI, VA": {
+            "name": "BLACKWATER RIVER AT ROUTE 620 NEAR ZUNI, VA",
+            "id": "02047783",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR FRANKLIN, VA": {
+            "name": "BLACKWATER RIVER NEAR FRANKLIN, VA",
+            "id": "02049500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT HWYS 58/258 AT FRANKLIN, VA": {
+            "name": "BLACKWATER RIVER AT HWYS 58/258 AT FRANKLIN, VA",
+            "id": "02050000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR ROCKY MOUNT, VA": {
+            "name": "BLACKWATER RIVER NEAR ROCKY MOUNT, VA",
+            "id": "02056900",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "ABOVE MAPLE BRANCH NR REDWOOD, VA": {
+            "name": "BLACKWATER RIVER ABOVE MAPLE BRANCH NR REDWOOD, VA",
+            "id": "0205696042",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "BELOW MAPLE BRANCH NR REDWOOD, VA": {
+            "name": "BLACKWATER RIVER BELOW MAPLE BRANCH NR REDWOOD, VA",
+            "id": "0205696095",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BLUESTONE RIVER": {
+        "AT FALLS MILLS, VA": {
+            "name": "BLUESTONE RIVER AT FALLS MILLS, VA",
+            "id": "03177710",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BOTTOM CREEK": {
+        "ABOVE TRIBUTARY NR BENT MOUNTAIN, VA": {
+            "name": "BOTTOM CREEK ABOVE TRIBUTARY NR BENT MOUNTAIN, VA",
+            "id": "0205373035",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "ABOVE CONFLUENCE NR BENT MOUNTAIN, VA": {
+            "name": "BOTTOM CREEK ABOVE CONFLUENCE NR BENT MOUNTAIN, VA",
+            "id": "0205373228",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "BL POOR MTN RD NEAR BENT MOUNTAIN, VA": {
+            "name": "BOTTOM CREEK BL POOR MTN RD NEAR BENT MOUNTAIN, VA",
+            "id": "0205373422",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BOTTOM CREEK ALONG ROUTE 612": {
+        "NR BENT MOUNTAIN, VA": {
+            "name": "BOTTOM CREEK ALONG ROUTE 612 NR BENT MOUNTAIN, VA",
+            "id": "0205373075",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BROAD RUN": {
+        "NEAR LEESBURG, VA": {
+            "name": "BROAD RUN NEAR LEESBURG, VA",
+            "id": "01644280",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BUCK MOUNTAIN CREEK": {
+        "NEAR FREE UNION, VA": {
+            "name": "BUCK MOUNTAIN CREEK NEAR FREE UNION, VA",
+            "id": "02032400",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "BUCKHORN CREEK": {
+        "ABOVE RT 250 NR LONE FOUNTAIN, VA": {
+            "name": "BUCKHORN CREEK ABOVE RT 250 NR LONE FOUNTAIN, VA",
+            "id": "0162246784",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BUCKHORN CREEK ABV TRIBUTARY": {
+        "NR LONE FOUNTAIN, VA": {
+            "name": "BUCKHORN CREEK ABV TRIBUTARY NR LONE FOUNTAIN, VA",
+            "id": "0162246747",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "BUFFALO CREEK": {
+        "NEAR HAMPDEN SYDNEY, VA": {
+            "name": "BUFFALO CREEK NEAR HAMPDEN SYDNEY, VA",
+            "id": "02039000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "BUFFALO RIVER": {
+        "NEAR TYE RIVER, VA": {
+            "name": "BUFFALO RIVER NEAR TYE RIVER, VA",
+            "id": "02027800",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "BULLPASTURE RIVER": {
+        "AT WILLIAMSVILLE, VA": {
+            "name": "BULLPASTURE RIVER AT WILLIAMSVILLE, VA",
+            "id": "02015700",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CALFPASTURE RIVER": {
+        "ABOVE MILL CREEK AT GOSHEN, VA": {
+            "name": "CALFPASTURE RIVER ABOVE MILL CREEK AT GOSHEN, VA",
+            "id": "02020500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CAMERON RUN": {
+        "AT ALEXANDRIA, VA": {
+            "name": "CAMERON RUN AT ALEXANDRIA, VA",
+            "id": "01653000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CANNON CREEK": {
+        "NEAR GARRISONVILLE, VA": {
+            "name": "CANNON CREEK NEAR GARRISONVILLE, VA",
+            "id": "01660380",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CANTERBURY LK": {
+        "AT TUCKAHOE VILLAGE, VA": {
+            "name": "CANTERBURY LK AT TUCKAHOE VILLAGE, VA",
+            "id": "0203668612",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CARTER RUN": {
+        "AT ROUTE 681 NEAR JEFFERSONTON, VA": {
+            "name": "CARTER RUN AT ROUTE 681 NEAR JEFFERSONTON, VA",
+            "id": "01661977",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CAT POINT CREEK": {
+        "NEAR MONTROSS, VA": {
+            "name": "CAT POINT CREEK NEAR MONTROSS, VA",
+            "id": "01668500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CATAWBA CREEK": {
+        "NEAR CATAWBA, VA": {
+            "name": "CATAWBA CREEK NEAR CATAWBA, VA",
+            "id": "02018500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CATOCTIN CREEK": {
+        "AT TAYLORSTOWN, VA": {
+            "name": "CATOCTIN CREEK AT TAYLORSTOWN, VA",
+            "id": "01638480",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CEDAR CREEK": {
+        "NEAR WINCHESTER, VA": {
+            "name": "CEDAR CREEK NEAR WINCHESTER, VA",
+            "id": "01634500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "ABOVE HWY 11 NEAR MIDDLETOWN, VA": {
+            "name": "CEDAR CREEK ABOVE HWY 11 NEAR MIDDLETOWN, VA",
+            "id": "01635090",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CEDAR GROVE BRANCH": {
+        "NR ROCKBRIDGE BATHS, VA": {
+            "name": "CEDAR GROVE BRANCH NR ROCKBRIDGE BATHS, VA",
+            "id": "02021697",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CEDAR RUN": {
+        "NEAR CATLETT, VA": {
+            "name": "CEDAR RUN NEAR CATLETT, VA",
+            "id": "01656000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR ADEN, VA": {
+            "name": "CEDAR RUN NEAR ADEN, VA",
+            "id": "01656100",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "AT RT 646 NEAR ADEN, VA": {
+            "name": "CEDAR RUN AT RT 646 NEAR ADEN, VA",
+            "id": "01656120",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CHESTNUT CREEK": {
+        "AT GALAX, VA": {
+            "name": "CHESTNUT CREEK AT GALAX, VA",
+            "id": "03165000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CHICKAHOMINY R TRIB": {
+        "AT ATLEE EX NR GREENWOOD, VA": {
+            "name": "CHICKAHOMINY R TRIB AT ATLEE EX NR GREENWOOD, VA",
+            "id": "0204228301",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CHICKAHOMINY RIVER": {
+        "NEAR ATLEE, VA": {
+            "name": "CHICKAHOMINY RIVER NEAR ATLEE, VA",
+            "id": "02042287",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "NEAR PROVIDENCE FORGE, VA": {
+            "name": "CHICKAHOMINY RIVER NEAR PROVIDENCE FORGE, VA",
+            "id": "02042500",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CHOPAWAMSIC CREEK": {
+        "AT RUSSELL ROAD NR JOPLIN, VA": {
+            "name": "CHOPAWAMSIC CREEK AT RUSSELL ROAD NR JOPLIN, VA",
+            "id": "01660100",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CHRISTIANS CREEK": {
+        "NEAR FISHERSVILLE, VA": {
+            "name": "CHRISTIANS CREEK NEAR FISHERSVILLE, VA",
+            "id": "01624800",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CLINCH RIVER": {
+        "AT CLEVELAND, VA": {
+            "name": "CLINCH RIVER AT CLEVELAND, VA",
+            "id": "03524000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT ROUTE 65 AT DUNGANNON, VA": {
+            "name": "CLINCH RIVER AT ROUTE 65 AT DUNGANNON, VA",
+            "id": "03524740",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "AT SPEERS FERRY, VA": {
+            "name": "CLINCH RIVER AT SPEERS FERRY, VA",
+            "id": "03527000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "COHOKE MILL CREEK": {
+        "NEAR LESTER MANOR, VA": {
+            "name": "COHOKE MILL CREEK NEAR LESTER MANOR, VA",
+            "id": "01673638",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CONVEYANCE CHAN": {
+        "AT RAMSGATE LN NR GREAT BRIDGE, VA": {
+            "name": "CONVEYANCE CHAN AT RAMSGATE LN NR GREAT BRIDGE, VA",
+            "id": "0204309906",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "COPPER CREEK": {
+        "NEAR GATE CITY, VA": {
+            "name": "COPPER CREEK NEAR GATE CITY, VA",
+            "id": "03526000",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "COWPASTURE RIVER": {
+        "AT ROUTE 627 NR WILLIAMSVILLE, VA": {
+            "name": "COWPASTURE RIVER AT ROUTE 627 NR WILLIAMSVILLE, VA",
+            "id": "02015729",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "AT ROUTE 678 NR GREEN VALLEY, VA": {
+            "name": "COWPASTURE RIVER AT ROUTE 678 NR GREEN VALLEY, VA",
+            "id": "02015742",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "NEAR CLIFTON FORGE, VA": {
+            "name": "COWPASTURE RIVER NEAR CLIFTON FORGE, VA",
+            "id": "02016000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "COX BRANCH AB TAZEWELL RESERVOIR": {
+        "NR GRATTON, VA": {
+            "name": "COX BRANCH AB TAZEWELL RESERVOIR NR GRATTON, VA",
+            "id": "03175100",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CRAIG CREEK": {
+        "AT PARR, VA": {
+            "name": "CRAIG CREEK AT PARR, VA",
+            "id": "02018000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CRANES NEST RIVER": {
+        "NEAR CLINTWOOD, VA": {
+            "name": "CRANES NEST RIVER NEAR CLINTWOOD, VA",
+            "id": "03208950",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CROOKED RUN": {
+        "BELOW HWY 340 AT RIVERTON, VA": {
+            "name": "CROOKED RUN BELOW HWY 340 AT RIVERTON, VA",
+            "id": "01636242",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "CUB CREEK": {
+        "AT PHENIX, VA": {
+            "name": "CUB CREEK AT PHENIX, VA",
+            "id": "02065500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "CYPRESS SWAMP": {
+        "AT CYPRESS CHAPEL, VA": {
+            "name": "CYPRESS SWAMP AT CYPRESS CHAPEL, VA",
+            "id": "02043500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "DAN RIVER": {
+        "AT DANVILLE, VA": {
+            "name": "DAN RIVER AT DANVILLE, VA",
+            "id": "02075000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT STP NEAR DANVILLE, VA": {
+            "name": "DAN RIVER AT STP NEAR DANVILLE, VA",
+            "id": "02075045",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT PACES, VA": {
+            "name": "DAN RIVER AT PACES, VA",
+            "id": "02075500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT SOUTH BOSTON, VA": {
+            "name": "DAN RIVER AT SOUTH BOSTON, VA",
+            "id": "02076000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "DEAD RUN": {
+        "AT WHANN AVENUE NEAR MCLEAN, VA": {
+            "name": "DEAD RUN AT WHANN AVENUE NEAR MCLEAN, VA",
+            "id": "01646305",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "DEEP CREEK": {
+        "NEAR MANNBORO, VA": {
+            "name": "DEEP CREEK NEAR MANNBORO, VA",
+            "id": "02041000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "DIFFICULT RUN": {
+        "ABOVE FOX LAKE NEAR FAIRFAX, VA": {
+            "name": "DIFFICULT RUN ABOVE FOX LAKE NEAR FAIRFAX, VA",
+            "id": "01645704",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR GREAT FALLS, VA": {
+            "name": "DIFFICULT RUN NEAR GREAT FALLS, VA",
+            "id": "01646000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "DISMAL CREEK": {
+        "BELOW LAUREL FORK AT WHITEWOOD, VA": {
+            "name": "DISMAL CREEK BELOW LAUREL FORK AT WHITEWOOD, VA",
+            "id": "0320728002",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "DRAGON SWAMP": {
+        "AT MASCOT, VA": {
+            "name": "DRAGON SWAMP AT MASCOT, VA",
+            "id": "01669520",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "DRY MARSH RUN": {
+        "NEAR BERRYVILLE, VA": {
+            "name": "DRY MARSH RUN NEAR BERRYVILLE, VA",
+            "id": "01616100",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "DUNLAP CREEK": {
+        "NEAR COVINGTON, VA": {
+            "name": "DUNLAP CREEK NEAR COVINGTON, VA",
+            "id": "02013000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "EAST DCH 2.1 MI": {
+        "BL WILLIAMSON DCH NR DEEP CR, VA": {
+            "name": "EAST DCH 2.1 MI BL WILLIAMSON DCH NR DEEP CR, VA",
+            "id": "364259076262300",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "ECHO LAKE": {
+        "AT DAM NR GLEN ALLEN, VA": {
+            "name": "ECHO LAKE AT DAM NR GLEN ALLEN, VA",
+            "id": "0204226958",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "EIDSON CREEK": {
+        "AT GREY GABLES FARM NEAR SWOOPE, VA": {
+            "name": "EIDSON CREEK AT GREY GABLES FARM NEAR SWOOPE, VA",
+            "id": "01622292",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "ELIZABETH RIV": {
+        "AT MIDTOWN TUNNEL AT NORFOLK, VA": {
+            "name": "ELIZABETH RIV AT MIDTOWN TUNNEL AT NORFOLK, VA",
+            "id": "0204288831",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "FALLING CREEK": {
+        "NEAR CHESTERFIELD, VA": {
+            "name": "FALLING CREEK NEAR CHESTERFIELD, VA",
+            "id": "02038000",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "FALLING RIVER": {
+        "NEAR NARUNA, VA": {
+            "name": "FALLING RIVER NEAR NARUNA, VA",
+            "id": "02064000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "FINE CREEK": {
+        "AT FINE CREEK MILLS, VA": {
+            "name": "FINE CREEK AT FINE CREEK MILLS, VA",
+            "id": "02036500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "FLATLICK BRANCH": {
+        "ABOVE FROG BRANCH AT CHANTILLY, VA": {
+            "name": "FLATLICK BRANCH ABOVE FROG BRANCH AT CHANTILLY, VA",
+            "id": "01656903",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "FOUNTAINS CREEK": {
+        "NEAR BRINK, VA": {
+            "name": "FOUNTAINS CREEK NEAR BRINK, VA",
+            "id": "02052500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "FOUR MILE RUN": {
+        "AT HWY 29 AT FALLS CHURCH, VA": {
+            "name": "FOUR MILE RUN AT HWY 29 AT FALLS CHURCH, VA",
+            "id": "01652090",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "FOURMILE RUN": {
+        "AT ALEXANDRIA, VA": {
+            "name": "FOURMILE RUN AT ALEXANDRIA, VA",
+            "id": "01652500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "GEORGES CREEK": {
+        "NEAR GRETNA, VA": {
+            "name": "GEORGES CREEK NEAR GRETNA, VA",
+            "id": "02076500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "GLADE CREEK": {
+        "AT GRAHAMS FORGE, VA": {
+            "name": "GLADE CREEK AT GRAHAMS FORGE, VA",
+            "id": "03166800",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "GOONEY RUN": {
+        "NEAR GLEN ECHO, VA": {
+            "name": "GOONEY RUN NEAR GLEN ECHO, VA",
+            "id": "01630700",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "GOOSE CREEK": {
+        "NEAR MIDDLEBURG, VA": {
+            "name": "GOOSE CREEK NEAR MIDDLEBURG, VA",
+            "id": "01643700",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR LEESBURG, VA": {
+            "name": "GOOSE CREEK NEAR LEESBURG, VA",
+            "id": "01644000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT RT 747 NEAR BUNKER HILL, VA": {
+            "name": "GOOSE CREEK AT RT 747 NEAR BUNKER HILL, VA",
+            "id": "02059485",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "NEAR HUDDLESTON, VA": {
+            "name": "GOOSE CREEK NEAR HUDDLESTON, VA",
+            "id": "02059500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "GOSLIN RUN": {
+        "NEAR ADEN, VA": {
+            "name": "GOSLIN RUN NEAR ADEN, VA",
+            "id": "01656102",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "GUEST RIVER": {
+        "AT COEBURN, VA": {
+            "name": "GUEST RIVER AT COEBURN, VA",
+            "id": "03524500",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR MILLER YARD, VA": {
+            "name": "GUEST RIVER NEAR MILLER YARD, VA",
+            "id": "03524550",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "GUY CREEK": {
+        "NEAR NASSAWADOX, VA": {
+            "name": "GUY CREEK NEAR NASSAWADOX, VA",
+            "id": "01484800",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "HARDWARE RIVER": {
+        "BL BRIERY RUN NR SCOTTSVILLE, VA": {
+            "name": "HARDWARE RIVER BL BRIERY RUN NR SCOTTSVILLE, VA",
+            "id": "02030000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "HARRIS CREEK": {
+        "BELOW ROUTE 130 NEAR MONROE, VA": {
+            "name": "HARRIS CREEK BELOW ROUTE 130 NEAR MONROE, VA",
+            "id": "02025652",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "HAZEL RIVER": {
+        "AT RIXEYVILLE, VA": {
+            "name": "HAZEL RIVER AT RIXEYVILLE, VA",
+            "id": "01663500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "HOGUE CREEK": {
+        "NEAR HAYFIELD, VA": {
+            "name": "HOGUE CREEK NEAR HAYFIELD, VA",
+            "id": "01613900",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "HOLIDAY CREEK": {
+        "NEAR ANDERSONVILLE, VA": {
+            "name": "HOLIDAY CREEK NEAR ANDERSONVILLE, VA",
+            "id": "02038850",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "HOLMANS CREEK": {
+        "AT QUICKSBURG, VA": {
+            "name": "HOLMANS CREEK AT QUICKSBURG, VA",
+            "id": "01632729",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "HYCO RIVER": {
+        "NEAR DENNISTON, VA": {
+            "name": "HYCO RIVER NEAR DENNISTON, VA",
+            "id": "02077500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "INDIAN CR ALONG N & W RAILROAD": {
+        "NR CEDAR BLUFF, VA": {
+            "name": "INDIAN CR ALONG N & W RAILROAD NR CEDAR BLUFF, VA",
+            "id": "03520967",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "INDIAN CREEK": {
+        "ABOVE RT 631 NEAR CEDAR BLUFF, VA": {
+            "name": "INDIAN CREEK ABOVE RT 631 NEAR CEDAR BLUFF, VA",
+            "id": "03520968",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "INDIAN CREEK TRIB ALONG RT 631": {
+        "NR CEDAR BLUFF, VA": {
+            "name": "INDIAN CREEK TRIB ALONG RT 631 NR CEDAR BLUFF, VA",
+            "id": "03520980",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "INDIAN CREEK TRIBUTARY AB MOUTH": {
+        "NR CEDAR BLUFF, VA": {
+            "name": "INDIAN CREEK TRIBUTARY AB MOUTH NR CEDAR BLUFF, VA",
+            "id": "03520981",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "JACKSON RIV": {
+        "AT FILTRATION PLANT AT COVINGTON, VA": {
+            "name": "JACKSON RIV AT FILTRATION PLANT AT COVINGTON, VA",
+            "id": "02012800",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "JACKSON RIVER": {
+        "NEAR BACOVA, VA": {
+            "name": "JACKSON RIVER NEAR BACOVA, VA",
+            "id": "02011400",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "BL GATHRIGHT DAM NR HOT SPGS, VA": {
+            "name": "JACKSON RIVER BL GATHRIGHT DAM NR HOT SPGS, VA",
+            "id": "02011800",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT FALLING SPRING, VA": {
+            "name": "JACKSON RIVER AT FALLING SPRING, VA",
+            "id": "02012500",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "BL DUNLAP CREEK AT COVINGTON, VA": {
+            "name": "JACKSON RIVER BL DUNLAP CREEK AT COVINGTON, VA",
+            "id": "02013100",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "JAMES RIVER": {
+        "AT LICK RUN, VA": {
+            "name": "JAMES RIVER AT LICK RUN, VA",
+            "id": "02016500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT BUCHANAN, VA": {
+            "name": "JAMES RIVER AT BUCHANAN, VA",
+            "id": "02019500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT BEDFORD DAM NR MAJOR, VA": {
+            "name": "JAMES RIVER AT BEDFORD DAM NR MAJOR, VA",
+            "id": "02024750",
+            "vars": [
+                "Gage height, ft"
+            ]
+        },
+        "AT BLUE RIDGE PKWY NR BIG ISLAND, VA": {
+            "name": "JAMES RIVER AT BLUE RIDGE PKWY NR BIG ISLAND, VA",
+            "id": "02024752",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT HOLCOMB ROCK, VA": {
+            "name": "JAMES RIVER AT HOLCOMB ROCK, VA",
+            "id": "02025500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT BENT CREEK, VA": {
+            "name": "JAMES RIVER AT BENT CREEK, VA",
+            "id": "02026000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT SCOTTSVILLE, VA": {
+            "name": "JAMES RIVER AT SCOTTSVILLE, VA",
+            "id": "02029000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT CARTERSVILLE, VA": {
+            "name": "JAMES RIVER AT CARTERSVILLE, VA",
+            "id": "02035000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR RICHMOND, VA": {
+            "name": "JAMES RIVER NEAR RICHMOND, VA",
+            "id": "02037500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "JAMES RIVER ABV WEYANOKE POINT": {
+        "NR CHARLES CITY, VA": {
+            "name": "JAMES RIVER ABV WEYANOKE POINT NR CHARLES CITY, VA",
+            "id": "02042222",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "JAMES RIVER AND KANAWHA CANAL": {
+        "NEAR RICHMOND, VA": {
+            "name": "JAMES RIVER AND KANAWHA CANAL NEAR RICHMOND, VA",
+            "id": "02037000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "JOHNS CREEK": {
+        "AT NEW CASTLE, VA": {
+            "name": "JOHNS CREEK AT NEW CASTLE, VA",
+            "id": "02017500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "JUNIPER DCH 150 YDS": {
+        "BL HARDWOOD DCH NR DEEP CR, VA": {
+            "name": "JUNIPER DCH 150 YDS BL HARDWOOD DCH NR DEEP CR, VA",
+            "id": "364145076245400",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "KERRS CREEK": {
+        "NEAR LEXINGTON, VA": {
+            "name": "KERRS CREEK NEAR LEXINGTON, VA",
+            "id": "02022500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "KNOX CREEK": {
+        "BELOW STRAIGHT FORK AT BLACKEY, VA": {
+            "name": "KNOX CREEK BELOW STRAIGHT FORK AT BLACKEY, VA",
+            "id": "0321357157",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LAKE ANNA": {
+        "NEAR RED HOUSE POINT NR ELLISVILLE, VA": {
+            "name": "LAKE ANNA NEAR RED HOUSE POINT NR ELLISVILLE, VA",
+            "id": "01670144",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "NEAR HENRYS POINT NEAR HOLLADAY, VA": {
+            "name": "LAKE ANNA NEAR HENRYS POINT NEAR HOLLADAY, VA",
+            "id": "01670209",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "NEAR BOXLEY POINT NEAR GLENORA, VA": {
+            "name": "LAKE ANNA NEAR BOXLEY POINT NEAR GLENORA, VA",
+            "id": "016702576",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "LEVISA FORK": {
+        "AT BIG ROCK, VA": {
+            "name": "LEVISA FORK AT BIG ROCK, VA",
+            "id": "03207800",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LICK RUN": {
+        "ABOVE PATTON AVENUE AT ROANOKE, VA": {
+            "name": "LICK RUN ABOVE PATTON AVENUE AT ROANOKE, VA",
+            "id": "0205551460",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LIMESTONE BRANCH": {
+        "NEAR LEESBURG, VA": {
+            "name": "LIMESTONE BRANCH NEAR LEESBURG, VA",
+            "id": "01643590",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LINVILLE CREEK": {
+        "AT BROADWAY, VA": {
+            "name": "LINVILLE CREEK AT BROADWAY, VA",
+            "id": "01632082",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LITTLE BACK CREEK": {
+        "NEAR SUNRISE, VA": {
+            "name": "LITTLE BACK CREEK NEAR SUNRISE, VA",
+            "id": "02011490",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LITTLE CREEK": {
+        "AT MOCKING BIRD RD AT TRIANGLE, VA": {
+            "name": "LITTLE CREEK AT MOCKING BIRD RD AT TRIANGLE, VA",
+            "id": "01658698",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "AT GEIGER ROAD AT QUANTICO, VA": {
+            "name": "LITTLE CREEK AT GEIGER ROAD AT QUANTICO, VA",
+            "id": "01658705",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "LITTLE RIVER": {
+        "NEAR DOSWELL, VA": {
+            "name": "LITTLE RIVER NEAR DOSWELL, VA",
+            "id": "01671100",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT GRAYSONTOWN, VA": {
+            "name": "LITTLE RIVER AT GRAYSONTOWN, VA",
+            "id": "03170000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LITTLE STONY CREEK": {
+        "BL ARCHER TRAIL NR PEMBROKE, VA": {
+            "name": "LITTLE STONY CREEK BL ARCHER TRAIL NR PEMBROKE, VA",
+            "id": "0317159760",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LITTLE STONY CREEK AB ARCHER TRAIL": {
+        "NR PEMBROKE, VA": {
+            "name": "LITTLE STONY CREEK AB ARCHER TRAIL NR PEMBROKE, VA",
+            "id": "03171597",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "LONG BRANCH": {
+        "NR OLD CREEK DRIVE NR FAIRFAX, VA": {
+            "name": "LONG BRANCH NR OLD CREEK DRIVE NR FAIRFAX, VA",
+            "id": "01654079",
+            "vars": [
+                "Gage height, ft"
+            ]
+        },
+        "NR PICKETT ROAD NR FAIRFAX, VA": {
+            "name": "LONG BRANCH NR PICKETT ROAD NR FAIRFAX, VA",
+            "id": "01654094",
+            "vars": [
+                "Gage height, ft"
+            ]
+        },
+        "AT OLLEY LANE NR FAIRFAX, VA": {
+            "name": "LONG BRANCH AT OLLEY LANE NR FAIRFAX, VA",
+            "id": "01654107",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "ABOVE GUINEA ROAD NR FAIRFAX, VA": {
+            "name": "LONG BRANCH ABOVE GUINEA ROAD NR FAIRFAX, VA",
+            "id": "01654197",
+            "vars": [
+                "Gage height, ft"
+            ]
+        },
+        "BELOW GUINEA ROAD NR FAIRFAX, VA": {
+            "name": "LONG BRANCH BELOW GUINEA ROAD NR FAIRFAX, VA",
+            "id": "01654250",
+            "vars": [
+                "Gage height, ft"
+            ]
+        },
+        "NR TABARD TRAIL NR FAIRFAX, VA": {
+            "name": "LONG BRANCH NR TABARD TRAIL NR FAIRFAX, VA",
+            "id": "01654259",
+            "vars": [
+                "Gage height, ft"
+            ]
+        },
+        "NEAR ANNANDALE, VA": {
+            "name": "LONG BRANCH NEAR ANNANDALE, VA",
+            "id": "01654500",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LONG BRANCH AB WOODLAND WAY": {
+        "NEAR FAIRFAX, VA": {
+            "name": "LONG BRANCH AB WOODLAND WAY NEAR FAIRFAX, VA",
+            "id": "01654345",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "LONG GLADE CK": {
+        "AT HILLVIEW FARM NR GLADE VALLEY, VA": {
+            "name": "LONG GLADE CK AT HILLVIEW FARM NR GLADE VALLEY, VA",
+            "id": "01621324",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "M BRANCH CHOPAWAMSIC CREEK": {
+        "NR GARRISONVILLE, VA": {
+            "name": "M BRANCH CHOPAWAMSIC CREEK NR GARRISONVILLE, VA",
+            "id": "01659500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "M F HOLSTON RIVER": {
+        "AT SEVEN MILE FORD, VA": {
+            "name": "M F HOLSTON RIVER AT SEVEN MILE FORD, VA",
+            "id": "03474000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR MEADOWVIEW, VA": {
+            "name": "M F HOLSTON RIVER NEAR MEADOWVIEW, VA",
+            "id": "03475000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MANASSAS RUN": {
+        "AT RT 645 NEAR FRONT ROYAL, VA": {
+            "name": "MANASSAS RUN AT RT 645 NEAR FRONT ROYAL, VA",
+            "id": "0163626650",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "MASON CREEK": {
+        "AT RTS 419/311 AT HANGING ROCK, VA": {
+            "name": "MASON CREEK AT RTS 419/311 AT HANGING ROCK, VA",
+            "id": "02054690",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MATTAPONI RIVER": {
+        "NEAR BOWLING GREEN, VA": {
+            "name": "MATTAPONI RIVER NEAR BOWLING GREEN, VA",
+            "id": "01674000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR BEULAHVILLE, VA": {
+            "name": "MATTAPONI RIVER NEAR BEULAHVILLE, VA",
+            "id": "01674500",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MAURY RIVER": {
+        "AT ROCKBRIDGE BATHS, VA": {
+            "name": "MAURY RIVER AT ROCKBRIDGE BATHS, VA",
+            "id": "02021500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR BUENA VISTA, VA": {
+            "name": "MAURY RIVER NEAR BUENA VISTA, VA",
+            "id": "02024000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MEADOW RUN": {
+        "NEAR WAYNESBORO, VA": {
+            "name": "MEADOW RUN NEAR WAYNESBORO, VA",
+            "id": "01624885",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MECHUMPS CREEK": {
+        "AT HILL CARTER PKWY AT ASHLAND, VA": {
+            "name": "MECHUMPS CREEK AT HILL CARTER PKWY AT ASHLAND, VA",
+            "id": "0167300055",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MECHUMS RIVER": {
+        "NEAR WHITE HALL, VA": {
+            "name": "MECHUMS RIVER NEAR WHITE HALL, VA",
+            "id": "02031000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MEHERRIN RIVER": {
+        "AT RT 637 NEAR SOUTH HILL, VA": {
+            "name": "MEHERRIN RIVER AT RT 637 NEAR SOUTH HILL, VA",
+            "id": "02051190",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR LAWRENCEVILLE, VA": {
+            "name": "MEHERRIN RIVER NEAR LAWRENCEVILLE, VA",
+            "id": "02051500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT EMPORIA, VA": {
+            "name": "MEHERRIN RIVER AT EMPORIA, VA",
+            "id": "02052000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR BRYANTS CORNER, VA": {
+            "name": "MEHERRIN RIVER NEAR BRYANTS CORNER, VA",
+            "id": "02052090",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MIDDLE RIVER": {
+        "AT ROUTE 721 NEAR CHURCHVILLE, VA": {
+            "name": "MIDDLE RIVER AT ROUTE 721 NEAR CHURCHVILLE, VA",
+            "id": "01622459",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "ABOVE ROUTE 250 NEAR CHURCHVILLE, VA": {
+            "name": "MIDDLE RIVER ABOVE ROUTE 250 NEAR CHURCHVILLE, VA",
+            "id": "01622464",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR GROTTOES, VA": {
+            "name": "MIDDLE RIVER NEAR GROTTOES, VA",
+            "id": "01625000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MILL CREEK": {
+        "NEAR PORT REPUBLIC, VA": {
+            "name": "MILL CREEK NEAR PORT REPUBLIC, VA",
+            "id": "0162519967",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR LURAY, VA": {
+            "name": "MILL CREEK NEAR LURAY, VA",
+            "id": "01629561",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR LEXINGTON, VA": {
+            "name": "MILL CREEK NEAR LEXINGTON, VA",
+            "id": "0202306395",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MILL CREEK ABV PEUMANSEND CREEK": {
+        "NR PORT ROYAL, VA": {
+            "name": "MILL CREEK ABV PEUMANSEND CREEK NR PORT ROYAL, VA",
+            "id": "0166818623",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MILL CREEK BLW PEUMANSEND CREEK": {
+        "NR PORT ROYAL, VA": {
+            "name": "MILL CREEK BLW PEUMANSEND CREEK NR PORT ROYAL, VA",
+            "id": "0166818985",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "MOFFATTS CREEK": {
+        "NEAR RAPHINE, VA": {
+            "name": "MOFFATTS CREEK NEAR RAPHINE, VA",
+            "id": "02021549",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MONCUIN CREEK": {
+        "BELOW US HWY 360 NEAR MANQUIN, VA": {
+            "name": "MONCUIN CREEK BELOW US HWY 360 NEAR MANQUIN, VA",
+            "id": "0167357970",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MOORMANS RIVER": {
+        "NEAR FREE UNION, VA": {
+            "name": "MOORMANS RIVER NEAR FREE UNION, VA",
+            "id": "02032250",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MOSSY CREEK": {
+        "NEAR BRIDGEWATER, VA": {
+            "name": "MOSSY CREEK NEAR BRIDGEWATER, VA",
+            "id": "0162084652",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "MOUNTAIN RUN": {
+        "NEAR CULPEPER, VA": {
+            "name": "MOUNTAIN RUN NEAR CULPEPER, VA",
+            "id": "01665000",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "MUDDY CREEK": {
+        "AT MOUNT CLINTON, VA": {
+            "name": "MUDDY CREEK AT MOUNT CLINTON, VA",
+            "id": "01621050",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR HINTON, VA": {
+            "name": "MUDDY CREEK NEAR HINTON, VA",
+            "id": "01621089",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "N ANNA RIVER": {
+        "AT RT 669 NR MONROVIA, VA": {
+            "name": "N ANNA RIVER AT RT 669 NR MONROVIA, VA",
+            "id": "016701405",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "N BRANCH CHOPAWAMSIC CR": {
+        "NR INDEPENDENT HILL, VA": {
+            "name": "N BRANCH CHOPAWAMSIC CR NR INDEPENDENT HILL, VA",
+            "id": "01659000",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "N F CATOCTIN CREEK": {
+        "AT RT 681 NEAR WATERFORD, VA": {
+            "name": "N F CATOCTIN CREEK AT RT 681 NEAR WATERFORD, VA",
+            "id": "01638420",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "N F GOOSE CREEK": {
+        "AT RT 729 NEAR LINCOLN, VA": {
+            "name": "N F GOOSE CREEK AT RT 729 NEAR LINCOLN, VA",
+            "id": "01643805",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "N F HOLSTON RIVER": {
+        "NEAR SALTVILLE, VA": {
+            "name": "N F HOLSTON RIVER NEAR SALTVILLE, VA",
+            "id": "03488000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR GATE CITY, VA": {
+            "name": "N F HOLSTON RIVER NEAR GATE CITY, VA",
+            "id": "03490000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "N F POWELL RIVER": {
+        "AT PENNINGTON GAP, VA": {
+            "name": "N F POWELL RIVER AT PENNINGTON GAP, VA",
+            "id": "03530500",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "N F RIVANNA RIVER": {
+        "NEAR EARLYSVILLE, VA": {
+            "name": "N F RIVANNA RIVER NEAR EARLYSVILLE, VA",
+            "id": "02032640",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR PROFFIT, VA": {
+            "name": "N F RIVANNA RIVER NEAR PROFFIT, VA",
+            "id": "02032680",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "N F SHENANDOAH RIVER": {
+        "AT COOTES STORE, VA": {
+            "name": "N F SHENANDOAH RIVER AT COOTES STORE, VA",
+            "id": "01632000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT MOUNT JACKSON, VA": {
+            "name": "N F SHENANDOAH RIVER AT MOUNT JACKSON, VA",
+            "id": "01633000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR STRASBURG, VA": {
+            "name": "N F SHENANDOAH RIVER NEAR STRASBURG, VA",
+            "id": "01634000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "NARROW PASSAGE CREEK": {
+        "NEAR WOODSTOCK, VA": {
+            "name": "NARROW PASSAGE CREEK NEAR WOODSTOCK, VA",
+            "id": "01633595",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "NEABSCO CR TRIB": {
+        "AT TELEGRAPH RD NR DALE CITY, VA": {
+            "name": "NEABSCO CR TRIB AT TELEGRAPH RD NR DALE CITY, VA",
+            "id": "01657885",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "NEABSCO CREEK": {
+        "AT DALE CITY, VA": {
+            "name": "NEABSCO CREEK AT DALE CITY, VA",
+            "id": "01657850",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "NEW RIVER": {
+        "NEAR GALAX, VA": {
+            "name": "NEW RIVER NEAR GALAX, VA",
+            "id": "03164000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT IVANHOE, VA": {
+            "name": "NEW RIVER AT IVANHOE, VA",
+            "id": "03165500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT ALLISONIA, VA": {
+            "name": "NEW RIVER AT ALLISONIA, VA",
+            "id": "03168000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT RADFORD, VA": {
+            "name": "NEW RIVER AT RADFORD, VA",
+            "id": "03171000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT GLEN LYN, VA": {
+            "name": "NEW RIVER AT GLEN LYN, VA",
+            "id": "03176500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "NORTH ANNA RIVER": {
+        "NEAR PARTLOW, VA": {
+            "name": "NORTH ANNA RIVER NEAR PARTLOW, VA",
+            "id": "01670400",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT HART CORNER NEAR DOSWELL, VA": {
+            "name": "NORTH ANNA RIVER AT HART CORNER NEAR DOSWELL, VA",
+            "id": "01671020",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "ABOVE LITTLE RIVER NR DOSWELL, VA": {
+            "name": "NORTH ANNA RIVER ABOVE LITTLE RIVER NR DOSWELL, VA",
+            "id": "01671025",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "NORTH LANDING RIVER": {
+        "NEAR CREEDS, VA": {
+            "name": "NORTH LANDING RIVER NEAR CREEDS, VA",
+            "id": "02043270",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "NORTH MAYO RIVER": {
+        "NEAR SPENCER, VA": {
+            "name": "NORTH MAYO RIVER NEAR SPENCER, VA",
+            "id": "02070000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "NORTH MEHERRIN RIVER": {
+        "NEAR LUNENBURG, VA": {
+            "name": "NORTH MEHERRIN RIVER NEAR LUNENBURG, VA",
+            "id": "02051000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "NORTH RIVER": {
+        "NEAR STOKESVILLE, VA": {
+            "name": "NORTH RIVER NEAR STOKESVILLE, VA",
+            "id": "01620500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR BURKETOWN, VA": {
+            "name": "NORTH RIVER NEAR BURKETOWN, VA",
+            "id": "01622000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "NOTTOWAY RIVER": {
+        "NEAR RAWLINGS, VA": {
+            "name": "NOTTOWAY RIVER NEAR RAWLINGS, VA",
+            "id": "02044500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT ROUTE 609 NEAR MCKENNEY, VA": {
+            "name": "NOTTOWAY RIVER AT ROUTE 609 NEAR MCKENNEY, VA",
+            "id": "02045320",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR STONY CREEK, VA": {
+            "name": "NOTTOWAY RIVER NEAR STONY CREEK, VA",
+            "id": "02045500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR SEBRELL, VA": {
+            "name": "NOTTOWAY RIVER NEAR SEBRELL, VA",
+            "id": "02047000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR RIVERDALE, VA": {
+            "name": "NOTTOWAY RIVER NEAR RIVERDALE, VA",
+            "id": "02047370",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "OPEQUON CREEK": {
+        "NEAR STEPHENS CITY, VA": {
+            "name": "OPEQUON CREEK NEAR STEPHENS CITY, VA",
+            "id": "01614830",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "NEAR BERRYVILLE, VA": {
+            "name": "OPEQUON CREEK NEAR BERRYVILLE, VA",
+            "id": "01615000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PAMUNKEY CREEK": {
+        "AT RT 651 NEAR LAHORE, VA": {
+            "name": "PAMUNKEY CREEK AT RT 651 NEAR LAHORE, VA",
+            "id": "01670200",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PAMUNKEY RIVER": {
+        "NEAR HANOVER, VA": {
+            "name": "PAMUNKEY RIVER NEAR HANOVER, VA",
+            "id": "01673000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PASSAGE CREEK": {
+        "NEAR BUCKTON, VA": {
+            "name": "PASSAGE CREEK NEAR BUCKTON, VA",
+            "id": "01635500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PEAK CREEK": {
+        "AT PULASKI, VA": {
+            "name": "PEAK CREEK AT PULASKI, VA",
+            "id": "03168500",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PEDLAR RIVER": {
+        "AT FOREST ROAD NEAR BUENA VISTA, VA": {
+            "name": "PEDLAR RIVER AT FOREST ROAD NEAR BUENA VISTA, VA",
+            "id": "02024915",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PIGG RIVER": {
+        "NEAR SANDY LEVEL, VA": {
+            "name": "PIGG RIVER NEAR SANDY LEVEL, VA",
+            "id": "02058400",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PINE RUN": {
+        "NEAR GREENVILLE, VA": {
+            "name": "PINE RUN NEAR GREENVILLE, VA",
+            "id": "01625770",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PINEY RIVER": {
+        "AT PINEY RIVER, VA": {
+            "name": "PINEY RIVER AT PINEY RIVER, VA",
+            "id": "02027500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PINEY RUN": {
+        "NEAR LOVETTSVILLE, VA": {
+            "name": "PINEY RUN NEAR LOVETTSVILLE, VA",
+            "id": "01636690",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PISCATAWAY CREEK": {
+        "NEAR TAPPAHANNOCK, VA": {
+            "name": "PISCATAWAY CREEK NEAR TAPPAHANNOCK, VA",
+            "id": "01669000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PO RIVER": {
+        "NEAR SPOTSYLVANIA, VA": {
+            "name": "PO RIVER NEAR SPOTSYLVANIA, VA",
+            "id": "01673800",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "POAGUE RUN": {
+        "NEAR GLASGOW, VA": {
+            "name": "POAGUE RUN NEAR GLASGOW, VA",
+            "id": "02024392",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "POLECAT CREEK": {
+        "AT ROUTE 301 NEAR PENOLA, VA": {
+            "name": "POLECAT CREEK AT ROUTE 301 NEAR PENOLA, VA",
+            "id": "01674182",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PORTSMOUTH DCH": {
+        "BL CS AT BIG ENTRY NR DEEP CR, VA": {
+            "name": "PORTSMOUTH DCH BL CS AT BIG ENTRY NR DEEP CR, VA",
+            "id": "364336076231300",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "PORTSMOUTH DCH AB CS": {
+        "AT BIG ENTRY NR DEEP CR, VA": {
+            "name": "PORTSMOUTH DCH AB CS AT BIG ENTRY NR DEEP CR, VA",
+            "id": "364336076231400",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "POTTS CREEK": {
+        "NEAR COVINGTON, VA": {
+            "name": "POTTS CREEK NEAR COVINGTON, VA",
+            "id": "02014000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "POUND RIVER": {
+        "BELOW FLANNAGAN DAM, NEAR HAYSI, VA": {
+            "name": "POUND RIVER BELOW FLANNAGAN DAM, NEAR HAYSI, VA",
+            "id": "03209000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "POWELL RIVER": {
+        "AT BIG STONE GAP, VA": {
+            "name": "POWELL RIVER AT BIG STONE GAP, VA",
+            "id": "03529500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR JONESVILLE, VA": {
+            "name": "POWELL RIVER NEAR JONESVILLE, VA",
+            "id": "03531500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "POWELLS CREEK": {
+        "NEAR DALE CITY, VA": {
+            "name": "POWELLS CREEK NEAR DALE CITY, VA",
+            "id": "01657895",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "PUGHS RUN": {
+        "AT WETZEL RD NR WOODSTOCK, VA": {
+            "name": "PUGHS RUN AT WETZEL RD NR WOODSTOCK, VA",
+            "id": "01633702",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "RAMSEYS DRAFT": {
+        "AT ROUTE 716 NEAR WEST AUGUSTA, VA": {
+            "name": "RAMSEYS DRAFT AT ROUTE 716 NEAR WEST AUGUSTA, VA",
+            "id": "02020246",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "AT ROUTE 629 NEAR WEST AUGUSTA, VA": {
+            "name": "RAMSEYS DRAFT AT ROUTE 629 NEAR WEST AUGUSTA, VA",
+            "id": "02020258",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "RAPIDAN RIVER": {
+        "NEAR RUCKERSVILLE, VA": {
+            "name": "RAPIDAN RIVER NEAR RUCKERSVILLE, VA",
+            "id": "01665500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR CULPEPER, VA": {
+            "name": "RAPIDAN RIVER NEAR CULPEPER, VA",
+            "id": "01667500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "RAPPAHANNOCK RIVER": {
+        "AT REMINGTON, VA": {
+            "name": "RAPPAHANNOCK RIVER AT REMINGTON, VA",
+            "id": "01664000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR FREDERICKSBURG, VA": {
+            "name": "RAPPAHANNOCK RIVER NEAR FREDERICKSBURG, VA",
+            "id": "01668000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "REED CREEK": {
+        "AT GRAHAMS FORGE, VA": {
+            "name": "REED CREEK AT GRAHAMS FORGE, VA",
+            "id": "03167000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "RIVANNA RIVER": {
+        "AT PALMYRA, VA": {
+            "name": "RIVANNA RIVER AT PALMYRA, VA",
+            "id": "02034000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "ROANOKE (STAUNTON) RIVER": {
+        "AT BROOKNEAL, VA": {
+            "name": "ROANOKE (STAUNTON) RIVER AT BROOKNEAL, VA",
+            "id": "02062500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT RANDOLPH, VA": {
+            "name": "ROANOKE (STAUNTON) RIVER AT RANDOLPH, VA",
+            "id": "02066000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "ROANOKE RIV": {
+        "AT JEFFERSON ST BRIDGE AT ROANOKE, VA": {
+            "name": "ROANOKE RIV AT JEFFERSON ST BRIDGE AT ROANOKE, VA",
+            "id": "0205494935",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "ROANOKE RIVER": {
+        "AT LAFAYETTE, VA": {
+            "name": "ROANOKE RIVER AT LAFAYETTE, VA",
+            "id": "02054500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "ABOVE ROUTE 11 AT LAFAYETTE, VA": {
+            "name": "ROANOKE RIVER ABOVE ROUTE 11 AT LAFAYETTE, VA",
+            "id": "0205450495",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "NEAR WABUN, VA": {
+            "name": "ROANOKE RIVER NEAR WABUN, VA",
+            "id": "02054510",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        },
+        "AT GLENVAR, VA": {
+            "name": "ROANOKE RIVER AT GLENVAR, VA",
+            "id": "02054530",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT RTS 639/760 AT SALEM, VA": {
+            "name": "ROANOKE RIVER AT RTS 639/760 AT SALEM, VA",
+            "id": "02054550",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "AT ROUTE 117 AT ROANOKE, VA": {
+            "name": "ROANOKE RIVER AT ROUTE 117 AT ROANOKE, VA",
+            "id": "02054750",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "AT BRIDGE STREET BR AT ROANOKE, VA": {
+            "name": "ROANOKE RIVER AT BRIDGE STREET BR AT ROANOKE, VA",
+            "id": "0205491522",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "AT MEMORIAL AVE BR AT ROANOKE, VA": {
+            "name": "ROANOKE RIVER AT MEMORIAL AVE BR AT ROANOKE, VA",
+            "id": "0205492550",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "AT ROANOKE, VA": {
+            "name": "ROANOKE RIVER AT ROANOKE, VA",
+            "id": "02055000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT NINTH STREET BR AT ROANOKE, VA": {
+            "name": "ROANOKE RIVER AT NINTH STREET BR AT ROANOKE, VA",
+            "id": "02055010",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "AT THIRTEENTH ST BR AT ROANOKE, VA": {
+            "name": "ROANOKE RIVER AT THIRTEENTH ST BR AT ROANOKE, VA",
+            "id": "02055080",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "AT NIAGARA, VA": {
+            "name": "ROANOKE RIVER AT NIAGARA, VA",
+            "id": "02056000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT ALTAVISTA, VA": {
+            "name": "ROANOKE RIVER AT ALTAVISTA, VA",
+            "id": "02060500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT BUGGS ISLAND, VA": {
+            "name": "ROANOKE RIVER AT BUGGS ISLAND, VA",
+            "id": "02079500",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "ROANOKE RIVER ALONG ROUTE 626": {
+        "AT LAFAYETTE, VA": {
+            "name": "ROANOKE RIVER ALONG ROUTE 626 AT LAFAYETTE, VA",
+            "id": "0205450393",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "ROBINSON RIVER": {
+        "NEAR LOCUST DALE, VA": {
+            "name": "ROBINSON RIVER NEAR LOCUST DALE, VA",
+            "id": "01666500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "ROCKFISH RIVER": {
+        "NEAR GREENFIELD, VA": {
+            "name": "ROCKFISH RIVER NEAR GREENFIELD, VA",
+            "id": "02028500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "ROSEMARY DCH AB CS": {
+        "AT BIG ENTRY DCH NR DEEP CR, VA": {
+            "name": "ROSEMARY DCH AB CS AT BIG ENTRY DCH NR DEEP CR, VA",
+            "id": "364312076211800",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "RUSSELL FORK": {
+        "AT HAYSI, VA": {
+            "name": "RUSSELL FORK AT HAYSI, VA",
+            "id": "03208500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT BARTLICK, VA": {
+            "name": "RUSSELL FORK AT BARTLICK, VA",
+            "id": "03209200",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "S BRANCH CHOPAWAMSIC CREEK": {
+        "NR GARRISONVILLE, VA": {
+            "name": "S BRANCH CHOPAWAMSIC CREEK NR GARRISONVILLE, VA",
+            "id": "01660000",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "S F CATOCTIN CREEK": {
+        "AT RT 698 NEAR WATERFORD, VA": {
+            "name": "S F CATOCTIN CREEK AT RT 698 NEAR WATERFORD, VA",
+            "id": "01638350",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "S F HOLSTON RIVER": {
+        "AT RIVERSIDE, NEAR CHILHOWIE, VA": {
+            "name": "S F HOLSTON RIVER AT RIVERSIDE, NEAR CHILHOWIE, VA",
+            "id": "03471500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR DAMASCUS, VA": {
+            "name": "S F HOLSTON RIVER NEAR DAMASCUS, VA",
+            "id": "03473000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "S F LITTLE DIFFICULT RUN": {
+        "ABOVE MOUTH NR VIENNA, VA": {
+            "name": "S F LITTLE DIFFICULT RUN ABOVE MOUTH NR VIENNA, VA",
+            "id": "01645762",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "S F QUANTICO CREEK": {
+        "NEAR INDEPENDENT HILL, VA": {
+            "name": "S F QUANTICO CREEK NEAR INDEPENDENT HILL, VA",
+            "id": "01658500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "S F RIVANNA RIVER": {
+        "NEAR CHARLOTTESVILLE, VA": {
+            "name": "S F RIVANNA RIVER NEAR CHARLOTTESVILLE, VA",
+            "id": "02032515",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "S F ROANOKE RIVER": {
+        "NEAR SHAWSVILLE, VA": {
+            "name": "S F ROANOKE RIVER NEAR SHAWSVILLE, VA",
+            "id": "02053800",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "S F SHENANDOAH RIVER": {
+        "NEAR LYNNWOOD, VA": {
+            "name": "S F SHENANDOAH RIVER NEAR LYNNWOOD, VA",
+            "id": "01628500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR LURAY, VA": {
+            "name": "S F SHENANDOAH RIVER NEAR LURAY, VA",
+            "id": "01629500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT FRONT ROYAL, VA": {
+            "name": "S F SHENANDOAH RIVER AT FRONT ROYAL, VA",
+            "id": "01631000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SANDY RIVER": {
+        "NEAR DANVILLE, VA": {
+            "name": "SANDY RIVER NEAR DANVILLE, VA",
+            "id": "02074500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SINKING CREEK": {
+        "AT COVERED BRIDGE LN NR NEWPORT, VA": {
+            "name": "SINKING CREEK AT COVERED BRIDGE LN NR NEWPORT, VA",
+            "id": "0317155123",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "SINKING CREEK ALONG ROUTE 604": {
+        "NEAR NEWPORT, VA": {
+            "name": "SINKING CREEK ALONG ROUTE 604 NEAR NEWPORT, VA",
+            "id": "0317154954",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SLATE RIVER": {
+        "NEAR ARVONIA, VA": {
+            "name": "SLATE RIVER NEAR ARVONIA, VA",
+            "id": "02030500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SMITH CK": {
+        "AT RAINBOW HILL FARM NR HARRISONBURG, VA": {
+            "name": "SMITH CK AT RAINBOW HILL FARM NR HARRISONBURG, VA",
+            "id": "0163283609",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SMITH CREEK": {
+        "NEAR NEW MARKET, VA": {
+            "name": "SMITH CREEK NEAR NEW MARKET, VA",
+            "id": "01632900",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SMITH RIVER": {
+        "AT SMITH RIV CHURCH NR WOOLWINE, VA": {
+            "name": "SMITH RIVER AT SMITH RIV CHURCH NR WOOLWINE, VA",
+            "id": "02071530",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR PHILPOTT, VA": {
+            "name": "SMITH RIVER NEAR PHILPOTT, VA",
+            "id": "02072000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT BASSETT, VA": {
+            "name": "SMITH RIVER AT BASSETT, VA",
+            "id": "02072500",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT MARTINSVILLE, VA": {
+            "name": "SMITH RIVER AT MARTINSVILLE, VA",
+            "id": "02073000",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SNAKEDEN BRANCH": {
+        "ABOVE LAKE AUDUBON AT RESTON, VA": {
+            "name": "SNAKEDEN BRANCH ABOVE LAKE AUDUBON AT RESTON, VA",
+            "id": "0164578734",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SOUTH ANNA RIVER": {
+        "NEAR GORDONSVILLE, VA": {
+            "name": "SOUTH ANNA RIVER NEAR GORDONSVILLE, VA",
+            "id": "01671200",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR ASHLAND, VA": {
+            "name": "SOUTH ANNA RIVER NEAR ASHLAND, VA",
+            "id": "01672500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SOUTH FORK BACK CREEK": {
+        "AT RT 814 NEAR SHERANDO, VA": {
+            "name": "SOUTH FORK BACK CREEK AT RT 814 NEAR SHERANDO, VA",
+            "id": "0162588350",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "BELOW RT 814 NR SHERANDO, VA": {
+            "name": "SOUTH FORK BACK CREEK BELOW RT 814 NR SHERANDO, VA",
+            "id": "0162588440",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        }
+    },
+    "SOUTH MAYO RIVER": {
+        "NEAR NETTLERIDGE, VA": {
+            "name": "SOUTH MAYO RIVER NEAR NETTLERIDGE, VA",
+            "id": "02069700",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SOUTH RIVER": {
+        "AT SUFFANGUS FARM NEAR GREENVILLE, VA": {
+            "name": "SOUTH RIVER AT SUFFANGUS FARM NEAR GREENVILLE, VA",
+            "id": "01625645",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR WAYNESBORO, VA": {
+            "name": "SOUTH RIVER NEAR WAYNESBORO, VA",
+            "id": "01626000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "NEAR DOOMS, VA": {
+            "name": "SOUTH RIVER NEAR DOOMS, VA",
+            "id": "01626850",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT HARRISTON, VA": {
+            "name": "SOUTH RIVER AT HARRISTON, VA",
+            "id": "01627500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT RT 716 NEAR BUENA VISTA, VA": {
+            "name": "SOUTH RIVER AT RT 716 NEAR BUENA VISTA, VA",
+            "id": "02023480",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SPOUT RUN": {
+        "AT POWHATAN SCHOOL NR BOYCE, VA": {
+            "name": "SPOUT RUN AT POWHATAN SCHOOL NR BOYCE, VA",
+            "id": "01636311",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "AT RT 621 NEAR MILLWOOD, VA": {
+            "name": "SPOUT RUN AT RT 621 NEAR MILLWOOD, VA",
+            "id": "01636316",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SPRUCE CREEK": {
+        "ABOVE ROUTE 151 NEAR NELLYSFORD, VA": {
+            "name": "SPRUCE CREEK ABOVE ROUTE 151 NEAR NELLYSFORD, VA",
+            "id": "0202848919",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "AT ROUTE 627 NEAR NELLYSFORD, VA": {
+            "name": "SPRUCE CREEK AT ROUTE 627 NEAR NELLYSFORD, VA",
+            "id": "0202848938",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "STONY CREEK": {
+        "NEAR DINWIDDIE, VA": {
+            "name": "STONY CREEK NEAR DINWIDDIE, VA",
+            "id": "02046000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "STORM DRAIN": {
+        "AT COLISEUM DRIVE AT HAMPTON, VA": {
+            "name": "STORM DRAIN AT COLISEUM DRIVE AT HAMPTON, VA",
+            "id": "0167891721",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT RIVERS RDG CIR NR NEWPORT NEWS, VA": {
+            "name": "STORM DRAIN AT RIVERS RDG CIR NR NEWPORT NEWS, VA",
+            "id": "0204279245",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT LAKEWOOD PK DR NR NEWPORT NEWS, VA": {
+            "name": "STORM DRAIN AT LAKEWOOD PK DR NR NEWPORT NEWS, VA",
+            "id": "0204279294",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT USAA DRIVE AT NORFOLK, VA": {
+            "name": "STORM DRAIN AT USAA DRIVE AT NORFOLK, VA",
+            "id": "0204288771",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT PROFESSIONAL PL NEAR CHESAPEAKE, VA": {
+            "name": "STORM DRAIN AT PROFESSIONAL PL NEAR CHESAPEAKE, VA",
+            "id": "0204288786",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT DAISY DRIVE NEAR PORTSMOUTH, VA": {
+            "name": "STORM DRAIN AT DAISY DRIVE NEAR PORTSMOUTH, VA",
+            "id": "0204289131",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT CRANEYBROOK LANE AT EDGEFIELD, VA": {
+            "name": "STORM DRAIN AT CRANEYBROOK LANE AT EDGEFIELD, VA",
+            "id": "0204289402",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT SHEPPARD AVENUE NEAR NORFOLK, VA": {
+            "name": "STORM DRAIN AT SHEPPARD AVENUE NEAR NORFOLK, VA",
+            "id": "0204289989",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT LINDSLEY DR NEAR VIRGINIA BEACH, VA": {
+            "name": "STORM DRAIN AT LINDSLEY DR NEAR VIRGINIA BEACH, VA",
+            "id": "0204295063",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "AT LUDLOW DRIVE NEAR KEMPSVILLE, VA": {
+            "name": "STORM DRAIN AT LUDLOW DRIVE NEAR KEMPSVILLE, VA",
+            "id": "0204306533",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "STORM DRAIN WEST OF GARRETT DRIVE": {
+        "AT HAMPTON, VA": {
+            "name": "STORM DRAIN WEST OF GARRETT DRIVE AT HAMPTON, VA",
+            "id": "0167889257",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "SYCAMORE DITCH": {
+        "NEAR CYPRESS CHAPEL, VA": {
+            "name": "SYCAMORE DITCH NEAR CYPRESS CHAPEL, VA",
+            "id": "363342076261100",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "THE GLADE": {
+        "NEAR HOWLAND DRIVE AT RESTON, VA": {
+            "name": "THE GLADE NEAR HOWLAND DRIVE AT RESTON, VA",
+            "id": "0164579522",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "THORNY BRANCH": {
+        "NEAR MOUNT SOLON, VA": {
+            "name": "THORNY BRANCH NEAR MOUNT SOLON, VA",
+            "id": "01620671",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "TINKER CREEK": {
+        "NEAR DALEVILLE, VA": {
+            "name": "TINKER CREEK NEAR DALEVILLE, VA",
+            "id": "02055100",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        },
+        "ABOVE GLADE CREEK AT ROANOKE, VA": {
+            "name": "TINKER CREEK ABOVE GLADE CREEK AT ROANOKE, VA",
+            "id": "0205551614",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "TINKER CREEK UPPER": {
+        "AT COLUMBIA ST AT ROANOKE, VA": {
+            "name": "TINKER CREEK UPPER AT COLUMBIA ST AT ROANOKE, VA",
+            "id": "02055379",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "TOMS BROOK": {
+        "AT MOO MANOR FARM NR TOMS BROOK, VA": {
+            "name": "TOMS BROOK AT MOO MANOR FARM NR TOMS BROOK, VA",
+            "id": "01633728",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "TOTOPOTOMOY CREEK": {
+        "NEAR STUDLEY, VA": {
+            "name": "TOTOPOTOMOY CREEK NEAR STUDLEY, VA",
+            "id": "01673550",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "TRIPPS RUN": {
+        "AT FALLS CHURCH, VA": {
+            "name": "TRIPPS RUN AT FALLS CHURCH, VA",
+            "id": "01652620",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "TURKEY RUN": {
+        "AT ROUTE 643 NEAR CATLETT, VA": {
+            "name": "TURKEY RUN AT ROUTE 643 NEAR CATLETT, VA",
+            "id": "01655794",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "TYE RIVER": {
+        "NEAR LOVINGSTON, VA": {
+            "name": "TYE RIVER NEAR LOVINGSTON, VA",
+            "id": "02027000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "UPHAM BROOK": {
+        "NEAR RICHMOND, VA": {
+            "name": "UPHAM BROOK NEAR RICHMOND, VA",
+            "id": "02042426",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "WALKER CREEK": {
+        "AT BANE, VA": {
+            "name": "WALKER CREEK AT BANE, VA",
+            "id": "03173000",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "WAR BRANCH": {
+        "NEAR BUTTERCUP LN NEAR HINTON, VA": {
+            "name": "WAR BRANCH NEAR BUTTERCUP LN NEAR HINTON, VA",
+            "id": "01621209",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        },
+        "BELOW TRIB NEAR TENTH LEGION, VA": {
+            "name": "WAR BRANCH BELOW TRIB NEAR TENTH LEGION, VA",
+            "id": "0163287828",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "WARE CREEK": {
+        "NEAR TOANO, VA": {
+            "name": "WARE CREEK NEAR TOANO, VA",
+            "id": "01677000",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "WARWICK RUN": {
+        "ABOVE LICK DRAFT NEAR MILL GAP, VA": {
+            "name": "WARWICK RUN ABOVE LICK DRAFT NEAR MILL GAP, VA",
+            "id": "0201144558",
+            "vars": [
+                "Temperature, water, &#176;C"
+            ]
+        },
+        "BELOW LICK DRAFT NEAR MILL GAP, VA": {
+            "name": "WARWICK RUN BELOW LICK DRAFT NEAR MILL GAP, VA",
+            "id": "0201144806",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "WATERFRONT LAKE": {
+        "AT COX RD AT INNSBROOK, VA": {
+            "name": "WATERFRONT LAKE AT COX RD AT INNSBROOK, VA",
+            "id": "0204226163",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "WELLESLEY LAKE": {
+        "AT DAM AT SHORT PUMP, VA": {
+            "name": "WELLESLEY LAKE AT DAM AT SHORT PUMP, VA",
+            "id": "0203667630",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    },
+    "WEST FORK LINVILLE CREEK": {
+        "NR HARRISONBURG, VA": {
+            "name": "WEST FORK LINVILLE CREEK NR HARRISONBURG, VA",
+            "id": "01632073",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "WEST NECK CR": {
+        "AT RT 149 AT PRINCESS ANNE, VA WN1": {
+            "name": "WEST NECK CR AT RT 149 AT PRINCESS ANNE, VA WN1",
+            "id": "02043190",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "WEST NECK CREEK": {
+        "AT INDIAN RIVER RD AT PUNGO, VA": {
+            "name": "WEST NECK CREEK AT INDIAN RIVER RD AT PUNGO, VA",
+            "id": "02043200",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "WEST RUN": {
+        "AT MIDDLETOWN, VA": {
+            "name": "WEST RUN AT MIDDLETOWN, VA",
+            "id": "0163623357",
+            "vars": [
+                "Temperature, water, &#176;C",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "WHITE OAK RUN": {
+        "NEAR GROTTOES, VA": {
+            "name": "WHITE OAK RUN NEAR GROTTOES, VA",
+            "id": "01628060",
+            "vars": [
+                "Streamflow, ft&#179;/s"
+            ]
+        }
+    },
+    "WOLF CREEK": {
+        "NEAR NARROWS, VA": {
+            "name": "WOLF CREEK NEAR NARROWS, VA",
+            "id": "03175500",
+            "vars": [
+                "Streamflow, ft&#179;/s",
+                "Gage height, ft"
+            ]
+        }
+    },
+    "WYNDHAM LAKE": {
+        "AT DAM AT WYNDHAM VA": {
+            "name": "WYNDHAM LAKE AT DAM AT WYNDHAM VA",
+            "id": "0204225968",
+            "vars": [
+                "Gage height, ft"
+            ]
+        }
+    }
+}
