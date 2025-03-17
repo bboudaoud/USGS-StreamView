@@ -2,5 +2,8 @@
 *.zip
 *.json
 
+# Node
+node_modules/*
+
 # Plugins
 .history
