@@ -116,6 +116,16 @@ function plotData(div, flowData, heightData, tempData, printMissing = false){
     return [(traces.length > 0), siteLoc];
 }
 
+function drawMaps(loc){
+    // Update map to gauge site
+    const mapsURL = `https://maps.google.com/?api=1&q=${loc[0]},${loc[1]}&output=embed`
+    mapDiv.innerHTML = `<hr><h1>Site Location</h1><iframe src="${mapsURL}" width="100%" height=500px allowfullscreen frameborder="0"></iframe>`
+
+    // Update weather map
+    weatherDiv.innerHTML = `<h1>Site Weather</h1><iframe id="weatherFrame" src="https://embed.windy.com/embed.html?type=map&location=coordinates&lat=${loc[0]}&lon=${loc[1]}&detailLat=${loc[0]}&detailLon=${loc[1]}&marker=true" frameborder="0" style="width:100%; height:500px;"></iframe>`;
+    
+}
+
 function updateView(flow, height, temp, verbose = false){
     // Update the plot div and get valid/site location
     const [valid, siteLoc] = plotData('plotDiv', flow, height, temp, verbose);
@@ -125,12 +135,7 @@ function updateView(flow, height, temp, verbose = false){
         return false;
     }
 
-    // Update map to gauge site
-    const mapsURL = `https://maps.google.com/?api=1&q=${siteLoc[0]},${siteLoc[1]}&output=embed`
-    mapDiv.innerHTML = `<hr><h1>Site Location</h1><iframe src="${mapsURL}" width="100%" height=500px allowfullscreen frameborder="0"></iframe>`
+    drawMaps(siteLoc);
 
-    // Update weather
-    weatherDiv.innerHTML = `<h1>Site Weather</h1><iframe id="weatherFrame" src="https://embed.windy.com/embed.html?type=map&location=coordinates&lat=${siteLoc[0]}&lon=${siteLoc[1]}&detailLat=${siteLoc[0]}&detailLon=${siteLoc[1]}&marker=true" frameborder="0" style="width:100%; height:500px;"></iframe>`;
-    
     return valid;
 }
