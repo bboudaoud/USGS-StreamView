@@ -81,6 +81,7 @@ function updateSiteSelect(_evt=undefined, siteId=undefined) {
     updateSiteFav();
 }
 
+// eslint-disable-next-line no-unused-vars
 function updateSiteFav(_evt=undefined) {
     const siteId = siteSelect.value;
     let foundFav = false;
