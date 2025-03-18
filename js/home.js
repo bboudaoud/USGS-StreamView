@@ -29,30 +29,25 @@ var sites = {};
 // eslint-disable-next-line no-unused-vars
 function updateWaterSelect(_evt=undefined, siteId=undefined) {
     waterSelect.innerHTML = '';
-    const state = stateSelect.value;
-    const siteUrl = `https://waterservices.usgs.gov/nwis/iv/?stateCd=${state}&format=json`;
-    fetch(siteUrl)
-        .then(response=>response.json())
-        .then(
-            data => {
-                // Get dict of sites for this state
-                sites = getSites(data.value.timeSeries);
-                // Populate the water drop down
-                Object.keys(sites).forEach(key => {
-                    const option = document.createElement('option');
-                    option.value = key;
-                    option.text = key;
-                    waterSelect.appendChild(option);
-                    for(let loc in sites[key]){
-                        if(sites[key][loc] == siteId){
-                            waterSelect.value = key;
-                        }
-                    }
-                });
-                // Update the site selectron from the water
-                updateSiteSelect(undefined, siteId);
-            })
-        .catch(error => console.error('Error fetching locations:', error));
+    // Get dict of sites for this state
+    getSites(stateSelect.value).then(siteList => {
+        sites = siteList;
+        // Populate the water drop down
+        Object.keys(sites).forEach(key => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.text = key;
+            waterSelect.appendChild(option);
+            for(let loc in sites[key]){
+                if(sites[key][loc] == siteId){
+                    waterSelect.value = key;
+                }
+            }
+        });
+        // Update the site selectron from the water
+        updateSiteSelect(undefined, siteId);
+    })
+    .catch(error => console.error('Error fetching locations:', error));
 }
 
 // Callback from the waterbody select, updates the site select options
@@ -93,7 +88,6 @@ function updateSiteFav(_evt=undefined) {
         }
     });
     if(!foundFav){
-        console.log("hey");
         favBtn.style.backgroundColor = "#AAA";
     }
 }
@@ -215,7 +209,6 @@ function favClick(evt) {
         if(fav.id == siteSelect.value){
             // This is a match to an existing favorite, unfavorite
             removeFavorite(fav);
-            console.log()
             dropFav = true;
         }
     })
@@ -254,6 +247,60 @@ function getLatestValues(site){
     });
 }
 
+function _favStateClick(evt) {
+    const stateName = evt.target.id.split("_")[0];
+    const toggleButton = document.getElementById(`${stateName}_Toggle`)
+    const waterDivs = document.getElementById(`${stateName}_div`).getElementsByClassName("waterDiv");
+
+    for(let i = 0; i < waterDivs.length; i ++){
+        let waterDiv = waterDivs[i];
+        if(waterDiv.style.display == "block"){    
+            waterDiv.style.display = "none";
+            toggleButton.textContent = '▼'; // Down arrow for closed state
+        }
+        else{
+            waterDiv.style.display = "block";
+            toggleButton.textContent = '▲'; // Up arrow for open state
+        }
+    }
+
+}
+
+function _favWaterClick(evt) {
+    const [stateName, waterName, _] = evt.target.id.split("_");
+    const waterList = document.getElementById(`${stateName}_${waterName}_WaterList`);
+    const toggleButton = document.getElementById(`${stateName}_${waterName}_Toggle`);
+
+    if(waterList.style.display == "inline"){
+        waterList.style.display = "none";
+        toggleButton.textContent = '▼'; // Down arrow for closed state
+    }
+    else{
+        waterList.style.display = "inline";
+        toggleButton.textContent = '▲'; // Up arrow for open state
+    }
+}
+
+function _createFavHeader(idName, text, htmlType="h4"){
+    // Build the header
+    var stateHeader = document.createElement(htmlType);
+    stateHeader.id = `${idName}_Header`;
+    stateHeader.className = "stateHeader";
+    stateHeader.textContent = text;
+    stateHeader.style.cursor = "pointer";
+
+    // Add the toggle button
+    var toggleButton = document.createElement('span');
+    toggleButton.id = `${idName}_Toggle`;
+    toggleButton.className = "toggleState";
+    toggleButton.textContent = '▼'; // Down arrow for open state
+    toggleButton.style.marginLeft = '5px';
+    toggleButton.style.fontSize = '16px';
+    // Add to the header
+    stateHeader.appendChild(toggleButton);
+    return stateHeader;
+}
+
 function updateFavoritesView() {
     // Get favorites from browser
     const favorites = getFavorites();
@@ -261,85 +308,87 @@ function updateFavoritesView() {
     // Clear existing
     favDiv.innerHTML = '';
 
-    var stateDivs = {};
+    var waterDivs = {};
     favorites.forEach(fav => {
-        if(!(fav.state in stateDivs)){
+        // Deal with the state
+        if(!(fav.state in waterDivs)){
             // Need to create a state (div)
             var stateDiv = document.createElement('div');
+            stateDiv.id = `${fav.state}_div`;
             stateDiv.className = "stateDiv";
             
-            // Build the header
-            var stateHeader = document.createElement('h4');
-            stateHeader.id = `${fav.state}_Header`;
+            // Create a header for this div
+            let stateHeader = _createFavHeader(fav.state, fav.state);
             stateHeader.className = "stateHeader";
-            stateHeader.textContent = fav.state;
-            stateHeader.style.cursor = "pointer";
-            
-            // Add the toggle button
-            var toggleButton = document.createElement('span');
-            toggleButton.id = `${fav.state}_Toggle`;
-            toggleButton.className = "toggleState";
-            toggleButton.textContent = '▼'; // Down arrow for open state
-            toggleButton.style.marginLeft = '5px';
-            toggleButton.style.fontSize = '16px';
-            // Add to the header
-            stateHeader.appendChild(toggleButton);
-
-            // Add click handler
-            stateHeader.addEventListener("click", function(evt) {
-                const stateName = evt.target.id.split("_")[0];
-                const stateList = document.getElementById(`${stateName}_StateList`);
-                const displayState = stateList.style.display;
-
-                if(displayState == "inline"){
-                    stateList.style.display = "none";
-                    toggleButton.textContent = '▼'; // Down arrow for closed state
-                }
-                else{
-                    stateList.style.display = "inline";
-                    toggleButton.textContent = '▲'; // Up arrow for open state
-                }
-            })
-
-            // Create a state list
-            var stateList = document.createElement("ul");
-            stateList.style.display = "none";
-            stateList.id = `${fav.state}_StateList`
-            stateList.className = "stateList";
-
-            // Add children
+            stateHeader.addEventListener("click", _favStateClick);
             stateDiv.appendChild(stateHeader);
-            stateDiv.appendChild(stateList);
+
+            // Add the state div to the favorites div
             favDiv.appendChild(stateDiv);
-            stateDivs[fav.state] = stateDiv;
+
+            // Update this to track it has been done
+            waterDivs[fav.state] = {};
         }
         else{
-            stateList = document.getElementById(`${fav.state}_StateList`);
+            // Already have this state in favorites view
+            stateDiv = document.getElementById(`${fav.state}_div`)
         }
 
-        // Now each favorite should be unique
+        // Deal with the water body
+        if(!(fav.water in waterDivs[fav.state])){
+            // Need to create a water div here
+            var waterDiv = document.createElement('div');
+            waterDiv.className = "waterDiv";
+            waterDiv.style.display = "none";
+
+            let waterHeader = _createFavHeader(`${fav.state}_${fav.water}`, fav.water);
+            waterHeader.className = "waterHeader";
+            waterHeader.addEventListener("click", _favWaterClick);
+            waterDiv.appendChild(waterHeader);
+
+            // Create a list of water for this state
+            var waterList = document.createElement("ul");
+            waterList.style.display = "none";
+            waterList.id = `${fav.state}_${fav.water}_WaterList`;
+            waterList.className = "waterList";           
+            waterDiv.appendChild(waterList);
+
+            // Add this div to the overall div
+            stateDiv.appendChild(waterDiv);
+            waterDivs[fav.state][fav.water] = waterDiv;
+        }
+        else{
+            // Already have this water in favorites view
+            waterList = document.getElementById(`${fav.state}_${fav.water}_WaterList`);
+        }
+
+        // Deal with each individual location inside of the water div
         var waterListItem = document.createElement("li");
         const url = gaugeUrl(fav.state, fav.id, 30);
-        waterListItem.innerHTML = `<a href=${url} target=_blank>${fav.water} ${fav.loc}</a>`
+        waterListItem.innerHTML = `<a href=${url} target=_blank>${fav.loc}</a>`
+        waterList.appendChild(waterListItem);
+
+        // Update the stats for this item
         getLatestValues(fav.id).then(
             values => {
                 const [flow, height, temp] = values;
-                waterListItem.innerHTML += ` - `
+                waterListItem.innerHTML += `<br>`
                 if(flow != undefined){
-                    waterListItem.innerHTML += `${flow} cfs `;
+                    waterListItem.innerHTML += `${flow} cfs  `;
                 }
                 if(height != undefined){
-                    waterListItem.innerHTML += `${height} ft `;
+                    waterListItem.innerHTML += `${height} ft   `;
                 }
                 if(temp != undefined){
                     waterListItem.innerHTML += `${temp} °F`
                 }
             }
         );
-        stateList.appendChild(waterListItem);
     });
+    
 
-    if(Object.keys(stateDivs).length == 0){
+    // Set a custom message here
+    if(favorites.length == 0){
         favDiv.innerHTML = '<p style="color: gray">No Favorites</p>';
     }
 
