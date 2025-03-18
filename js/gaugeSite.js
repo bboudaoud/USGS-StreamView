@@ -93,30 +93,26 @@ function updateTimeSeries() {
     if(siteSelect.options.length == 0) {
         return false;
     }
+    // Get the site label (english name)
+    const siteLabel = siteSelect.options[siteSelect.selectedIndex].text;
+
+    // Get the period
     const periodDays = periodDaysEntry.value;
     const period = `P${periodDays}D`;
 
     // Fetch data from USGS API
-    const flowUrl = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteCode}&period=${period}&parameterCd=00060`;
-    const heightUrl = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteCode}&period=${period}&parameterCd=00065`;
-    const tempUrl = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteCode}&period=${period}&parameterCd=00010`;
-
-    Promise.all([
-        fetch(flowUrl).then(response => response.text()),
-        fetch(heightUrl).then(response => response.text()),
-        fetch(tempUrl).then(response => response.text())
-    ])
-    .then(([flowText, heightText, tempText]) => {
-        try {
-            // Extract time series data as JSON
-            const flowData = JSON.parse(flowText);
-            const heightData = JSON.parse(heightText);
-            const tempData = JSON.parse(tempText);
-
+    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteCode}&period=${period}&parameterCd=00060,00065,00010`;
+    fetch(url).then(response => {
+        if(!response.ok){
+            throw new Error(`Response status error: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        try {                
             // This creates the plot in the right div
-            if(!updateView(flowData, heightData, tempData)){
+            if(!updateView(data)){
                 // This item has neither flow, height, or temperature, remove it and update
-                const siteLabel = siteSelect.options[siteSelect.selectedIndex].text;
                 console.warn(`No data found for the gauge ${siteLabel}... removing from list.`);
                 for(let i = 0; i < siteSelect.options.length; i++){
                     if (siteSelect.options[i].value == siteSelect.value){

@@ -8,85 +8,97 @@ const mapDiv = document.getElementById('mapDiv');
 const weatherDiv = document.getElementById('weatherDiv');
 
 // Utility method for reading a time series below
-function _get_time_series(data) {
-    if(data.value.timeSeries.length > 0) {
-        return data.value.timeSeries[0].values[0].value;
+function _get_time_series(data, varName) {
+    const timeSeries = data.value.timeSeries;
+    for(let i =0; i < timeSeries.length; i++){
+        const ts = timeSeries[i];
+        if(ts.variable.variableName.includes(varName)){
+            // Found a match
+            return ts.values[0].value;
+        }
     }
     return [];
 }
 
-function plotData(div, flowData, heightData, tempData, printMissing = false){
-    // Transform the data
-    const flowValues = _get_time_series(flowData).map(v => v.value);
-    const heightValues = _get_time_series(heightData).map(v => v.value);
-    const tempValues = _get_time_series(tempData).map(v => v.value);
-    const tempValuesFahrenheit = tempValues.map(c => c * (9/5) + 32);
+function _get_source_info(data, varName){
+    for(let i = 0; i < data.value.timeSeries.length; i++){
+        const ts = data.value.timeSeries[i];
+        if(ts.variable.variableName.includes(varName)){
+            // Found a match
+            return ts.sourceInfo;
+        }
+    }
+    return {}; 
+}
 
+function plotData(div, data, printMissing = false){
+    // Transform the data
+    const flowValues = _get_time_series(data, "Streamflow");
+    const flowInfo = _get_source_info(data, "Streamflow");
+
+    const heightValues = _get_time_series(data, "Gage height");
+    const heightInfo = _get_source_info(data, "Gage height");
+
+    const tempValues = _get_time_series(data, "Temperature, water");
+    const tempInfo = _get_source_info(data, "Temperature, water");
+
+    // Storage for this method
     var traces = [];
     var siteName = undefined;
     var siteLoc = [undefined, undefined];
 
     // Create Plotly figure for flow and height
     if(flowValues.length > 0) {
-        const times = _get_time_series(flowData).map(v => v.dateTime);
-        const flowInfo = flowData.value.timeSeries[0].sourceInfo;
         siteName = flowInfo.siteName;
         siteLoc = [flowInfo.geoLocation.geogLocation.latitude, flowInfo.geoLocation.geogLocation.longitude];
-        const flowTrace = {
-            x: times,
-            y: flowValues,
+        traces.push({
+            x: flowValues.map(v => v.dateTime),
+            y: flowValues.map(v => v.value),
             name: 'Streamflow (cfs)',
             type: 'scatter',
             mode: 'lines',
             xaxis: 'x',
             yaxis: 'y',
             marker: { color: 'red' },
-        }
-        traces.push(flowTrace);
+        });
     }
     else if(printMissing){
         console.log(`No flow for ${location}`);
     }
 
     if (heightValues.length > 0){
-        const times = _get_time_series(heightData).map(v => v.dateTime);
-        const heightInfo = heightData.value.timeSeries[0].sourceInfo;
         siteName = heightInfo.siteName;
         siteLoc = [heightInfo.geoLocation.geogLocation.latitude, heightInfo.geoLocation.geogLocation.longitude];
-        const heightTrace = {
-            x: times,
-            y: heightValues,
+        traces.push({
+            x: heightValues.map(v => v.dateTime),
+            y: heightValues.map(v => v.value),
             type: 'scatter',
             mode: 'lines',
             marker: { color: 'blue' },
             name: 'Gage Height (ft)',
             xaxis: 'x',
             yaxis: 'y3'
-        };
-        traces.push(heightTrace);
+        });
     }
     else if(printMissing){
         console.log(`No height for ${location}`);
     }
 
     var hasTemp = false;
-    if(tempValuesFahrenheit.length > 0){
-        const times = _get_time_series(tempData).map(v => v.dateTime);
-        const tempInfo = tempData.value.timeSeries[0].sourceInfo;
+    if(tempValues.length > 0){
         siteName = tempInfo.siteName;
         siteLoc = [tempInfo.geoLocation.geogLocation.latitude, tempInfo.geoLocation.geogLocation.longitude];
         hasTemp = true;
-        const tempTrace = {
-            x: times,
-            y: tempValuesFahrenheit,
+       traces.push({
+            x: tempValues.map(v => v.dateTime),
+            y: tempValues.map(v => v.value * (9/5) + 32),
             name: "Temperature (°F)",
             type: 'scatter',
             mode: 'lines',
             marker: { color: 'green' },
             xaxis: "x2",
             yaxis: "y2",
-        }
-        traces.push(tempTrace);
+        });
     }
     else if(printMissing){
         console.log(`No temperature for ${siteName}`);
@@ -124,7 +136,7 @@ function plotData(div, flowData, heightData, tempData, printMissing = false){
     // Create plot here (currently import work here is sloppy)
     // eslint-disable-next-line no-undef
     Plotly.newPlot(div, traces, layout, config);
-
+    
     // Return whether we found any valid data
     return [(traces.length > 0), siteLoc];
 }
@@ -139,9 +151,9 @@ function drawMaps(loc){
     
 }
 
-export function updateView(flow, height, temp, verbose = false){
+export function updateView(data, verbose = false){
     // Update the plot div and get valid/site location
-    const [valid, siteLoc] = plotData(PLOT_DIV_NAME, flow, height, temp, verbose);
+    const [valid, siteLoc] = plotData(PLOT_DIV_NAME, data, verbose);
     
     if(!valid){
         // If not valid then we don't have a valid site location anyways
