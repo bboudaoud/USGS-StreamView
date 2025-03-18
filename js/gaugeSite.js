@@ -28,25 +28,24 @@ var sites = {};
 function updateWaterSelect(_evt=undefined, siteId=undefined) {
     waterSelect.innerHTML = '';
     // Get sites here
-    getSites(stateSelect.value).then(
-        siteDict => {
-            sites = siteDict;
-            // Populate the water drop down
-            Object.keys(sites).forEach(key => {
-                const option = document.createElement('option');
-                option.value = key;
-                option.text = key;
-                waterSelect.appendChild(option);
-                for(let loc in sites[key]){
-                    if(sites[key][loc] == siteId){
-                        waterSelect.value = key;
-                    }
+    getSites(stateSelect.value).then(siteDict => {
+        // Update this
+        sites = siteDict;
+        // Populate the water drop down
+        Object.keys(sites).forEach(key => {
+            const option = document.createElement('option');
+            option.value = key;
+            option.text = key;
+            waterSelect.appendChild(option);
+            for(let loc in sites[key]){
+                if(sites[key][loc] == siteId){
+                    waterSelect.value = key;
                 }
-            });
-            // Update the site selection from the water
-            updateSiteSelect(undefined, siteId);
-        }
-    );
+            }
+        });
+        // Update the site selection from the water
+        updateSiteSelect(undefined, siteId);
+    });
 }
 
 // Callback from the waterbody select, updates the site select options
