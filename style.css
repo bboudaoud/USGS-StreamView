@@ -42,3 +42,27 @@ h1 {
     border: 1px solid #ccc;
     border-top: none;
 }
+
+button.tablinks {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.stateDiv {
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 5px;
+}
+
+.stateHeader {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.stateList {
+    margin-top: 0;
+}
+
+.stateList li {
+    margin-left: 20px;
+}
