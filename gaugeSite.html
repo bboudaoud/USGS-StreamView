@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USGS StreamView</title>
+    <link rel="icon" type="image/x-icon" href="favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Quick form to support setting up parameters -->
+    <form id="usgsForm">
+        <div style="display:inline;">
+            <label for="state"><b>State</b></label>
+            <select id="state" name="state" value="VA">
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <div class="split_div" style="display:inline;"></div>
+        <div style="display:inline;">
+            <label for="waterbody"><b>Water</b></label>
+            <select id="waterbody" name="waterbody">
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <div class="split_div" style="display:inline;"></div>
+        <div style="display:inline; padding-left: 1%;">
+            <label for="site_id"><b>Location</b></label>
+            <select id="site_id" name="site_id">
+                <!-- Options will be populated dynamically -->
+            </select>
+        </div>
+        <div class="split_div" style="display:inline;"></div>
+        <button type="submit" id="fetchDataBtn" style="display:inline; position:relative; float:right;">Plot</button>
+        <div style="display:inline; position:relative; float:right; padding-right: 1%;">
+            <label for="periodDays"><b>Period</b></label>
+            <input type="number" id="periodDays" name="periodDays" value="30" min="1" max="120" required style="text-align: right;">
+            <label>days</label>
+        </div>
+    </form>
+    <hr>
+    <div id="plotDiv" style="width:100%;"></div>
+    <div id="mapDiv" style="width:100%;"></div>
+    <div id="weatherDiv"></div>
+
+    <!-- Get plotly from here -->
+    <script src="https://cdn.plot.ly/plotly-2.19.1.min.js"></script>
+    <!-- Include our viewer scripts after plotly (relies on it) -->
+    <script type="module" src="js/gaugeSite.js"></script>
+</body>
+</html>
