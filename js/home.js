@@ -1,7 +1,7 @@
 "use strict";
 
 import { states } from "./states.js";
-import { getSites } from "./parse.js";
+import { getSites } from "./data.js";
 
 const tabs = document.getElementsByClassName("tablinks");
 const favDiv = document.getElementById("Favorites");
@@ -114,7 +114,7 @@ function openTab(evt) {
     const id = evt.target.innerHTML;
 
     if(id == "Favorites"){
-        showFavorites();
+        updateFavoritesView();
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
@@ -178,7 +178,7 @@ function addFavorite() {
         saveFavorites(favorites);
         console.log("ADD FAVORITE: ", newFav);
         // Load new favorites
-        showFavorites();
+        updateFavoritesView();
     }
     // This indicates that this is now/aready was a favorite
     return true;
@@ -235,7 +235,12 @@ function favClick(evt) {
     evt.stopPropagation();
 }
 
-function showFavorites() {
+function getLatestData(site){
+    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${site.id}&parameterCd=00060,00065,00010`;
+
+}
+
+function updateFavoritesView() {
     // Get favorites from browser
     const favorites = getFavorites();
     
@@ -313,7 +318,7 @@ function showFavorites() {
 }
 
 // Load the favorites here
-let favorites = showFavorites();
+let favorites = updateFavoritesView();
 
 // Add these event listeners
 stateSelect.addEventListener("change", updateWaterSelect);
