@@ -92,7 +92,7 @@ button.tablinks {
 
 .waterHeader {
     margin: 0;
-    padding: 10px;
+    padding-top: 10px;
     font-size: 12pt;
 }
 
@@ -101,6 +101,7 @@ button.tablinks {
 }
 
 .waterList li {
+    font-size: 11pt;
     margin-left: 40px;
     margin-bottom: 10px;
 }
