@@ -1,7 +1,7 @@
 "use strict";
 
 import { states } from "./states.js";
-import { getSites } from "./data.js";
+import { getDataForSite, getSites } from "./data.js";
 
 const tabs = document.getElementsByClassName("tablinks");
 const favDiv = document.getElementById("Favorites");
@@ -235,9 +235,23 @@ function favClick(evt) {
     evt.stopPropagation();
 }
 
-function getLatestData(site){
-    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${site.id}&parameterCd=00060,00065,00010`;
+function getLatestValues(site){
+    // Return a spot result
+    return getDataForSite(site).then(data => {
+        const[_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
+        var [flow, height, temp] = [undefined, undefined, undefined];
 
+        if(flowValues.length > 0) {
+            flow = flowValues[flowValues.length-1].value;
+        }
+        if(heightValues.length > 0){
+            height = heightValues[heightValues.length-1].value;
+        }
+        if(tempValues.length> 0) {
+            temp = tempValues[tempValues.length-1].value * 9/5 + 32;
+        }
+        return [flow, height, temp];
+    });
 }
 
 function updateFavoritesView() {
@@ -307,6 +321,21 @@ function updateFavoritesView() {
         var waterListItem = document.createElement("li");
         const url = gaugeUrl(fav.state, fav.id, 30);
         waterListItem.innerHTML = `<a href=${url} target=_blank>${fav.water} ${fav.loc}</a>`
+        getLatestValues(fav.id).then(
+            values => {
+                const [flow, height, temp] = values;
+                waterListItem.innerHTML += ` - `
+                if(flow != undefined){
+                    waterListItem.innerHTML += `${flow} cfs `;
+                }
+                if(height != undefined){
+                    waterListItem.innerHTML += `${height} ft `;
+                }
+                if(temp != undefined){
+                    waterListItem.innerHTML += `${temp} °F`
+                }
+            }
+        );
         stateList.appendChild(waterListItem);
     });
 
