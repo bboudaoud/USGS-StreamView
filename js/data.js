@@ -89,7 +89,7 @@ function _splitNameLoc(name) {
     return [body.trim(), loc.trim()];
 }
 
-export async function getSites(state, valid_names = ["Gage height", "Streamflow", "Temperature, water"]){
+export function getSites(state, valid_names = ["Gage height", "Streamflow", "Temperature, water"]){
     const siteUrl = `https://waterservices.usgs.gov/nwis/iv/?stateCd=${state}&format=json`;
     return fetch(siteUrl)
     .then(response=> response.json())
