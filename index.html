@@ -21,7 +21,7 @@
 </div>
 
 <div id="Explore" class="tabcontent">
-    <p>Explore all available river gauges.</p>
+    <p>Explore and favorite available river gauges</p>
     <form id="exploreForm">
         <label for="state">State:</label>
         <select id="state" name="state">
@@ -43,14 +43,17 @@
         </select>
             
         <br><br>
-        
+               
+        <button id="favBtn" title="Add to Favorites"></button>
+        <br>
+        <hr>
+        <br>
         <label for="periodDays">Period (Days):</label>
         <input type="number" id="periodDays" min="1" max="120">
         
         <br><br>
-        
+
         <button id="viewBtn" type="submit">View Gauge</button>
-        <button id="favBtn">Favorite</button>
     </form>
 </div>
 

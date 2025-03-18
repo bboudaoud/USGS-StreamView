@@ -3,7 +3,7 @@
 import { states } from "./states.js";
 import { getSites } from "./parse.js";
 
-const tabLinks = document.getElementsByClassName("tablinks");
+const tabs = document.getElementsByClassName("tablinks");
 const favDiv = document.getElementById("Favorites");
 
 // Explore form
@@ -77,6 +77,24 @@ function updateSiteSelect(_evt=undefined, siteId=undefined) {
     else{
         siteSelect.selectedIndex = 0;
     }
+    // Update the favorite btn based on status
+    updateSiteFav();
+}
+
+function updateSiteFav(_evt=undefined) {
+    const siteId = siteSelect.value;
+    let foundFav = false;
+    // Check for this site in favorites
+    getFavorites().forEach(fav => {
+        if(siteId == fav.id){
+            favBtn.style.backgroundColor = "gold";
+            foundFav = true;
+        }
+    });
+    if(!foundFav){
+        console.log("hey");
+        favBtn.style.backgroundColor = "#AAA";
+    }
 }
 
 function openTab(evt) {
@@ -87,8 +105,8 @@ function openTab(evt) {
     }
 
     // Get all elements with class="tablinks" and remove the class "active"
-    for (let i = 0; i < tabLinks.length; i++) {
-        tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].className = tabs[i].className.replace(" active", "");
     }
 
     // This gets the ID for the corresponding tabcontent class
@@ -127,7 +145,93 @@ function getFavorites() {
 }
 
 function saveFavorites(favorites) {
-    localStorage.setItem("favorites", JSON.stringify(favorites));
+    if(favorites != undefined) {
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+}
+
+function addFavorite() {
+    // Get existing favorites
+    var favorites = getFavorites();
+    
+    if(stateSelect.value == undefined || waterSelect.value == undefined || siteSelect.value == undefined || siteSelect.selectedIndex == -1){
+        return false;
+    }
+
+    // Create a new favorite
+    const newFav = {
+        state: stateSelect.value,
+        water: waterSelect.value,
+        loc: siteSelect.options[siteSelect.selectedIndex].text,
+        id: siteSelect.value,
+    };
+
+    if(newFav.state == "" || newFav.water == "" || newFav.loc == ""){
+        return false;
+    }
+
+    // Add if not present
+    if (!favorites.includes(newFav)){
+        // Add here
+        favorites.push(newFav);
+        saveFavorites(favorites);
+        console.log("ADD FAVORITE: ", newFav);
+        // Load new favorites
+        showFavorites();
+    }
+    // This indicates that this is now/aready was a favorite
+    return true;
+}
+
+function removeFavorite(fav){
+    var favorites = getFavorites();
+
+    let favIdx = -1;
+    for(let i = 0; i < favorites.length; i++){
+        if(favorites[i].id == fav.id){
+            favIdx = i;
+        }
+    }
+
+    // Early exit for not present
+    if(favIdx < 0){
+        // Did not find this favorite
+        return;
+    }
+    // Splice around index/remove from this list
+    favorites.splice(favIdx, 1);
+    console.log("REMOVE FAVORITE: ", fav);
+    // Update the memory
+    saveFavorites(favorites);
+}
+
+function favClick(evt) {
+    var favorites = getFavorites();
+
+    // Determine whether this is already a favorite (if so unfavorite)
+    let dropFav = false;
+    favorites.forEach(fav => {
+        if(fav.id == siteSelect.value){
+            // This is a match to an existing favorite, unfavorite
+            removeFavorite(fav);
+            console.log()
+            dropFav = true;
+        }
+    })
+    if(!dropFav){
+        addFavorite();
+    }
+
+    // Add a favorite (if we don't already have one)
+    favBtn.style.backgroundColor = "#AAA";
+    if(!dropFav){
+        // Set the color of the button
+        favBtn.style.backgroundColor = "gold";
+    }
+
+    // Prevent this event from submitting the form
+    evt.preventDefault(); 
+    evt.stopPropagation();
 }
 
 function showFavorites() {
@@ -153,6 +257,8 @@ function showFavorites() {
             
             // Add the toggle button
             var toggleButton = document.createElement('span');
+            toggleButton.id = `${fav.state}_Toggle`;
+            toggleButton.className = "toggleState";
             toggleButton.textContent = '▼'; // Down arrow for open state
             toggleButton.style.marginLeft = '5px';
             toggleButton.style.fontSize = '16px';
@@ -196,55 +302,36 @@ function showFavorites() {
         const url = gaugeUrl(fav.state, fav.id, 30);
         waterListItem.innerHTML = `<a href=${url} target=_blank>${fav.water} ${fav.loc}</a>`
         stateList.appendChild(waterListItem);
-
     });
 
     if(Object.keys(stateDivs).length == 0){
         favDiv.innerHTML = '<p style="color: gray">No Favorites</p>';
     }
-}
 
-function addFavorite() {
-    // Get existing favorites
-    var favorites = getFavorites();
-    
-    // Create a new favorite
-    const newFav = {
-        state: stateSelect.value,
-        water: waterSelect.value,
-        loc: siteSelect.options[siteSelect.selectedIndex].text,
-        id: siteSelect.value,
-    };
-
-    if(newFav.state == "" || newFav.water == "" || newFav.loc == ""){
-        return;
-    }
-
-    // Add if not present
-    if (!favorites.includes(newFav)){
-        // Add here
-        favorites.push(newFav);
-        saveFavorites(favorites);
-        console.log("add favorite: ", newFav);
-    }
-    // Load new favorites
-    showFavorites();
+    return favorites;
 }
 
 // Load the favorites here
-showFavorites();
+let favorites = showFavorites();
 
 // Add these event listeners
 stateSelect.addEventListener("change", updateWaterSelect);
 waterSelect.addEventListener("change", updateSiteSelect);
+siteSelect.addEventListener("change", updateSiteFav);
 exploreForm.addEventListener("submit", gotoGauge)
-favBtn.onclick = function(evt) { addFavorite(); evt.preventDefault(); };
+favBtn.addEventListener("click", favClick);
 
 // Bind these to tab click
-for(let i = 0; i < tabLinks.length; i++){
-    tabLinks[i].onclick = openTab;
+for(let i = 0; i < tabs.length; i++){
+    tabs[i].onclick = openTab;
 }
-// Open the first tab by default
-if (tabLinks.length > 0) {
-    tabLinks[0].click();
+
+// Check for no favorites, if no favorites to explore view
+if(favorites.length == 0){
+    // This selects the "explore" tab
+    tabs[1].click();
+}
+else{
+    // This selects the "favorites" tab
+    tabs[0].click();
 }

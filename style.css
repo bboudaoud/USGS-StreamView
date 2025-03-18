@@ -48,6 +48,33 @@ button.tablinks {
     font-weight: bold;
 }
 
+#favBtn {
+    display: "inline-block";
+    width: 30px; /* Adjust size as needed */
+    height: 30px;
+    background-color: #AAA; /* Star color */
+    border: none;
+    cursor: pointer;
+    clip-path: polygon(
+        50% 0%,
+        61% 35%,
+        98% 35%,
+        68% 57%,
+        79% 91%,
+        50% 70%,
+        21% 91%,
+        32% 57%,
+        2% 35%,
+        39% 35%
+    );
+    transition: background-color 0.3s ease;
+}
+
+#favBtn:hover {
+    background-color: gold; /* Hover color */
+}
+
+
 .stateDiv {
     margin-bottom: 10px;
     border: 1px solid #ddd;
