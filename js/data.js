@@ -207,7 +207,7 @@ export function getDataForSite(siteId, periodDays=undefined) {
             siteLoc = [flowInfo.geoLocation.geogLocation.latitude, flowInfo.geoLocation.geogLocation.longitude];
         }
         
-        const heightValues = _get_time_series(data, flowVarName);
+        const heightValues = _get_time_series(data, heightVarName);
         const heightInfo = _get_source_info(data, heightVarName);
         if(heightInfo != undefined){
             siteName = heightInfo.siteName;
