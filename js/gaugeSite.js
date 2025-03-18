@@ -1,7 +1,7 @@
 "use strict";
 
 import { updateView } from './plot.js';
-import { getSites } from './parse.js';
+import { getSites, getDataForSite } from './data.js';
 import { states } from './states.js';
 
 // Form elements
@@ -27,30 +27,26 @@ var sites = {};
 // eslint-disable-next-line no-unused-vars
 function updateWaterSelect(_evt=undefined, siteId=undefined) {
     waterSelect.innerHTML = '';
-    const state = stateSelect.value;
-    const siteUrl = `https://waterservices.usgs.gov/nwis/iv/?stateCd=${state}&format=json`;
-    fetch(siteUrl)
-        .then(response=>response.json())
-        .then(
-            data => {
-                // Get dict of sites for this state
-                sites = getSites(data.value.timeSeries);
-                // Populate the water drop down
-                Object.keys(sites).forEach(key => {
-                    const option = document.createElement('option');
-                    option.value = key;
-                    option.text = key;
-                    waterSelect.appendChild(option);
-                    for(let loc in sites[key]){
-                        if(sites[key][loc] == siteId){
-                            waterSelect.value = key;
-                        }
+    // Get sites here
+    getSites(stateSelect.value).then(
+        siteDict => {
+            sites = siteDict;
+            // Populate the water drop down
+            Object.keys(sites).forEach(key => {
+                const option = document.createElement('option');
+                option.value = key;
+                option.text = key;
+                waterSelect.appendChild(option);
+                for(let loc in sites[key]){
+                    if(sites[key][loc] == siteId){
+                        waterSelect.value = key;
                     }
-                });
-                // Update the site selectron from the water
-                updateSiteSelect(undefined, siteId);
-            })
-        .catch(error => console.error('Error fetching locations:', error));
+                }
+            });
+            // Update the site selection from the water
+            updateSiteSelect(undefined, siteId);
+        }
+    );
 }
 
 // Callback from the waterbody select, updates the site select options
@@ -61,6 +57,10 @@ function updateSiteSelect(_evt=undefined, siteId=undefined) {
         return;
     }
     const water = waterSelect.value;
+    // if(water == "" || water == undefined){
+    //     return;
+    // }
+
     siteSelect.innerHTML = '';
     // Get options for location
     Object.keys(sites[water]).forEach(key => {
@@ -96,21 +96,10 @@ function updateTimeSeries() {
     // Get the site label (english name)
     const siteLabel = siteSelect.options[siteSelect.selectedIndex].text;
 
-    // Get the period
-    const periodDays = periodDaysEntry.value;
-    const period = `P${periodDays}D`;
-
     // Fetch data from USGS API
-    const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteCode}&period=${period}&parameterCd=00060,00065,00010`;
-    fetch(url).then(response => {
-        if(!response.ok){
-            throw new Error(`Response status error: ${response.status}`);
-        }
-        return response.json();
-    })
-    .then(data => {
-        try {                
-            // This creates the plot in the right div
+    getDataForSite(siteCode, periodDaysEntry.value).then(
+        data => {
+            // Attempt to update
             if(!updateView(data)){
                 // This item has neither flow, height, or temperature, remove it and update
                 console.warn(`No data found for the gauge ${siteLabel}... removing from list.`);
@@ -139,13 +128,8 @@ function updateTimeSeries() {
                 // Schedule another call to us (will need to update)
                 setTimeout(updateTimeSeries, 10);
             }
-        } 
-        catch (error) {
-            console.error('Error parsing JSON:', error);
         }
-    })
-    .catch(error => console.error('Error fetching data:', error));
-    return true;
+    )
 }
 
 // Layout tweak for mobile
