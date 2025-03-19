@@ -53,105 +53,207 @@
 
         <div id="favDiv">
           <!-- TODO: Start working on adding levels/temps for favorites here!!! -->
-           <form id="favForm">
-                <div id="favLevelDiv" class="favLevelDiv">
-                    <p><b>Level Thresholds</b></p>
-                    
-                    <input type="radio" class="modeRb" id="level_cfs_mode" name="level_mode" value="cfs" checked="checked">
-                    <label class="modeRb" for="level_cfs_mode">Flow (cfs)</label>
+          <form id="favForm">
+            <div id="favLevelDiv" class="favLevelDiv">
+              <p><b>Level Thresholds</b></p>
 
-                    <input type="radio" class="modeRb" id="level_ft_mode" name="level_mode" value="ft">
-                    <label class="modeRb" for="level_ft_mode">Height (ft)</label>
+              <input
+                type="radio"
+                class="modeRb"
+                id="level_cfs_mode"
+                name="level_mode"
+                value="cfs"
+                checked="checked"
+              />
+              <label class="modeRb" for="level_cfs_mode">Flow (cfs)</label>
 
-                    <br>
-                    <br>
+              <input
+                type="radio"
+                class="modeRb"
+                id="level_ft_mode"
+                name="level_mode"
+                value="ft"
+              />
+              <label class="modeRb" for="level_ft_mode">Height (ft)</label>
 
-                    <label class="levelLabel" for="too_high_level" style="color:red"><b>Very High</b></label>
-                    <label class="levelUnits" for="too_high_level" style="color:red">cfs</label>
-                    <input type="number" class="levelEntry" id="too_high_level" name="too_high_level" style="color:red">
+              <br />
+              <br />
 
-                    <br>
-                    <br>
+              <label class="levelLabel" for="too_high_level" style="color: red"
+                ><b>Very High</b></label
+              >
+              <label class="levelUnits" for="too_high_level" style="color: red"
+                >cfs</label
+              >
+              <input
+                type="number"
+                class="levelEntry"
+                id="too_high_level"
+                name="too_high_level"
+                style="color: red"
+              />
 
-                    <label class="levelLabel" for="high_level" style="color:orange"><b>High</b></label>
-                    <label class="levelUnits" for="high_level" style="color:orange">cfs</label>
-                    <input type="number" class="levelEntry" id="high_level" name="high_level" style="color:orange">
+              <br />
+              <br />
 
-                    <br>
-                    <br>
+              <label class="levelLabel" for="high_level" style="color: orange"
+                ><b>High</b></label
+              >
+              <label class="levelUnits" for="high_level" style="color: orange"
+                >cfs</label
+              >
+              <input
+                type="number"
+                class="levelEntry"
+                id="high_level"
+                name="high_level"
+                style="color: orange"
+              />
 
+              <br />
+              <br />
 
-                    <label class="levelLabel" for="norm_level" style="color:green"><b>Normal</b></label>
-                    <label class="levelUnits" for="norm_level" style="color:green">cfs</label>
-                    <input type="number" class="levelEntry" id="norm_level" name="norm_level" style="color:green">
+              <label class="levelLabel" for="norm_level" style="color: green"
+                ><b>Normal</b></label
+              >
+              <label class="levelUnits" for="norm_level" style="color: green"
+                >cfs</label
+              >
+              <input
+                type="number"
+                class="levelEntry"
+                id="norm_level"
+                name="norm_level"
+                style="color: green"
+              />
 
-                    <br>
-                    <br>
+              <br />
+              <br />
 
+              <label class="levelLabel" for="low_level" style="color: gray"
+                ><b>Low</b></label
+              >
+              <label class="levelUnits" for="low_level" style="color: gray"
+                >cfs</label
+              >
+              <input
+                type="number"
+                class="levelEntry"
+                id="low_level"
+                name="low_level"
+                style="color: gray"
+              />
 
-                    <label class="levelLabel" for="low_level" style="color:gray"><b>Low</b></label>
-                    <label class="levelUnits" for="low_level" style="color:gray">cfs</label>
-                    <input type="number" class="levelEntry" id="low_level" name="low_level" style="color:gray">
-                    
-                    <br>
-                    <br>
-                </div>
-                <div id="favTempDiv" class="favTempDiv">
-                    <!-- This div lets you set the temperature thresholds for a favorite -->
-                    <p><b>Temperature Thresholds</b></p>
-                    
-                    <input type="radio" class="modeRb" id="temp_mode_f" name="temp_mode" value="°F" checked="checked">
-                    <label class="modeRb" for="temp_mode_f">°F</label>
+              <br />
+              <br />
+            </div>
+            <div id="favTempDiv" class="favTempDiv">
+              <!-- This div lets you set the temperature thresholds for a favorite -->
+              <p><b>Temperature Thresholds</b></p>
 
-                    <input type="radio" class="modeRb" id="temp_mode_c" name="temp_mode" value="°C">
-                    <label class="modeRb" for="temp_mode_c">°C</label>
+              <input
+                type="radio"
+                class="modeRb"
+                id="temp_mode_f"
+                name="temp_mode"
+                value="°F"
+                checked="checked"
+              />
+              <label class="modeRb" for="temp_mode_f">°F</label>
 
-                    <br>
-                    <br>
+              <input
+                type="radio"
+                class="modeRb"
+                id="temp_mode_c"
+                name="temp_mode"
+                value="°C"
+              />
+              <label class="modeRb" for="temp_mode_c">°C</label>
 
-                    <label class="tempLabel" for="hot_temp" style="color:red"><b>Very Hot</b></label>
-                    <label class="tempUnits" for="hot_temp" style="color:red">°F</label>
-                    <input type="number" class="tempEntry" id="hot_temp" name="hot_temp" style="color:red">
+              <br />
+              <br />
 
-                    <br>
-                    <br>
+              <label class="tempLabel" for="hot_temp" style="color: red"
+                ><b>Very Hot</b></label
+              >
+              <label class="tempUnits" for="hot_temp" style="color: red"
+                >°F</label
+              >
+              <input
+                type="number"
+                class="tempEntry"
+                id="hot_temp"
+                name="hot_temp"
+                style="color: red"
+              />
 
-                    <label class="tempLabel" for="warm_temp" style="color:orange"><b>Warm</b></label>
-                    <label class="tempUnits" for="warm_temp" style="color:orange">°F</label>
-                    <input type="number" class="tempEntry" id="warm_temp" name="warm_temp" style="color:orange">
+              <br />
+              <br />
 
-                    <br>
-                    <br>
+              <label class="tempLabel" for="warm_temp" style="color: orange"
+                ><b>Warm</b></label
+              >
+              <label class="tempUnits" for="warm_temp" style="color: orange"
+                >°F</label
+              >
+              <input
+                type="number"
+                class="tempEntry"
+                id="warm_temp"
+                name="warm_temp"
+                style="color: orange"
+              />
 
+              <br />
+              <br />
 
-                    <label class="tempLabel" for="norm_temp" style="color:green"><b>Normal</b></label>
-                    <label class="tempUnits" for="norm_temp" style="color:green">°F</label>
-                    <input type="number" class="tempEntry" id="norm_temp" name="norm_temp" style="color:green">
+              <label class="tempLabel" for="norm_temp" style="color: green"
+                ><b>Normal</b></label
+              >
+              <label class="tempUnits" for="norm_temp" style="color: green"
+                >°F</label
+              >
+              <input
+                type="number"
+                class="tempEntry"
+                id="norm_temp"
+                name="norm_temp"
+                style="color: green"
+              />
 
-                    <br>
-                    <br>
+              <br />
+              <br />
 
+              <label class="tempLabel" for="cold_temp" style="color: darkblue"
+                ><b>Cold</b></label
+              >
+              <label class="tempUnits" for="cold_temp" style="color: darkblue"
+                >°F</label
+              >
+              <input
+                type="number"
+                class="tempEntry"
+                id="cold_temp"
+                name="cold_temp"
+                style="color: gray"
+              />
 
-                    <label class="tempLabel" for="cold_temp" style="color:darkblue"><b>Cold</b></label>
-                    <label class="tempUnits" for="cold_temp" style="color:darkblue">°F</label>
-                    <input type="number" class="tempEntry" id="cold_temp" name="cold_temp" style="color:gray">
-                    
-                    <br>
-                    <br>
-                </div>
+              <br />
+              <br />
+            </div>
 
-                <br>
-                <!-- Update button -->
-                <button id="updateFavThreshBtn">Update Favorite</button>
-           </form>
-           <!-- Add an extra HR to split this div -->
+            <br />
+            <!-- Update button -->
+            <button id="updateFavThreshBtn">Update Favorite</button>
+          </form>
+          <!-- Add an extra HR to split this div -->
           <hr />
         </div>
-        <div id = "viewDiv">
-            <br />
-            <label for="periodDays"><b>Period (Days):</b></label>
-            <input type="number" id="periodDays" min="1" max="120" />
-            <button id="viewBtn" type="submit">View Gauge</button>
+        <div id="viewDiv">
+          <br />
+          <label for="periodDays"><b>Period (Days):</b></label>
+          <input type="number" id="periodDays" min="1" max="120" />
+          <button id="viewBtn" type="submit">View Gauge</button>
         </div>
       </form>
     </div>

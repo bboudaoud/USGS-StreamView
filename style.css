@@ -56,38 +56,41 @@ button.tablinks {
   display: none;
 }
 
-.favLevelDiv{
+.favLevelDiv {
   display: inline-block;
   width: 40%;
 }
 
-.favTempDiv{
+.favTempDiv {
   display: inline-block;
   width: 40%;
   margin-left: 10%;
 }
 
-.levelLabel, .tempLabel{
+.levelLabel,
+.tempLabel {
   display: inline;
   margin-left: 10px;
 }
 
-.levelEntry, .tempEntry {
+.levelEntry,
+.tempEntry {
   display: inline;
   float: right;
 }
 
-.levelUnits, .tempUnits{
+.levelUnits,
+.tempUnits {
   display: inline;
   float: right;
   margin-left: 10px;
 }
 
-.modeRb{
+.modeRb {
   display: inline-block;
 }
 
-.viewDiv{
+.viewDiv {
   display: inline-block;
   position: relative;
 }

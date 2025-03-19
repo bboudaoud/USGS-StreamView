@@ -89,6 +89,10 @@ function _splitNameLoc(name) {
     return [body.trim(), loc.trim()];
 }
 
+export function gaugeUrl(state, siteId, period) {
+    return `gaugeSite.html?state=${state}&site_id=${siteId}&periodDays=${period}`;
+}
+
 export function getSites(state, valid_names = ["Gage height", "Streamflow", "Temperature, water"]) {
     const siteUrl = `https://waterservices.usgs.gov/nwis/iv/?stateCd=${state}&format=json`;
     return fetch(siteUrl)
