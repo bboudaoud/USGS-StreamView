@@ -85,11 +85,11 @@
               <br />
               <br />
 
-              <label class="levelLabel" for="too_high_level" style="color: red"
-                ><b>Very High</b></label
-              >
-              <label class="levelUnits" for="too_high_level" style="color: red"
-                >cfs</label
+              <label
+                class="levelLabel"
+                for="too_high_level"
+                style="color: darkred"
+                >Too High</label
               >
               <input
                 type="number"
@@ -98,16 +98,13 @@
                 name="too_high_level"
                 style="color: red"
               />
-
-              <br />
-              <br />
-
-              <label class="levelLabel" for="high_level" style="color: orange"
-                ><b>High</b></label
-              >
-              <label class="levelUnits" for="high_level" style="color: orange"
+              <label class="levelUnits" for="too_high_level" style="color: red"
                 >cfs</label
               >
+              <label class="levelLabel" for="too_high_level" style="color: red"
+                >Very High</label
+              >
+
               <input
                 type="number"
                 class="levelEntry"
@@ -115,16 +112,13 @@
                 name="high_level"
                 style="color: orange"
               />
-
-              <br />
-              <br />
-
-              <label class="levelLabel" for="norm_level" style="color: green"
-                ><b>Normal</b></label
-              >
-              <label class="levelUnits" for="norm_level" style="color: green"
+              <label class="levelUnits" for="high_level" style="color: orange"
                 >cfs</label
               >
+              <label class="levelLabel" for="high_level" style="color: orange"
+                >High</label
+              >
+
               <input
                 type="number"
                 class="levelEntry"
@@ -132,16 +126,13 @@
                 name="norm_level"
                 style="color: green"
               />
-
-              <br />
-              <br />
-
-              <label class="levelLabel" for="low_level" style="color: gray"
-                ><b>Low</b></label
-              >
-              <label class="levelUnits" for="low_level" style="color: gray"
+              <label class="levelUnits" for="norm_level" style="color: green"
                 >cfs</label
               >
+              <label class="levelLabel" for="norm_level" style="color: green"
+                >Normal</label
+              >
+
               <input
                 type="number"
                 class="levelEntry"
@@ -149,6 +140,12 @@
                 name="low_level"
                 style="color: gray"
               />
+              <label class="levelUnits" for="low_level" style="color: gray"
+                >cfs</label
+              >
+              <label class="levelLabel" for="low_level" style="color: gray"
+                >Low</label
+              >
 
               <br />
               <br />
@@ -179,12 +176,10 @@
               <br />
               <br />
 
-              <label class="tempLabel" for="hot_temp" style="color: red"
-                ><b>Very Hot</b></label
+              <label class="tempLabel" for="hot_temp" style="color: darkred"
+                >Very Hot</label
               >
-              <label class="tempUnits" for="hot_temp" style="color: red"
-                >°F</label
-              >
+
               <input
                 type="number"
                 class="tempEntry"
@@ -192,16 +187,13 @@
                 name="hot_temp"
                 style="color: red"
               />
-
-              <br />
-              <br />
-
-              <label class="tempLabel" for="warm_temp" style="color: orange"
-                ><b>Warm</b></label
-              >
-              <label class="tempUnits" for="warm_temp" style="color: orange"
+              <label class="tempUnits" for="hot_temp" style="color: red"
                 >°F</label
               >
+              <label class="tempLabel" for="hot_temp" style="color: red"
+                >Hot</label
+              >
+
               <input
                 type="number"
                 class="tempEntry"
@@ -209,16 +201,13 @@
                 name="warm_temp"
                 style="color: orange"
               />
-
-              <br />
-              <br />
-
-              <label class="tempLabel" for="norm_temp" style="color: green"
-                ><b>Normal</b></label
-              >
-              <label class="tempUnits" for="norm_temp" style="color: green"
+              <label class="tempUnits" for="warm_temp" style="color: orange"
                 >°F</label
               >
+              <label class="tempLabel" for="warm_temp" style="color: orange"
+                >Warm</label
+              >
+
               <input
                 type="number"
                 class="tempEntry"
@@ -226,16 +215,13 @@
                 name="norm_temp"
                 style="color: green"
               />
-
-              <br />
-              <br />
-
-              <label class="tempLabel" for="cold_temp" style="color: darkblue"
-                ><b>Cold</b></label
-              >
-              <label class="tempUnits" for="cold_temp" style="color: darkblue"
+              <label class="tempUnits" for="norm_temp" style="color: green"
                 >°F</label
               >
+              <label class="tempLabel" for="norm_temp" style="color: green"
+                >Normal</label
+              >
+
               <input
                 type="number"
                 class="tempEntry"
@@ -243,14 +229,16 @@
                 name="cold_temp"
                 style="color: darkblue"
               />
-
-              <br />
-              <br />
+              <label class="tempUnits" for="cold_temp" style="color: darkblue"
+                >°F</label
+              >
+              <label class="tempLabel" for="cold_temp" style="color: darkblue"
+                >Cold</label
+              >
             </div>
-
-            <br />
             <!-- Update button -->
-            <button id="updateFavThreshBtn">Update Favorite</button>
+            <br />
+            <button id="updateFavThreshBtn">Update</button>
           </form>
           <!-- Add an extra HR to split this div -->
           <hr />
@@ -261,6 +249,7 @@
           <input type="number" id="periodDays" min="1" max="120" value="30" />
           <button id="viewBtn" type="submit" disabled>View Gauge</button>
         </div>
+        <br>
       </form>
     </div>
 
