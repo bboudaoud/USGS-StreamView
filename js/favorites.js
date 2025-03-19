@@ -348,6 +348,28 @@ function getLatestValues(site) {
     });
 }
 
+function tempColor(fav, value){
+    if("hotTemp" in fav && value >= fav.hotTemp){
+        return "red";
+    }
+    if("warmTemp" in fav && value >= fav.warmTemp){
+        return "orange";
+    }
+    if("normTemp" in fav && value >= fav.normTemp){
+        return "green";
+    }
+    if("coldTemp" in fav && value >= fav.coldTemp){
+        return "darkblue";
+    }
+    return "black";
+}
+
+function levelColor(fav, flow, height){
+    if("" in fav){
+        return;
+    }
+}
+
 function createFavSite(fav) {
     let siteDiv = document.createElement('div');
     siteDiv.id = `${fav.id}_fav_div`;
@@ -360,24 +382,42 @@ function createFavSite(fav) {
     siteDiv.appendChild(siteNameLabel);
 
     // Add stats
-    let siteStats = document.createElement("p");
-    siteStats.className = "siteStatsText";
+    let siteStats = document.createElement("div");
+    siteStats.className = "siteStatsDiv";
     siteDiv.appendChild(siteStats);
 
     // Update the stats for this item
     getLatestValues(fav.id).then(
         values => {
-            const [flow, height, temp] = values;
-            if (flow != undefined) {
-                siteStats.innerHTML += `${flow} cfs  `;
+            const [flowVal, heightVal, tempVal] = values;
+            // Handle the level string
+            var levelStr = "";
+            if (flowVal != undefined) {
+                levelStr += `${flowVal} cfs  `;
             }
-            if (height != undefined) {
-                siteStats.innerHTML += `${height} ft   `;
+            if (heightVal != undefined) {
+                levelStr += `${heightVal} ft   `;
             }
-            if (temp != undefined) {
-                siteStats.innerHTML += `${temp} °F`
+            levelStr = levelStr.trim();
+            if(levelStr != ""){
+                // Create a paragraph for level and add it to site stats
+                let levelP = document.createElement("p");
+                levelP.className = "siteStatText";
+                levelP.textContent = levelStr;
+                siteStats.appendChild(levelP);
+            }
+
+            // Handle flow string
+            if (tempVal != undefined) {
+                let tempP = document.createElement("p");
+                tempP.className = "siteStatText";
+                tempP.textContent = `${tempVal} °F`;
+                tempP.style.color = tempColor(fav, tempVal);
+                siteStats.appendChild(tempP);
             }
         }
+        // Handle color coding
+
     );
 
     // Add remove button

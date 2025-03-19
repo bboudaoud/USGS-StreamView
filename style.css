@@ -138,9 +138,13 @@ button.tablinks {
   /* font-weight: bold; */
 }
 
-.siteStatsText {
+.siteStatsDiv {
   display: inline;
   margin-left: 30px;
+}
+
+.siteStatText {
+  display: inline;
 }
 
 .toggleBtn {

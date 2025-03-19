@@ -18,6 +18,7 @@ const periodEntry = document.getElementById("periodDays");
 const favWaterBtn = document.getElementById("favWaterbody")
 const favSiteBtn = document.getElementById("favSite");
 const favDiv = document.getElementById("favDiv");
+const viewBtn = document.getElementById("viewBtn");
 
 // Favorites
 const modeChangeOptions = document.getElementsByClassName("modeRb");
@@ -36,8 +37,13 @@ var sites = {};
 // Callback from state select, updates the waterbody select options
 // eslint-disable-next-line no-unused-vars
 function updateWaterSelect(_evt = undefined, siteId = undefined) {
+    // Clear and disable elements
     waterSelect.innerHTML = '';
     siteSelect.innerHTML = '';
+    viewBtn.disabled = true;
+    favSiteBtn.disabled = true;
+    favWaterBtn.disabled = true;
+
     // Get dict of sites for this state
     Data.getSites(stateSelect.value).then(siteList => {
         sites = siteList;
@@ -83,6 +89,11 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
     }
     // Update water and site favorites
     updateFavoriteBtnStatus();
+
+    // Re-enable buttoons
+    viewBtn.disabled = false;
+    favSiteBtn.disabled = false;
+    favWaterBtn.disabled = false;
 }
 
 // eslint-disable-next-line no-unused-vars
@@ -139,16 +150,13 @@ function openTab(evt) {
     evt.currentTarget.className += " active";
 }
 
-function gotoGauge(event) {
+function gotoGauge() {
     const state = stateSelect.value;
     const siteId = siteSelect.value;
     const period = periodEntry.value;
 
     // Open in a new tab (for now)
     window.open(Data.gaugeUrl(state, siteId, period), "_blank")
-
-    // Ignore default
-    event.preventDefault()
 }
 
 function favBtnClick(evt) {
@@ -237,6 +245,7 @@ function updateFavThresh(evt) {
     // ...
 
     // Level entries
+    fav["levelUnits"] = document.querySelector(`input[name="level_mode"]:checked`).value;
     const levelValues = ["low", "norm", "high", "too_high"];
     levelValues.forEach(level => {
         const val = document.getElementById(`${level}_level`).value;
@@ -246,6 +255,7 @@ function updateFavThresh(evt) {
     });
 
     // Temperature entries
+    fav["tempUnits"] = document.querySelector(`input[name="temp_mode"]:checked`).value;
     const tempValues = ["cold", "norm", "warm", "hot"];
     tempValues.forEach(level => {
         const val = document.getElementById(`${level}_temp`).value;
@@ -269,10 +279,11 @@ let favorites = Favorites.updateView();
 stateSelect.addEventListener("change", updateWaterSelect);
 waterSelect.addEventListener("change", updateSiteSelect);
 siteSelect.addEventListener("change", updateFavoriteBtnStatus);
-exploreForm.addEventListener("submit", gotoGauge)
 favSiteBtn.addEventListener("click", favBtnClick);
 favWaterBtn.addEventListener("click", favBtnClick);
 updateFavThreshBtn.addEventListener("click", updateFavThresh);
+viewBtn.onclick = gotoGauge;
+exploreForm.addEventListener("submit", gotoGauge)
 
 // Add listeners to radio buttons
 for (let i = 0; i < modeChangeOptions.length; i++) {
