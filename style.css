@@ -79,6 +79,10 @@ button.tablinks {
   background-color: gold;
 }
 
+.siteDiv {
+  margin-left: 20px;
+}
+
 .stateHeaderText,
 .waterHeaderText {
   font-weight: bold;

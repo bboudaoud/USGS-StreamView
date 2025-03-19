@@ -74,20 +74,20 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
 }
 
 // eslint-disable-next-line no-unused-vars
-function updateFavoriteStatus(_evt){
+function updateFavoriteStatus(_evt) {
     // Update the water favorite button
     let fav_sites = [];
     getFavorites().forEach(fav => {
         // Need to check and see if all sites for this water are in the favorites
-        if(fav.water == waterSelect.value){
+        if (fav.water == waterSelect.value) {
             fav_sites.push(fav.id);
         }
     });
-    if(fav_sites.length > 0  && fav_sites.length == siteSelect.options.length){
+    if (fav_sites.length > 0 && fav_sites.length == siteSelect.options.length) {
         // All sites for this water are in the favorites
         favWaterBtn.style.backgroundColor = "gold";
     }
-    else{
+    else {
         favWaterBtn.style.backgroundColor = "#AAA";
     }
 
@@ -232,9 +232,10 @@ function _favBtnClick(evt) {
                 // This is a match to an existing favorite, unfavorite
                 removeFavorite(fav);
                 dropFav = true;
+                return;
             }
         })
-        if (!dropFav) {
+        if (!dropFav && siteSelect.selectedIndex >= 0) {
             // Create a new favorite
             const newFav = {
                 state: stateSelect.value,
@@ -310,16 +311,19 @@ function _favStateClick(evt) {
 function _favWaterClick(evt) {
     // eslint-disable-next-line no-unused-vars
     const [stateName, waterName, _] = evt.target.id.split("_");
-    const waterList = document.getElementById(`${stateName}_${waterName}_WaterList`);
     const toggleButton = document.getElementById(`${stateName}_${waterName}_Toggle`);
+    const siteDivs = document.getElementById(`${stateName}_${waterName}_div`).getElementsByClassName("siteDiv");
 
-    if (waterList.style.display == "inline") {
-        waterList.style.display = "none";
-        toggleButton.textContent = '▼'; // Down arrow for closed state
-    }
-    else {
-        waterList.style.display = "inline";
-        toggleButton.textContent = '▲'; // Up arrow for open state
+    for (let i = 0; i < siteDivs.length; i++) {
+        let siteDiv = siteDivs[i];
+        if (siteDiv.style.display == "block") {
+            siteDiv.style.display = "none";
+            toggleButton.textContent = '▼'; // Down arrow for closed state
+        }
+        else {
+            siteDiv.style.display = "block";
+            toggleButton.textContent = '▲'; // Up arrow for open state
+        }
     }
 }
 
@@ -403,7 +407,7 @@ function createFavHeader(idName, text, type) {
     let toggleButton = document.createElement('span');
     toggleButton.id = `${idName}_Toggle`;
     toggleButton.className = "toggleBtn";
-    toggleButton.textContent = '▼'; // Down arrow for open state
+    toggleButton.textContent = '▼';
 
     // Add to the header
     stateHeader.appendChild(toggleButton);
@@ -507,7 +511,8 @@ function updateFavoritesView() {
             waterDiv = document.getElementById(`${fav.state}_${fav.water}_div`);
         }
 
-        const siteItem = createFavSite(fav);
+        var siteItem = createFavSite(fav);
+        siteItem.style.display = "none";
         waterDiv.appendChild(siteItem);
     });
 
