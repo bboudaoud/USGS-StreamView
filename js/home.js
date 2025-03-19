@@ -1,8 +1,8 @@
 "use strict";
 
-import { addStatesToSelect } from "./states.js";
-import { getSites, gaugeUrl } from "./data.js";
-import { addFavorite, removeFavorite, getFavorites, isFavorite, updateFavorite, getFavoriteById, updateFavoritesView, donwloadFavorites } from "./favorites.js";
+import * as Data from "./data.js";
+import * as Favorites from "./favorites.js";
+import { populateStateSelect } from "./states.js";
 
 // High-level
 const tabs = document.getElementsByClassName("tablinks");
@@ -11,7 +11,7 @@ const exploreForm = document.getElementById("exploreForm");
 // Explore form
 const stateSelect = document.getElementById("state");
 // Add states to drop down
-addStatesToSelect(stateSelect);
+populateStateSelect(stateSelect);
 const waterSelect = document.getElementById("waterBody");
 const siteSelect = document.getElementById("location");
 const periodEntry = document.getElementById("periodDays");
@@ -26,7 +26,9 @@ const tempUnitLabels = document.getElementsByClassName("tempUnits");
 const updateFavThreshBtn = document.getElementById("updateFavThreshBtn");
 
 const dlFavBtn = document.getElementById("dlFavBtn");
-dlFavBtn.onclick = donwloadFavorites;
+dlFavBtn.onclick = Favorites.download;
+const ulFavBtn = document.getElementById("ulFavBtn");
+ulFavBtn.onclick = Favorites.upload;
 
 // Storage for the selected state's sites (grouped by waterbody)
 var sites = {};
@@ -37,7 +39,7 @@ function updateWaterSelect(_evt = undefined, siteId = undefined) {
     waterSelect.innerHTML = '';
     siteSelect.innerHTML = '';
     // Get dict of sites for this state
-    getSites(stateSelect.value).then(siteList => {
+    Data.getSites(stateSelect.value).then(siteList => {
         sites = siteList;
         // Populate the water drop down
         Object.keys(sites).forEach(key => {
@@ -87,7 +89,7 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
 function updateFavoriteBtnStatus(_evt) {
     // Update the water favorite button
     let fav_sites = [];
-    getFavorites().forEach(fav => {
+    Favorites.getAll().forEach(fav => {
         // Need to check and see if all sites for this water are in the favorites
         if (fav.water == waterSelect.value) {
             fav_sites.push(fav.id);
@@ -102,7 +104,7 @@ function updateFavoriteBtnStatus(_evt) {
     }
 
     // Update the site favorite button
-    const isFav = isFavorite(siteSelect.value);
+    const isFav = Favorites.isFavorite(siteSelect.value);
     if (!isFav) {
         favSiteBtn.style.backgroundColor = "#AAA";
         favDiv.style.display = "none";
@@ -129,7 +131,7 @@ function openTab(evt) {
     const id = evt.target.innerHTML;
 
     if (id == "Favorites") {
-        updateFavoritesView();
+        Favorites.updateView();
     }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
@@ -143,7 +145,7 @@ function gotoGauge(event) {
     const period = periodEntry.value;
 
     // Open in a new tab (for now)
-    window.open(gaugeUrl(state, siteId, period), "_blank")
+    window.open(Data.gaugeUrl(state, siteId, period), "_blank")
 
     // Ignore default
     event.preventDefault()
@@ -162,7 +164,7 @@ function favBtnClick(evt) {
     }
 
     // This handles clicking the "add new favorite" (start) button in explore
-    const favorites = getFavorites();
+    const favorites = Favorites.getAll();
 
     // Determine whether this is already a favorite (if so unfavorite)
     let dropFav = false;
@@ -170,7 +172,7 @@ function favBtnClick(evt) {
         favorites.forEach(fav => {
             if (fav.id == siteSelect.value) {
                 // This is a match to an existing favorite, unfavorite
-                removeFavorite(fav);
+                Favorites.remove(fav);
                 dropFav = true;
                 return;
             }
@@ -183,7 +185,7 @@ function favBtnClick(evt) {
                 loc: siteSelect.options[siteSelect.selectedIndex].text,
                 id: siteSelect.value,
             };
-            addFavorite(newFav);
+            Favorites.add(newFav);
         }
     }
     else if (mode == "water") {
@@ -195,7 +197,7 @@ function favBtnClick(evt) {
                 loc: siteSelect.options[i].text,
                 id: siteSelect.options[i].value,
             };
-            addFavorite(newFav);
+            Favorites.add(newFav);
         }
     }
 
@@ -229,7 +231,7 @@ function updateEntryUnitLabels(evt) {
 
 function updateFavThresh(evt) {
     // The favorite to update
-    let updateFav = getFavoriteById(siteSelect.value);
+    let fav = Favorites.getById(siteSelect.value);
 
     // TODO: Figure out how to encode the units here
     // ...
@@ -239,7 +241,7 @@ function updateFavThresh(evt) {
     levelValues.forEach(level => {
         const val = document.getElementById(`${level}_level`).value;
         if (val != undefined && val != "") {
-            updateFav[`${level}Level`] = val;
+            fav[`${level}Level`] = val;
         }
     });
 
@@ -248,12 +250,12 @@ function updateFavThresh(evt) {
     tempValues.forEach(level => {
         const val = document.getElementById(`${level}_temp`).value;
         if (val != undefined && val != "") {
-            updateFav[`${level}Temp`] = val;
+            fav[`${level}Temp`] = val;
         }
     });
 
     // Update this favorite
-    updateFavorite(updateFav);
+    Favorites.update(fav);
 
     // Prevent this event from submitting the form
     evt.preventDefault();
@@ -261,7 +263,7 @@ function updateFavThresh(evt) {
 }
 
 // Load the favorites here
-let favorites = updateFavoritesView();
+let favorites = Favorites.updateView();
 
 // Add these event listeners
 stateSelect.addEventListener("change", updateWaterSelect);

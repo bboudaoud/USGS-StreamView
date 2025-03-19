@@ -1,8 +1,8 @@
 "use strict";
 
+import * as Data from './data.js';
 import { updateView } from './plot.js';
-import { getSites, getDataForSite } from './data.js';
-import { addStatesToSelect as populateStateSelect } from './states.js';
+import { populateStateSelect } from './states.js';
 
 // Form elements
 const usgsForm = document.getElementById('usgsForm');
@@ -24,7 +24,7 @@ function updateWaterSelect(_evt = undefined, siteId = undefined) {
     waterSelect.innerHTML = '';
     siteSelect.innerHTML = '';
     // Get sites here
-    getSites(stateSelect.value).then(siteDict => {
+    Data.getSites(stateSelect.value).then(siteDict => {
         // Update this
         sites = siteDict;
         // Populate the water drop down
@@ -92,7 +92,7 @@ function updateTimeSeries() {
     const siteLabel = siteSelect.options[siteSelect.selectedIndex].text;
 
     // Fetch data from USGS API
-    getDataForSite(siteCode, periodDaysEntry.value).then(
+    Data.getDataForSite(siteCode, periodDaysEntry.value).then(
         data => {
             // Attempt to update
             if (!updateView(data)) {

@@ -1,6 +1,6 @@
 "use strict";
 
-import { getDataForSite, gaugeUrl } from "./data.js";
+import * as Data from "./data.js";
 
 // Key to store the favorites in localStorage under
 const FAV_KEY = 'favorites';
@@ -8,7 +8,7 @@ const FAV_KEY = 'favorites';
 // Elements
 const favTab = document.getElementById("Favorites");
 
-export function getFavorites() {
+export function getAll() {
     const j = localStorage.getItem(FAV_KEY);
     if (j == undefined) {
         return [];
@@ -24,7 +24,7 @@ export function saveFavorites(favorites) {
 
 export function isFavorite(siteId) {
     // Check for this site in favorites
-    const favorites = getFavorites();
+    const favorites = getAll();
     for (let i = 0; i < favorites.length; i++) {
         if (favorites[i].id == siteId) {
             return true;
@@ -33,8 +33,8 @@ export function isFavorite(siteId) {
     return false;
 }
 
-export function getFavoriteById(siteId) {
-    const favorites = getFavorites();
+export function getById(siteId) {
+    const favorites = getAll();
     for (let i = 0; i < favorites.length; i++) {
         if (favorites[i].id == siteId) {
             return favorites[i];
@@ -43,9 +43,9 @@ export function getFavoriteById(siteId) {
     return undefined;
 }
 
-export function addFavorite(fav) {
+export function add(fav) {
     // Get existing favorites
-    var favorites = getFavorites();
+    var favorites = getAll();
 
     if (fav.state == "" || fav.state == undefined || fav.water == "" || fav.water == undefined || fav.loc == "" || fav.loc == undefined || fav.id == "" || fav.id == undefined) {
         return false;
@@ -62,8 +62,8 @@ export function addFavorite(fav) {
     return true;
 }
 
-export function removeFavorite(fav) {
-    var favorites = getFavorites();
+export function remove(fav) {
+    var favorites = getAll();
 
     let favIdx = -1;
     for (let i = 0; i < favorites.length; i++) {
@@ -84,8 +84,8 @@ export function removeFavorite(fav) {
     saveFavorites(favorites);
 }
 
-export function updateFavorite(fav) {
-    var favorites = getFavorites();
+export function update(fav) {
+    var favorites = getAll();
     // Update this favorite
     for (let i = 0; i < favorites.length; i++) {
         if (favorites[i].id == fav.id) {
@@ -99,9 +99,38 @@ export function updateFavorite(fav) {
 
 }
 
-export function updateFavoritesView(favContainer = favTab) {
+export function download() {
+    var a = document.createElement("a");
+    const favStr = localStorage.getItem(FAV_KEY);
+    const favs_file = new Blob([favStr], { type: "application/json" });
+    a.href = URL.createObjectURL(favs_file);
+    a.download = "favorites.json";
+    a.click();
+}
+
+export function upload() {
+    const ulFav = document.getElementById("favUl");
+    // Create a listener to update the favorites
+    ulFav.addEventListener("change", function (evt) {
+        // Get file and reader
+        const f = evt.target.files[0];
+        const reader = new FileReader();
+        // Setup the callback here
+        reader.onload = function (event) {
+            // Update the local storage here
+            localStorage.setItem(FAV_KEY, event.target.result);
+            console.log("UPLOAD FAVORITES", getAll());
+        }
+        // Read the text
+        reader.readAsText(f);
+    });
+    // Create this upload
+    ulFav.click();
+}
+
+export function updateView(favContainer = favTab) {
     // Get favorites from browser
-    const favorites = getFavorites();
+    const favorites = getAll();
 
     // Clear existing
     favContainer.innerHTML = '';
@@ -174,22 +203,22 @@ function _favWaterRemove(evt) {
     }
     // Remove all water that matches this waterbody
     var toRemove = [];
-    getFavorites().forEach(fav => {
+    getAll().forEach(fav => {
         if (fav.state == state && fav.water == water) {
             toRemove.push(fav);
         }
     });
-    toRemove.forEach(fav => removeFavorite(fav));
+    toRemove.forEach(fav => remove(fav));
     // Update the view
-    updateFavoritesView();
+    updateView();
 }
 
 function _favSiteRemove(evt) {
     const siteId = evt.target.id.split("_")[0];
-    getFavorites().forEach(fav => {
+    getAll().forEach(fav => {
         if (fav.id == siteId) {
-            removeFavorite(fav);
-            updateFavoritesView();
+            remove(fav);
+            updateView();
             return;
         }
     })
@@ -298,7 +327,7 @@ function createFavHeader(idName, text, type) {
 
 function getLatestValues(site) {
     // Return a spot result
-    return getDataForSite(site).then(data => {
+    return Data.getDataForSite(site).then(data => {
         // eslint-disable-next-line no-unused-vars
         const [_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
         var [flow, height, temp] = [undefined, undefined, undefined];
@@ -327,7 +356,7 @@ function createFavSite(fav) {
     // Add name label
     let siteNameLabel = document.createElement("p");
     siteNameLabel.className = "siteNameText";
-    siteNameLabel.innerHTML = `<a href=${gaugeUrl(fav.state, fav.id, 30)} target=_blank>${fav.loc}</a>`;
+    siteNameLabel.innerHTML = `<a href=${Data.gaugeUrl(fav.state, fav.id, 30)} target=_blank>${fav.loc}</a>`;
     siteDiv.appendChild(siteNameLabel);
 
     // Add stats
@@ -355,13 +384,4 @@ function createFavSite(fav) {
     siteDiv.appendChild(createRemoveButton(fav.id, 'site'));
 
     return siteDiv;
-}
-
-export function donwloadFavorites() {
-    var a = document.createElement("a");
-    const favStr = localStorage.getItem(FAV_KEY);
-    const favs_file = new Blob([favStr], { type: "application/json" });
-    a.href = URL.createObjectURL(favs_file);
-    a.download = "favorites.json";
-    a.click();
 }

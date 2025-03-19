@@ -7,7 +7,7 @@ export const states = [
     "OH", "OK", "OR", "PA", "RI", "SC", "SD", "TN", "TX", "UT", "VT", "VA", "WA", "WV", "WI", "WY"
 ].sort();
 
-export function addStatesToSelect(select) {
+export function populateStateSelect(select) {
     // Add states to drop down
     states.forEach(state => {
         const option = document.createElement('option');
