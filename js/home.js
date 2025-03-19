@@ -1,6 +1,6 @@
 "use strict";
 
-import { states } from "./states.js";
+import { addStatesToSelect } from "./states.js";
 import { getDataForSite, getSites } from "./data.js";
 
 const tabs = document.getElementsByClassName("tablinks");
@@ -15,12 +15,7 @@ const periodEntry = document.getElementById("periodDays");
 const favBtn = document.getElementById("favBtn");
 
 // Add states to drop down
-states.forEach(state => {
-    const option = document.createElement('option');
-    option.value = state;
-    option.text = state;
-    stateSelect.appendChild(option);
-});
+addStatesToSelect(stateSelect);
 
 // Storage for the selected state's sites (grouped by waterbody)
 var sites = {};
@@ -78,17 +73,11 @@ function updateSiteSelect(_evt=undefined, siteId=undefined) {
 
 // eslint-disable-next-line no-unused-vars
 function updateSiteFav(_evt=undefined) {
-    const siteId = siteSelect.value;
-    let foundFav = false;
-    // Check for this site in favorites
-    getFavorites().forEach(fav => {
-        if(siteId == fav.id){
-            favBtn.style.backgroundColor = "gold";
-            foundFav = true;
-        }
-    });
-    if(!foundFav){
+    if(!isFavorite(siteSelect.value)){
         favBtn.style.backgroundColor = "#AAA";
+    }
+    else{
+        favBtn.style.backgroundColor = "gold";
     }
 }
 
@@ -143,6 +132,19 @@ function saveFavorites(favorites) {
     if(favorites != undefined) {
         localStorage.setItem("favorites", JSON.stringify(favorites));
     }
+}
+
+function isFavorite(siteId) {
+    // Check for this site in favorites
+    let found = false;
+    getFavorites().forEach(fav => {
+        if(siteId == fav.id){
+            favBtn.style.backgroundColor = "gold";
+            found = true;
+            return;
+        }
+    });
+    return found;
 }
 
 function addFavorite() {
@@ -201,7 +203,7 @@ function removeFavorite(fav){
     updateFavoritesView();
 }
 
-function favTabClick(evt) {
+function _favBtnClick(evt) {
     var favorites = getFavorites();
 
     // Determine whether this is already a favorite (if so unfavorite)
@@ -301,7 +303,7 @@ function _favWaterRemove(evt) {
     updateFavoritesView();
 }
 
-function _createRemoveButton(idName, classType) {
+function createRemoveButton(idName, classType) {
     var removeCallback;
     if(classType == "water"){
         removeCallback = _favWaterRemove;
@@ -321,7 +323,7 @@ function _createRemoveButton(idName, classType) {
     return removeButton;
 }
 
-function _createFavHeader(idName, text, type){
+function createFavHeader(idName, text, type){
     var clickListener;
     var elementType;
     
@@ -363,12 +365,11 @@ function _createFavHeader(idName, text, type){
 
     // Make the close button
     if(type == "water"){
-        headerDiv.appendChild(_createRemoveButton(idName, "water"));
+        headerDiv.appendChild(createRemoveButton(idName, "water"));
     }
 
     return headerDiv;
 }
-
 
 function updateFavoritesView() {
     // Get favorites from browser
@@ -387,7 +388,7 @@ function updateFavoritesView() {
             stateDiv.className = "stateDiv";
             
             // Create a header for this div
-            let stateHeaderDiv = _createFavHeader(fav.state, fav.state, 'state');
+            let stateHeaderDiv = createFavHeader(fav.state, fav.state, 'state');
             // stateHeader.addEventListener("click", _favStateClick);
             stateDiv.appendChild(stateHeaderDiv);
 
@@ -409,7 +410,7 @@ function updateFavoritesView() {
             waterDiv.className = "waterDiv";
             waterDiv.style.display = "none";
 
-            let waterHeader = _createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
+            let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
             waterDiv.appendChild(waterHeader);
 
             // Create a list of water for this state
@@ -469,7 +470,7 @@ stateSelect.addEventListener("change", updateWaterSelect);
 waterSelect.addEventListener("change", updateSiteSelect);
 siteSelect.addEventListener("change", updateSiteFav);
 exploreForm.addEventListener("submit", gotoGauge)
-favBtn.addEventListener("click", favTabClick);
+favBtn.addEventListener("click", _favBtnClick);
 
 // Bind these to tab click
 for(let i = 0; i < tabs.length; i++){

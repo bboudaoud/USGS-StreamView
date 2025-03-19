@@ -2,7 +2,7 @@
 
 import { updateView } from './plot.js';
 import { getSites, getDataForSite } from './data.js';
-import { states } from './states.js';
+import { addStatesToSelect as populateStateSelect } from './states.js';
 
 // Form elements
 const usgsForm = document.getElementById('usgsForm');
@@ -13,12 +13,7 @@ const periodDaysEntry = document.getElementById('periodDays');
 const submitBtn = document.getElementById("fetchDataBtn");
 
 // Add states to drop down
-states.forEach(state => {
-    const option = document.createElement('option');
-    option.value = state;
-    option.text = state;
-    stateSelect.appendChild(option);
-});
+populateStateSelect(stateSelect);
 
 // Storage for the selected state's sites (grouped by waterbody)
 var sites = {};
