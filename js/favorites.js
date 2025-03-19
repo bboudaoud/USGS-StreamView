@@ -348,24 +348,29 @@ function getLatestValues(site) {
     });
 }
 
-function tempColor(fav, value){
-    if("hotTemp" in fav && value >= fav.hotTemp){
-        return "red";
-    }
-    if("warmTemp" in fav && value >= fav.warmTemp){
-        return "orange";
-    }
-    if("normTemp" in fav && value >= fav.normTemp){
-        return "green";
-    }
-    if("coldTemp" in fav && value >= fav.coldTemp){
+function getTempColor(fav, value) {
+    if ("coldTemp" in fav && value < fav.coldTemp) {
         return "darkblue";
     }
+    if ("normTemp" in fav && value < fav.normTemp) {
+        return "green";
+    }
+    if ("warmTemp" in fav && value < fav.warmTemp) {
+        return "orange";
+    }
+    if ("hotTemp" in fav && value >= fav.hotTemp) {
+        return "red";
+    }
+    if ("hotTemp" in fav && value >= fav.hotTemp) {
+        return "darkred";
+    }
+
+    // Case where nno keys are present in favorite
     return "black";
 }
 
-function levelColor(fav, flow, height){
-    if("" in fav){
+function levelColor(fav, flow, height) {
+    if ("" in fav) {
         return;
     }
 }
@@ -391,15 +396,15 @@ function createFavSite(fav) {
         values => {
             const [flowVal, heightVal, tempVal] = values;
             // Handle the level string
-            var levelStr = "";
+            var levels = [];
             if (flowVal != undefined) {
-                levelStr += `${flowVal} cfs  `;
+                levels.push(`${flowVal} cfs`);
             }
             if (heightVal != undefined) {
-                levelStr += `${heightVal} ft   `;
+                levels.push(`${heightVal} ft`);
             }
-            levelStr = levelStr.trim();
-            if(levelStr != ""){
+            let levelStr = ' ' + levels.join(', ') + ' ';
+            if (levelStr.trim() != "") {
                 // Create a paragraph for level and add it to site stats
                 let levelP = document.createElement("p");
                 levelP.className = "siteStatText";
@@ -412,12 +417,10 @@ function createFavSite(fav) {
                 let tempP = document.createElement("p");
                 tempP.className = "siteStatText";
                 tempP.textContent = `${tempVal} °F`;
-                tempP.style.color = tempColor(fav, tempVal);
+                tempP.style.color = getTempColor(fav, tempVal);
                 siteStats.appendChild(tempP);
             }
         }
-        // Handle color coding
-
     );
 
     // Add remove button

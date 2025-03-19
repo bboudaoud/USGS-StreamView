@@ -34,6 +34,43 @@ ulFavBtn.onclick = Favorites.upload;
 // Storage for the selected state's sites (grouped by waterbody)
 var sites = {};
 
+// Used below
+const LEVEL_LABELS = ["low", "norm", "high", "too_high"];
+const TEMP_LABELS = ["cold", "norm", "warm", "hot"];
+
+function openTab(evt) {
+    // Get all elements with class="tabcontent" and hide them
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+
+    // Get all elements with class="tablinks" and remove the class "active"
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].className = tabs[i].className.replace(" active", "");
+    }
+
+    // This gets the ID for the corresponding tabcontent class
+    const id = evt.target.innerHTML;
+
+    if (id == "Favorites") {
+        Favorites.updateView();
+    }
+
+    // Show the current tab, and add an "active" class to the button that opened the tab
+    document.getElementById(id).style.display = "block";
+    evt.currentTarget.className += " active";
+}
+
+function gotoGauge() {
+    const state = stateSelect.value;
+    const siteId = siteSelect.value;
+    const period = periodEntry.value;
+
+    // Open in a new tab (for now)
+    window.open(Data.gaugeUrl(state, siteId, period), "_blank")
+}
+
 // Callback from state select, updates the waterbody select options
 // eslint-disable-next-line no-unused-vars
 function updateWaterSelect(_evt = undefined, siteId = undefined) {
@@ -87,8 +124,9 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
     else {
         siteSelect.selectedIndex = 0;
     }
+
     // Update water and site favorites
-    updateFavoriteBtnStatus();
+    updateFavoriteInfo();
 
     // Re-enable buttoons
     viewBtn.disabled = false;
@@ -97,7 +135,7 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
 }
 
 // eslint-disable-next-line no-unused-vars
-function updateFavoriteBtnStatus(_evt) {
+function updateFavoriteInfo(_evt) {
     // Update the water favorite button
     let fav_sites = [];
     Favorites.getAll().forEach(fav => {
@@ -124,39 +162,15 @@ function updateFavoriteBtnStatus(_evt) {
         favSiteBtn.style.backgroundColor = "gold";
         favDiv.style.display = "block";
     }
-}
 
-function openTab(evt) {
-    // Get all elements with class="tabcontent" and hide them
-    const tabcontent = document.getElementsByClassName("tabcontent");
-    for (let i = 0; i < tabcontent.length; i++) {
-        tabcontent[i].style.display = "none";
+    // If this is a favorite update any thresholds
+    const fav = Favorites.getById(siteSelect.value);
+    if (fav != undefined) {
+        updateThresholdsFromFav(fav);
     }
-
-    // Get all elements with class="tablinks" and remove the class "active"
-    for (let i = 0; i < tabs.length; i++) {
-        tabs[i].className = tabs[i].className.replace(" active", "");
+    else {
+        console.warn("undefined site...");
     }
-
-    // This gets the ID for the corresponding tabcontent class
-    const id = evt.target.innerHTML;
-
-    if (id == "Favorites") {
-        Favorites.updateView();
-    }
-
-    // Show the current tab, and add an "active" class to the button that opened the tab
-    document.getElementById(id).style.display = "block";
-    evt.currentTarget.className += " active";
-}
-
-function gotoGauge() {
-    const state = stateSelect.value;
-    const siteId = siteSelect.value;
-    const period = periodEntry.value;
-
-    // Open in a new tab (for now)
-    window.open(Data.gaugeUrl(state, siteId, period), "_blank")
 }
 
 function favBtnClick(evt) {
@@ -210,7 +224,7 @@ function favBtnClick(evt) {
     }
 
     // Update the drawn status
-    updateFavoriteBtnStatus();
+    updateFavoriteInfo();
 
     // Prevent this event from submitting the form
     evt.preventDefault();
@@ -237,17 +251,41 @@ function updateEntryUnitLabels(evt) {
     }
 }
 
-function updateFavThresh(evt) {
+function updateThresholdsFromFav(fav) {
+    // Set the level units (cfs/ft) from the selection
+    if ("levelUnits" in fav) {
+        const rb = document.querySelector(`input[type="radio"][value="${fav.levelUnits}"]`);
+        rb.checked = true;
+    }
+    LEVEL_LABELS.forEach(level => {
+        const levelEntry = document.getElementById(`${level}_level`);
+        levelEntry.value = "";
+        if (`${level}Level` in fav) {
+            levelEntry.value = fav[`${level}Level`];
+        }
+    });
+
+    // Set the temp units (C/F) based on selection
+    if ("tempUnits" in fav) {
+        const rb = document.querySelector(`input[type="radio"][value="${fav.tempUnits}"]`);
+        rb.checked = true;
+    }
+    TEMP_LABELS.forEach(level => {
+        const tempEntry = document.getElementById(`${level}_temp`);
+        tempEntry.value = "";
+        if (`${level}Temp` in fav) {
+            tempEntry.value = fav[`${level}Temp`];
+        }
+    });
+}
+
+function saveFavThresh(evt) {
     // The favorite to update
     let fav = Favorites.getById(siteSelect.value);
 
-    // TODO: Figure out how to encode the units here
-    // ...
-
     // Level entries
     fav["levelUnits"] = document.querySelector(`input[name="level_mode"]:checked`).value;
-    const levelValues = ["low", "norm", "high", "too_high"];
-    levelValues.forEach(level => {
+    LEVEL_LABELS.forEach(level => {
         const val = document.getElementById(`${level}_level`).value;
         if (val != undefined && val != "") {
             fav[`${level}Level`] = val;
@@ -256,8 +294,7 @@ function updateFavThresh(evt) {
 
     // Temperature entries
     fav["tempUnits"] = document.querySelector(`input[name="temp_mode"]:checked`).value;
-    const tempValues = ["cold", "norm", "warm", "hot"];
-    tempValues.forEach(level => {
+    TEMP_LABELS.forEach(level => {
         const val = document.getElementById(`${level}_temp`).value;
         if (val != undefined && val != "") {
             fav[`${level}Temp`] = val;
@@ -278,10 +315,10 @@ let favorites = Favorites.updateView();
 // Add these event listeners
 stateSelect.addEventListener("change", updateWaterSelect);
 waterSelect.addEventListener("change", updateSiteSelect);
-siteSelect.addEventListener("change", updateFavoriteBtnStatus);
+siteSelect.addEventListener("change", updateFavoriteInfo);
 favSiteBtn.addEventListener("click", favBtnClick);
 favWaterBtn.addEventListener("click", favBtnClick);
-updateFavThreshBtn.addEventListener("click", updateFavThresh);
+updateFavThreshBtn.addEventListener("click", saveFavThresh);
 viewBtn.onclick = gotoGauge;
 exploreForm.addEventListener("submit", gotoGauge)
 
