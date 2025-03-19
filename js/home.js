@@ -2,9 +2,10 @@
 
 import { addStatesToSelect } from "./states.js";
 import { getDataForSite, getSites } from "./data.js";
+import { addFavorite, removeFavorite, getFavorites, isFavorite, updateFavorite, getFavoriteById } from "./favorites.js";
 
 const tabs = document.getElementsByClassName("tablinks");
-const favDiv = document.getElementById("Favorites");
+const favTab = document.getElementById("Favorites");
 
 // Explore form
 const exploreForm = document.getElementById("exploreForm");
@@ -14,6 +15,13 @@ const siteSelect = document.getElementById("location");
 const periodEntry = document.getElementById("periodDays");
 const favWaterBtn = document.getElementById("favWaterbody")
 const favSiteBtn = document.getElementById("favSite");
+const favDiv = document.getElementById("favDiv");
+
+// Favorites
+const modeChangeOptions = document.getElementsByClassName("modeRb");
+const levelUnitLabels = document.getElementsByClassName("levelUnits");
+const tempUnitLabels = document.getElementsByClassName("tempUnits");
+const updateFavThreshBtn = document.getElementById("updateFavThreshBtn");
 
 // Add states to drop down
 addStatesToSelect(stateSelect);
@@ -70,11 +78,11 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
         siteSelect.selectedIndex = 0;
     }
     // Update water and site favorites
-    updateFavoriteStatus();
+    updateFavoriteBtnStatus();
 }
 
 // eslint-disable-next-line no-unused-vars
-function updateFavoriteStatus(_evt) {
+function updateFavoriteBtnStatus(_evt) {
     // Update the water favorite button
     let fav_sites = [];
     getFavorites().forEach(fav => {
@@ -92,11 +100,14 @@ function updateFavoriteStatus(_evt) {
     }
 
     // Update the site favorite button
-    if (!isFavorite(siteSelect.value)) {
+    const isFav = isFavorite(siteSelect.value);
+    if (!isFav) {
         favSiteBtn.style.backgroundColor = "#AAA";
+        favDiv.style.display = "none";
     }
     else {
         favSiteBtn.style.backgroundColor = "gold";
+        favDiv.style.display = "block";
     }
 }
 
@@ -137,76 +148,6 @@ function gotoGauge(event) {
 
     // Ignore default
     event.preventDefault()
-}
-
-function getFavorites() {
-    const j = localStorage.getItem('favorites');
-    if (j == undefined) {
-        return [];
-    }
-    return JSON.parse(j);
-}
-
-function saveFavorites(favorites) {
-    if (favorites != undefined) {
-        localStorage.setItem("favorites", JSON.stringify(favorites));
-    }
-}
-
-function isFavorite(siteId) {
-    // Check for this site in favorites
-    let found = false;
-    getFavorites().forEach(fav => {
-        if (siteId == fav.id) {
-            found = true;
-            return;
-        }
-    });
-    return found;
-}
-
-function addFavorite(fav) {
-    // Get existing favorites
-    var favorites = getFavorites();
-
-    if (fav.state == "" || fav.state == undefined || fav.water == "" || fav.water == undefined || fav.loc == "" || fav.loc == undefined || fav.id == "" || fav.id == undefined) {
-        return false;
-    }
-
-    // Add if not present
-    if (!isFavorite(fav.id)) {
-        // Add here
-        favorites.push(fav);
-        saveFavorites(favorites);
-        console.log("ADD FAVORITE: ", fav);
-        // Load new favorites
-        updateFavoritesView();
-    }
-    // This indicates that this is now/aready was a favorite
-    return true;
-}
-
-function removeFavorite(fav) {
-    var favorites = getFavorites();
-
-    let favIdx = -1;
-    for (let i = 0; i < favorites.length; i++) {
-        if (favorites[i].id == fav.id) {
-            favIdx = i;
-        }
-    }
-
-    // Early exit for not present
-    if (favIdx < 0) {
-        // Did not find this favorite
-        return;
-    }
-    // Splice around index/remove from this list
-    favorites.splice(favIdx, 1);
-    console.log("REMOVE FAVORITE: ", fav);
-    // Update the memory
-    saveFavorites(favorites);
-    updateFavoritesView();
 }
 
 function _favBtnClick(evt) {
@@ -260,7 +201,7 @@ function _favBtnClick(evt) {
     }
 
     // Update the drawn status
-    updateFavoriteStatus();
+    updateFavoriteBtnStatus();
 
     // Prevent this event from submitting the form
     evt.preventDefault();
@@ -459,12 +400,64 @@ function createFavSite(fav) {
     return siteDiv;
 }
 
+function updateEntryUnitLabels(evt){
+    const rb_type = evt.target.id.split("_")[0];
+    let unitLabels = [];
+    if(rb_type == "level"){
+        unitLabels = levelUnitLabels;
+    }
+    else if(rb_type == "temp"){
+        unitLabels = tempUnitLabels;
+    }
+    else{
+        throw new Error(`Unknown radio button type: ${rb_type}!`);
+    }
+    // Get the correct unit for the type
+    const unit = document.querySelector(`input[name="${rb_type}_mode"]:checked`).value;
+    // Update all the other units
+    for(let i = 0; i < unitLabels.length; i++){
+        unitLabels[i].textContent = unit;
+    }
+}
+
+function updateFavThresh(evt) {
+    // The favorite to update
+    let updateFav = getFavoriteById(siteSelect.value);
+    console.log(updateFav);
+
+    // Level entries
+    const levelValues = ["low", "norm", "high", "too_high"];
+    levelValues.forEach(level => {
+        const val = document.getElementById(`${level}_level`).value;
+        if(val != undefined && val != ""){
+            updateFav[`${level}Level`] = val;
+        }
+    });
+
+    // Temperature entries
+    const tempValues = ["cold", "norm", "warm", "hot"];
+    tempValues.forEach(level => {
+        const val = document.getElementById(`${level}_temp`).value;
+        if(val != undefined && val != ""){
+            updateFav[`${level}Temp`] = val;
+        }
+    });
+
+    // Update this favorite
+    console.log(updateFav);
+    updateFavorite(updateFav);
+
+    // Prevent this event from submitting the form
+    evt.preventDefault();
+    evt.stopPropagation();
+}
+
 function updateFavoritesView() {
     // Get favorites from browser
     const favorites = getFavorites();
 
     // Clear existing
-    favDiv.innerHTML = '';
+    favTab.innerHTML = '';
 
     var waterDivs = {};
     favorites.forEach(fav => {
@@ -481,7 +474,7 @@ function updateFavoritesView() {
             stateDiv.appendChild(stateHeaderDiv);
 
             // Add the state div to the favorites div
-            favDiv.appendChild(stateDiv);
+            favTab.appendChild(stateDiv);
 
             // Update this to track it has been done
             waterDivs[fav.state] = {};
@@ -519,7 +512,7 @@ function updateFavoritesView() {
 
     // Set a custom message here
     if (favorites.length == 0) {
-        favDiv.innerHTML = '<p style="color: gray">No Favorites</p>';
+        favTab.innerHTML = '<p style="color: gray">No Favorites</p>';
     }
 
     return favorites;
@@ -531,10 +524,16 @@ let favorites = updateFavoritesView();
 // Add these event listeners
 stateSelect.addEventListener("change", updateWaterSelect);
 waterSelect.addEventListener("change", updateSiteSelect);
-siteSelect.addEventListener("change", updateFavoriteStatus);
+siteSelect.addEventListener("change", updateFavoriteBtnStatus);
 exploreForm.addEventListener("submit", gotoGauge)
 favSiteBtn.addEventListener("click", _favBtnClick);
 favWaterBtn.addEventListener("click", _favBtnClick);
+updateFavThreshBtn.addEventListener("click", updateFavThresh);
+
+// Add listeners to radio buttons
+for(let i = 0; i < modeChangeOptions.length; i++){
+    modeChangeOptions[i].addEventListener("change", updateEntryUnitLabels);
+}
 
 // Bind these to tab click
 for (let i = 0; i < tabs.length; i++) {
