@@ -44,7 +44,7 @@ h1 {
 }
 
 button.tablinks {
-    font-size: 14pt;
+    font-size: 16pt;
     font-weight: bold;
 }
 
@@ -71,9 +71,18 @@ button.tablinks {
 }
 
 #favBtn:hover {
-    background-color: gold; /* Hover color */
+    background-color: gold;
 }
 
+.waterRemoveBtn{
+    float: right;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.waterRemoveBtn:hover{
+    color: red;
+}
 
 .stateDiv {
     margin-bottom: 10px;
@@ -83,7 +92,7 @@ button.tablinks {
 
 .stateHeader {
     margin: 0;
-    font-size: 14pt;
+    font-size: 16pt;
 }
 
 .waterDiv{
