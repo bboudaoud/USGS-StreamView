@@ -43,6 +43,10 @@ h1 {
     border-top: none;
 }
 
+.exploreSelect {
+    font-size: 12pt;
+}
+
 button.tablinks {
     font-size: 16pt;
     font-weight: bold;
@@ -50,6 +54,7 @@ button.tablinks {
 
 #favBtn {
     display: "inline-block";
+    vertical-align: middle;
     width: 30px; /* Adjust size as needed */
     height: 30px;
     background-color: #AAA; /* Star color */

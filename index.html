@@ -23,36 +23,34 @@
 <div id="Explore" class="tabcontent">
     <p>Explore and favorite available river gauges</p>
     <form id="exploreForm">
-        <label for="state">State:</label>
-        <select id="state" name="state">
+        <label for="state"><b>State:</b></label>
+        <select id="state" class="exploreSelect" name="state">
             <!-- Auto populated -->
         </select>
         
         <br><br>
 
-        <label for="waterBody">Water Body:</label>
-        <select id="waterBody">
+        <label for="waterBody"><b>Water Body:</b></label>
+        <select id="waterBody" class="exploreSelect">
             <!-- Auto populated -->
         </select>
         
         <br><br>
         
-        <label for="location">Location:</label>
-        <select id="location">
+        <label for="location"><b>Location:</b></label>
+        <select id="location" class="exploreSelect">
             <!-- Auto populated -->
         </select>
             
         <br><br>
-               
+        
+        <label for="favBtn"><b>Favorite:</b></label>
         <button id="favBtn" title="Add to Favorites"></button>
         <br>
         <hr>
         <br>
         <label for="periodDays">Period (Days):</label>
         <input type="number" id="periodDays" min="1" max="120">
-        
-        <br><br>
-
         <button id="viewBtn" type="submit">View Gauge</button>
     </form>
 </div>
