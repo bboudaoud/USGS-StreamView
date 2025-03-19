@@ -122,53 +122,6 @@ button.tablinks {
   background-color: gold;
 }
 
-.siteDiv {
-  margin-left: 20px;
-}
-
-.stateHeaderText,
-.waterHeaderText {
-  font-weight: bold;
-  display: inline;
-  cursor: pointer;
-}
-
-.siteNameText {
-  display: inline;
-  /* font-weight: bold; */
-}
-
-.siteStatsDiv {
-  display: inline;
-  margin-left: 30px;
-}
-
-.siteStatText {
-  display: inline;
-}
-
-.toggleBtn {
-  margin-left: 5px;
-  font-size: 12pt;
-}
-
-.waterRemoveBtn,
-.siteRemoveBtn {
-  display: inline;
-  float: right;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.waterRemoveBtn:hover,
-.siteRemoveBtn:hover {
-  color: red;
-}
-
-.siteRemoveBtn {
-  margin-right: 100px;
-}
-
 .stateDiv {
   margin-bottom: 10px;
   border: 1px solid #ddd;
@@ -184,18 +137,57 @@ button.tablinks {
   padding-left: 20px;
 }
 
+.stateHeaderText,
+.waterHeaderText {
+  font-weight: bold;
+  display: inline;
+  cursor: pointer;
+}
+
 .waterHeader {
   margin: 0;
   padding-top: 10px;
   font-size: 12pt;
 }
 
-.waterList {
-  margin: 0;
+.siteDiv {
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
-.waterList li {
-  font-size: 11pt;
-  margin-left: 40px;
-  margin-bottom: 10px;
+.siteNameText {
+  display: inline;
+  /* font-weight: bold; */
+}
+
+.siteStatsDiv {
+  display: block;
+}
+
+.siteStatText {
+  display: inline;
+}
+
+.toggleBtn {
+  margin-left: 5px;
+  font-size: 12pt;
+}
+
+.waterRemoveBtn,
+.siteRemoveBtn {
+  display: inline;
+  float: right;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.waterRemoveBtn:hover,
+.siteRemoveBtn:hover {
+  color: red;
+}
+
+.siteRemoveBtn {
+  margin-right: 100px;
 }
