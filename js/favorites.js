@@ -56,7 +56,7 @@ export function addFavorite(fav) {
         // Add here
         favorites.push(fav);
         saveFavorites(favorites);
-        console.log("ADD FAVORITE: ", fav);
+        console.log("ADD FAVORITE", fav);
     }
     // This indicates that this is now/aready was a favorite
     return true;
@@ -79,7 +79,7 @@ export function removeFavorite(fav) {
     }
     // Splice around index/remove from this list
     favorites.splice(favIdx, 1);
-    console.log("REMOVE FAVORITE: ", fav);
+    console.log("REMOVE FAVORITE", fav);
     // Update the memory
     saveFavorites(favorites);
 }
@@ -89,6 +89,7 @@ export function updateFavorite(fav) {
     // Update this favorite
     for (let i = 0; i < favorites.length; i++) {
         if (favorites[i].id == fav.id) {
+            console.log("UPDATE FAVORITE", fav);
             favorites[i] = fav;
             break;
         }
@@ -98,7 +99,7 @@ export function updateFavorite(fav) {
 
 }
 
-export function updateFavoritesView(favContainer=favTab) {
+export function updateFavoritesView(favContainer = favTab) {
     // Get favorites from browser
     const favorites = getFavorites();
 
@@ -359,7 +360,7 @@ function createFavSite(fav) {
 export function donwloadFavorites() {
     var a = document.createElement("a");
     const favStr = localStorage.getItem(FAV_KEY);
-    const favs_file = new Blob([favStr], {type: "application/json"});
+    const favs_file = new Blob([favStr], { type: "application/json" });
     a.href = URL.createObjectURL(favs_file);
     a.download = "favorites.json";
     a.click();
