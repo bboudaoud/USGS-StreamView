@@ -58,32 +58,39 @@ button.tablinks {
 
 .favLevelDiv {
   display: inline-block;
+  vertical-align: top;
   width: 40%;
 }
 
 .favTempDiv {
   display: inline-block;
+  float: right;
   width: 40%;
-  margin-left: 10%;
+  vertical-align: top;
 }
 
 .levelLabel,
 .tempLabel {
-  display: inline;
-  margin-left: 10px;
+  display: block;
+  font-weight: bold;
 }
 
 .levelEntry,
 .tempEntry {
   display: inline;
-  float: right;
+}
+
+.levelEntry{
+  width: 100px;
+}
+
+.tempEntry{
+  width: 40px;
 }
 
 .levelUnits,
 .tempUnits {
   display: inline;
-  float: right;
-  margin-left: 10px;
 }
 
 .modeRb {
