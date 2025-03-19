@@ -230,7 +230,9 @@ function updateEntryUnitLabels(evt) {
 function updateFavThresh(evt) {
     // The favorite to update
     let updateFav = getFavoriteById(siteSelect.value);
-    console.log(updateFav);
+
+    // TODO: Figure out how to encode the units here
+    // ...
 
     // Level entries
     const levelValues = ["low", "norm", "high", "too_high"];
@@ -251,7 +253,6 @@ function updateFavThresh(evt) {
     });
 
     // Update this favorite
-    console.log(updateFav);
     updateFavorite(updateFav);
 
     // Prevent this event from submitting the form
