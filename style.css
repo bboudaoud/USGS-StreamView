@@ -52,7 +52,7 @@ button.tablinks {
   font-weight: bold;
 }
 
-#favBtn {
+.favBtn {
   display: "inline-block";
   vertical-align: middle;
   width: 30px; /* Adjust size as needed */
@@ -75,18 +75,47 @@ button.tablinks {
   transition: background-color 0.3s ease;
 }
 
-#favBtn:hover {
+.favBtn:hover {
   background-color: gold;
 }
 
-.waterRemoveBtn {
+.stateHeaderText,
+.waterHeaderText {
+  font-weight: bold;
+  display: inline;
+  cursor: pointer;
+}
+
+.siteNameText {
+  display: inline;
+  /* font-weight: bold; */
+}
+
+.siteStatsText {
+  display: inline;
+  margin-left: 30px;
+}
+
+.toggleBtn {
+  margin-left: 5px;
+  font-size: 12pt;
+}
+
+.waterRemoveBtn,
+.siteRemoveBtn {
+  display: inline;
   float: right;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
-.waterRemoveBtn:hover {
+.waterRemoveBtn:hover,
+.siteRemoveBtn:hover {
   color: red;
+}
+
+.siteRemoveBtn {
+  margin-right: 100px;
 }
 
 .stateDiv {
