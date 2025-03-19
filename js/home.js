@@ -234,6 +234,7 @@ function _favBtnClick(evt) {
 function getLatestValues(site){
     // Return a spot result
     return getDataForSite(site).then(data => {
+        // eslint-disable-next-line no-unused-vars
         const[_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
         var [flow, height, temp] = [undefined, undefined, undefined];
 
@@ -269,6 +270,7 @@ function _favStateClick(evt) {
 }
 
 function _favWaterClick(evt) {
+    // eslint-disable-next-line no-unused-vars
     const [stateName, waterName, _] = evt.target.id.split("_");
     const waterList = document.getElementById(`${stateName}_${waterName}_WaterList`);
     const toggleButton = document.getElementById(`${stateName}_${waterName}_Toggle`);
@@ -285,6 +287,7 @@ function _favWaterClick(evt) {
 
 // Remove an entire waterbody
 function _favWaterRemove(evt) {
+    // eslint-disable-next-line no-unused-vars
     const [state, water, _] = evt.target.id.split("_");
     const result = window.confirm(`Are you sure you want to remove all of ${water}, ${state}?`)
     if(!result){
