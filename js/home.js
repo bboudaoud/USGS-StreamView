@@ -34,9 +34,6 @@ ulFavBtn.onclick = Favorites.upload;
 // Storage for the selected state's sites (grouped by waterbody)
 var sites = {};
 
-// Used below
-const LEVEL_LABELS = ["low", "norm", "high", "too_high"];
-const TEMP_LABELS = ["cold", "norm", "warm", "hot"];
 
 function openTab(evt) {
     // Get all elements with class="tabcontent" and hide them
@@ -257,7 +254,7 @@ function updateThresholdsFromFav(fav) {
         const rb = document.querySelector(`input[type="radio"][value="${fav.levelUnits}"]`);
         rb.checked = true;
     }
-    LEVEL_LABELS.forEach(level => {
+    Favorites.LEVEL_STAGES.forEach(level => {
         const levelEntry = document.getElementById(`${level}_level`);
         levelEntry.value = "";
         if (`${level}Level` in fav) {
@@ -270,7 +267,7 @@ function updateThresholdsFromFav(fav) {
         const rb = document.querySelector(`input[type="radio"][value="${fav.tempUnits}"]`);
         rb.checked = true;
     }
-    TEMP_LABELS.forEach(level => {
+    Favorites.TEMP_LEVELS.forEach(level => {
         const tempEntry = document.getElementById(`${level}_temp`);
         tempEntry.value = "";
         if (`${level}Temp` in fav) {
@@ -285,7 +282,7 @@ function saveFavThresh(evt) {
 
     // Level entries
     fav["levelUnits"] = document.querySelector(`input[name="level_mode"]:checked`).value;
-    LEVEL_LABELS.forEach(level => {
+    Favorites.LEVEL_STAGES.forEach(level => {
         const val = document.getElementById(`${level}_level`).value;
         if (val != undefined && val != "") {
             fav[`${level}Level`] = val;
@@ -294,7 +291,7 @@ function saveFavThresh(evt) {
 
     // Temperature entries
     fav["tempUnits"] = document.querySelector(`input[name="temp_mode"]:checked`).value;
-    TEMP_LABELS.forEach(level => {
+    Favorites.TEMP_LEVELS.forEach(level => {
         const val = document.getElementById(`${level}_temp`).value;
         if (val != undefined && val != "") {
             fav[`${level}Temp`] = val;

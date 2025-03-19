@@ -5,6 +5,22 @@ import * as Data from "./data.js";
 // Key to store the favorites in localStorage under
 const FAV_KEY = 'favorites';
 
+export const LEVEL_STAGES = ["low", "norm", "high", "too_high"];
+const LEVEL_COLORS = {
+    "low": "gray",
+    "norm": "green",
+    "high": "orange",
+    "too_high": "red",
+}
+
+export const TEMP_LEVELS = ["cold", "norm", "warm", "hot"];
+const TEMP_COLORS = {
+    "cold": "darkblue",
+    "norm": "green",
+    "warm": "orange",
+    "hot": "red",
+}
+
 // Elements
 const favTab = document.getElementById("Favorites");
 
@@ -349,29 +365,42 @@ function getLatestValues(site) {
 }
 
 function getTempColor(fav, value) {
-    if ("coldTemp" in fav && value < fav.coldTemp) {
-        return "darkblue";
+    // See if we are in a range
+    for(let i = 0; i < TEMP_LEVELS.length; i++){
+        const level = TEMP_LEVELS[i];
+        if(`${level}Temp` in fav && value < fav[`${level}Temp`]){
+            return TEMP_COLORS[level];
+        }
     }
-    if ("normTemp" in fav && value < fav.normTemp) {
-        return "green";
-    }
-    if ("warmTemp" in fav && value < fav.warmTemp) {
-        return "orange";
-    }
-    if ("hotTemp" in fav && value >= fav.hotTemp) {
-        return "red";
-    }
+    // Catch case here if above the max
     if ("hotTemp" in fav && value >= fav.hotTemp) {
         return "darkred";
     }
-
     // Case where nno keys are present in favorite
     return "black";
 }
 
-function levelColor(fav, flow, height) {
-    if ("" in fav) {
-        return;
+function getLevelColor(fav, flow, height) {
+    // Give height priority
+    var value;
+    if(height != undefined && "levelUnits" in fav && fav.levelUnits == "ft"){
+        value = height;
+    }
+    else if(flow != undefined && "levelUnits" in fav && fav.levelUnits == "cfs"){
+        value = flow;
+    }
+    else{
+        return "black";
+    }
+    // This is a height measurement
+    for(let i = 0; i < LEVEL_STAGES.length; i++){
+        const stage = LEVEL_STAGES[i];
+        if(`${stage}Level` in fav && value < fav[`${stage}Level`]){
+            return LEVEL_COLORS[stage];
+        }
+    }
+    if("too_highLevel" in fav && value >= fav.too_highLevel){
+        return "darkred";
     }
 }
 
@@ -409,6 +438,7 @@ function createFavSite(fav) {
                 let levelP = document.createElement("p");
                 levelP.className = "siteStatText";
                 levelP.textContent = levelStr;
+                levelP.style.color = getLevelColor(fav, flowVal, heightVal);
                 siteStats.appendChild(levelP);
             }
 
