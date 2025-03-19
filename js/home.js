@@ -301,6 +301,26 @@ function _favWaterRemove(evt) {
     updateFavoritesView();
 }
 
+function _createRemoveButton(idName, classType) {
+    var removeCallback;
+    if(classType == "water"){
+        removeCallback = _favWaterRemove;
+    }
+    else if (classType == "location"){
+        removeCallback = _favWaterRemove;
+    }
+    else{
+        throw Error(`Uknown remove button type: ${classType}`);
+    }
+    // Create the button and return it
+    var removeButton = document.createElement('span');
+    removeButton.id = `${idName}_Remove`;
+    removeButton.className = `${classType}RemoveBtn`;
+    removeButton.textContent = 'x';
+    removeButton.addEventListener("click", removeCallback);
+    return removeButton;
+}
+
 function _createFavHeader(idName, text, type){
     var clickListener;
     var elementType;
@@ -343,12 +363,7 @@ function _createFavHeader(idName, text, type){
 
     // Make the close button
     if(type == "water"){
-        var removeButton = document.createElement('span');
-        removeButton.id = `${idName}_Remove`;
-        removeButton.className = 'waterRemoveBtn';
-        removeButton.textContent = 'x';
-        removeButton.addEventListener("click", _favWaterRemove);
-        headerDiv.appendChild(removeButton);
+        headerDiv.appendChild(_createRemoveButton(idName, "water"));
     }
 
     return headerDiv;
