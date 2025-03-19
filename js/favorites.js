@@ -366,9 +366,9 @@ function getLatestValues(site) {
 
 function getTempColor(fav, value) {
     // See if we are in a range
-    for(let i = 0; i < TEMP_LEVELS.length; i++){
+    for (let i = 0; i < TEMP_LEVELS.length; i++) {
         const level = TEMP_LEVELS[i];
-        if(`${level}Temp` in fav && value < fav[`${level}Temp`]){
+        if (`${level}Temp` in fav && value < fav[`${level}Temp`]) {
             return TEMP_COLORS[level];
         }
     }
@@ -383,23 +383,23 @@ function getTempColor(fav, value) {
 function getLevelColor(fav, flow, height) {
     // Give height priority
     var value;
-    if(height != undefined && "levelUnits" in fav && fav.levelUnits == "ft"){
+    if (height != undefined && "levelUnits" in fav && fav.levelUnits == "ft") {
         value = height;
     }
-    else if(flow != undefined && "levelUnits" in fav && fav.levelUnits == "cfs"){
+    else if (flow != undefined && "levelUnits" in fav && fav.levelUnits == "cfs") {
         value = flow;
     }
-    else{
+    else {
         return "black";
     }
     // This is a height measurement
-    for(let i = 0; i < LEVEL_STAGES.length; i++){
+    for (let i = 0; i < LEVEL_STAGES.length; i++) {
         const stage = LEVEL_STAGES[i];
-        if(`${stage}Level` in fav && value < fav[`${stage}Level`]){
+        if (`${stage}Level` in fav && value < fav[`${stage}Level`]) {
             return LEVEL_COLORS[stage];
         }
     }
-    if("too_highLevel" in fav && value >= fav.too_highLevel){
+    if ("too_highLevel" in fav && value >= fav.too_highLevel) {
         return "darkred";
     }
 }
@@ -414,6 +414,9 @@ function createFavSite(fav) {
     siteNameLabel.className = "siteNameText";
     siteNameLabel.innerHTML = `<a href=${Data.gaugeUrl(fav.state, fav.id, 30)} target=_blank>${fav.loc}</a>`;
     siteDiv.appendChild(siteNameLabel);
+
+    // Add remove button
+    siteDiv.appendChild(createRemoveButton(fav.id, 'site'));
 
     // Add stats
     let siteStats = document.createElement("div");
@@ -452,9 +455,6 @@ function createFavSite(fav) {
             }
         }
     );
-
-    // Add remove button
-    siteDiv.appendChild(createRemoveButton(fav.id, 'site'));
 
     return siteDiv;
 }
