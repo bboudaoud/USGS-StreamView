@@ -2,6 +2,7 @@
 
 import { getDataForSite, gaugeUrl } from "./data.js";
 
+// Key to store the favorites in localStorage under
 const FAV_KEY = 'favorites';
 
 // Elements
@@ -353,4 +354,13 @@ function createFavSite(fav) {
     siteDiv.appendChild(createRemoveButton(fav.id, 'site'));
 
     return siteDiv;
+}
+
+export function donwloadFavorites() {
+    var a = document.createElement("a");
+    const favStr = localStorage.getItem(FAV_KEY);
+    const favs_file = new Blob([favStr], {type: "application/json"});
+    a.href = URL.createObjectURL(favs_file);
+    a.download = "favorites.json";
+    a.click();
 }

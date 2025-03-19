@@ -2,17 +2,16 @@
 
 import { addStatesToSelect } from "./states.js";
 import { getSites, gaugeUrl } from "./data.js";
-import { addFavorite, removeFavorite, getFavorites, isFavorite, updateFavorite, getFavoriteById, updateFavoritesView } from "./favorites.js";
+import { addFavorite, removeFavorite, getFavorites, isFavorite, updateFavorite, getFavoriteById, updateFavoritesView, donwloadFavorites } from "./favorites.js";
 
+// High-level
 const tabs = document.getElementsByClassName("tablinks");
-
-// Explore form
 const exploreForm = document.getElementById("exploreForm");
 
-// Add states to drop down
+// Explore form
 const stateSelect = document.getElementById("state");
+// Add states to drop down
 addStatesToSelect(stateSelect);
-
 const waterSelect = document.getElementById("waterBody");
 const siteSelect = document.getElementById("location");
 const periodEntry = document.getElementById("periodDays");
@@ -25,6 +24,9 @@ const modeChangeOptions = document.getElementsByClassName("modeRb");
 const levelUnitLabels = document.getElementsByClassName("levelUnits");
 const tempUnitLabels = document.getElementsByClassName("tempUnits");
 const updateFavThreshBtn = document.getElementById("updateFavThreshBtn");
+
+const dlFavBtn = document.getElementById("dlFavBtn");
+dlFavBtn.onclick = donwloadFavorites;
 
 // Storage for the selected state's sites (grouped by waterbody)
 var sites = {};
