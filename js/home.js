@@ -198,9 +198,10 @@ function removeFavorite(fav){
     console.log("REMOVE FAVORITE: ", fav);
     // Update the memory
     saveFavorites(favorites);
+    updateFavoritesView();
 }
 
-function favClick(evt) {
+function favTabClick(evt) {
     var favorites = getFavorites();
 
     // Determine whether this is already a favorite (if so unfavorite)
@@ -263,7 +264,6 @@ function _favStateClick(evt) {
             toggleButton.textContent = '▲'; // Up arrow for open state
         }
     }
-
 }
 
 function _favWaterClick(evt) {
@@ -281,25 +281,79 @@ function _favWaterClick(evt) {
     }
 }
 
-function _createFavHeader(idName, text, htmlType="h4"){
-    // Build the header
-    var stateHeader = document.createElement(htmlType);
-    stateHeader.id = `${idName}_Header`;
-    stateHeader.className = "stateHeader";
-    stateHeader.textContent = text;
-    stateHeader.style.cursor = "pointer";
+// Remove an entire waterbody
+function _favWaterRemove(evt) {
+    const [state, water, _] = evt.target.id.split("_");
+    const result = window.confirm(`Are you sure you want to remove all of ${water}, ${state}?`)
+    if(!result){
+        return;
+    }    
 
+    console.log(state, water);
+    var toRemove = [];
+    getFavorites().forEach(fav => {
+        if(fav.state == state && fav.water == water){
+            toRemove.push(fav);
+        }
+    });
+    toRemove.forEach(fav => removeFavorite(fav));
+    // Update the view
+    updateFavoritesView();
+}
+
+function _createFavHeader(idName, text, type){
+    var clickListener;
+    var elementType;
+    
+    if(type == "state") {
+        clickListener = _favStateClick;
+        elementType = "h4";
+    }
+    else if(type == "water") {
+        clickListener = _favWaterClick;
+        elementType = "p";
+    }
+    else{
+        throw Error(`Unknown header type: ${type}`);
+    }
+
+    var headerDiv = document.createElement("div");
+    headerDiv.className = `${type}Header`;
+
+    // Build the header
+    var stateHeader = document.createElement(elementType);
+    stateHeader.id = `${idName}_Header`;
+    stateHeader.className = `${type}HeaderText`;
+    stateHeader.textContent = text;
+    stateHeader.style.display = "inline";
+    stateHeader.style.cursor = "pointer";
+    stateHeader.addEventListener("click", clickListener);
+    
     // Add the toggle button
     var toggleButton = document.createElement('span');
     toggleButton.id = `${idName}_Toggle`;
-    toggleButton.className = "toggleState";
+    toggleButton.className = "toggleBtn";
     toggleButton.textContent = '▼'; // Down arrow for open state
     toggleButton.style.marginLeft = '5px';
     toggleButton.style.fontSize = '16px';
+
     // Add to the header
     stateHeader.appendChild(toggleButton);
-    return stateHeader;
+    headerDiv.appendChild(stateHeader);
+
+    // Make the close button
+    if(type == "water"){
+        var removeButton = document.createElement('span');
+        removeButton.id = `${idName}_Remove`;
+        removeButton.className = 'waterRemoveBtn';
+        removeButton.textContent = 'x';
+        removeButton.addEventListener("click", _favWaterRemove);
+        headerDiv.appendChild(removeButton);
+    }
+
+    return headerDiv;
 }
+
 
 function updateFavoritesView() {
     // Get favorites from browser
@@ -318,10 +372,9 @@ function updateFavoritesView() {
             stateDiv.className = "stateDiv";
             
             // Create a header for this div
-            let stateHeader = _createFavHeader(fav.state, fav.state);
-            stateHeader.className = "stateHeader";
-            stateHeader.addEventListener("click", _favStateClick);
-            stateDiv.appendChild(stateHeader);
+            let stateHeaderDiv = _createFavHeader(fav.state, fav.state, 'state');
+            // stateHeader.addEventListener("click", _favStateClick);
+            stateDiv.appendChild(stateHeaderDiv);
 
             // Add the state div to the favorites div
             favDiv.appendChild(stateDiv);
@@ -341,9 +394,7 @@ function updateFavoritesView() {
             waterDiv.className = "waterDiv";
             waterDiv.style.display = "none";
 
-            let waterHeader = _createFavHeader(`${fav.state}_${fav.water}`, fav.water);
-            waterHeader.className = "waterHeader";
-            waterHeader.addEventListener("click", _favWaterClick);
+            let waterHeader = _createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
             waterDiv.appendChild(waterHeader);
 
             // Create a list of water for this state
@@ -403,7 +454,7 @@ stateSelect.addEventListener("change", updateWaterSelect);
 waterSelect.addEventListener("change", updateSiteSelect);
 siteSelect.addEventListener("change", updateSiteFav);
 exploreForm.addEventListener("submit", gotoGauge)
-favBtn.addEventListener("click", favClick);
+favBtn.addEventListener("click", favTabClick);
 
 // Bind these to tab click
 for(let i = 0; i < tabs.length; i++){
