@@ -22,6 +22,7 @@ var sites = {};
 // eslint-disable-next-line no-unused-vars
 function updateWaterSelect(_evt = undefined, siteId = undefined) {
     waterSelect.innerHTML = '';
+    siteSelect.innerHTML = '';
     // Get sites here
     getSites(stateSelect.value).then(siteDict => {
         // Update this

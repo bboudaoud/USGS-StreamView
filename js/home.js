@@ -24,6 +24,7 @@ var sites = {};
 // eslint-disable-next-line no-unused-vars
 function updateWaterSelect(_evt = undefined, siteId = undefined) {
     waterSelect.innerHTML = '';
+    siteSelect.innerHTML = '';
     // Get dict of sites for this state
     getSites(stateSelect.value).then(siteList => {
         sites = siteList;
