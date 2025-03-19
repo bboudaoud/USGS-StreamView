@@ -12,7 +12,8 @@ const stateSelect = document.getElementById("state");
 const waterSelect = document.getElementById("waterBody");
 const siteSelect = document.getElementById("location");
 const periodEntry = document.getElementById("periodDays");
-const favBtn = document.getElementById("favBtn");
+const favWaterBtn = document.getElementById("favWaterbody")
+const favSiteBtn = document.getElementById("favSite");
 
 // Add states to drop down
 addStatesToSelect(stateSelect);
@@ -68,17 +69,34 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
     else {
         siteSelect.selectedIndex = 0;
     }
-    // Update the favorite btn based on status
-    updateSiteFav();
+    // Update water and site favorites
+    updateFavoriteStatus();
 }
 
 // eslint-disable-next-line no-unused-vars
-function updateSiteFav(_evt = undefined) {
+function updateFavoriteStatus(_evt){
+    // Update the water favorite button
+    let fav_sites = [];
+    getFavorites().forEach(fav => {
+        // Need to check and see if all sites for this water are in the favorites
+        if(fav.water == waterSelect.value){
+            fav_sites.push(fav.id);
+        }
+    });
+    if(fav_sites.length > 0  && fav_sites.length == siteSelect.options.length){
+        // All sites for this water are in the favorites
+        favWaterBtn.style.backgroundColor = "gold";
+    }
+    else{
+        favWaterBtn.style.backgroundColor = "#AAA";
+    }
+
+    // Update the site favorite button
     if (!isFavorite(siteSelect.value)) {
-        favBtn.style.backgroundColor = "#AAA";
+        favSiteBtn.style.backgroundColor = "#AAA";
     }
     else {
-        favBtn.style.backgroundColor = "gold";
+        favSiteBtn.style.backgroundColor = "gold";
     }
 }
 
@@ -140,7 +158,6 @@ function isFavorite(siteId) {
     let found = false;
     getFavorites().forEach(fav => {
         if (siteId == fav.id) {
-            favBtn.style.backgroundColor = "gold";
             found = true;
             return;
         }
@@ -148,32 +165,20 @@ function isFavorite(siteId) {
     return found;
 }
 
-function addFavorite() {
+function addFavorite(fav) {
     // Get existing favorites
     var favorites = getFavorites();
 
-    if (stateSelect.value == undefined || waterSelect.value == undefined || siteSelect.value == undefined || siteSelect.selectedIndex == -1) {
-        return false;
-    }
-
-    // Create a new favorite
-    const newFav = {
-        state: stateSelect.value,
-        water: waterSelect.value,
-        loc: siteSelect.options[siteSelect.selectedIndex].text,
-        id: siteSelect.value,
-    };
-
-    if (newFav.state == "" || newFav.water == "" || newFav.loc == "") {
+    if (fav.state == "" || fav.state == undefined || fav.water == "" || fav.water == undefined || fav.loc == "" || fav.loc == undefined || fav.id == "" || fav.id == undefined) {
         return false;
     }
 
     // Add if not present
-    if (!favorites.includes(newFav)) {
+    if (!isFavorite(fav.id)) {
         // Add here
-        favorites.push(newFav);
+        favorites.push(fav);
         saveFavorites(favorites);
-        console.log("ADD FAVORITE: ", newFav);
+        console.log("ADD FAVORITE: ", fav);
         // Load new favorites
         updateFavoritesView();
     }
@@ -205,27 +210,56 @@ function removeFavorite(fav) {
 }
 
 function _favBtnClick(evt) {
-    var favorites = getFavorites();
+    var mode;
+    if (evt.target.id == "favSite") {
+        mode = "site";
+    }
+    else if (evt.target.id == "favWaterbody") {
+        mode = "water";
+    }
+    else {
+        throw new Error(`Cannot handle callback from ${event.target.id}`)
+    }
+
+    // This handles clicking the "add new favorite" (start) button in explore
+    const favorites = getFavorites();
 
     // Determine whether this is already a favorite (if so unfavorite)
     let dropFav = false;
-    favorites.forEach(fav => {
-        if (fav.id == siteSelect.value) {
-            // This is a match to an existing favorite, unfavorite
-            removeFavorite(fav);
-            dropFav = true;
+    if (mode == "site") {
+        favorites.forEach(fav => {
+            if (fav.id == siteSelect.value) {
+                // This is a match to an existing favorite, unfavorite
+                removeFavorite(fav);
+                dropFav = true;
+            }
+        })
+        if (!dropFav) {
+            // Create a new favorite
+            const newFav = {
+                state: stateSelect.value,
+                water: waterSelect.value,
+                loc: siteSelect.options[siteSelect.selectedIndex].text,
+                id: siteSelect.value,
+            };
+            addFavorite(newFav);
         }
-    })
-    if (!dropFav) {
-        addFavorite();
+    }
+    else if (mode == "water") {
+        // Add all of these for now
+        for (let i = 0; i < siteSelect.options.length; i++) {
+            const newFav = {
+                state: stateSelect.value,
+                water: waterSelect.value,
+                loc: siteSelect.options[i].text,
+                id: siteSelect.options[i].value,
+            };
+            addFavorite(newFav);
+        }
     }
 
-    // Add a favorite (if we don't already have one)
-    favBtn.style.backgroundColor = "#AAA";
-    if (!dropFav) {
-        // Set the color of the button
-        favBtn.style.backgroundColor = "gold";
-    }
+    // Update the drawn status
+    updateFavoriteStatus();
 
     // Prevent this event from submitting the form
     evt.preventDefault();
@@ -241,12 +275,15 @@ function getLatestValues(site) {
 
         if (flowValues.length > 0) {
             flow = flowValues[flowValues.length - 1].value;
+            flow = Math.round(flow * 10) / 10;
         }
         if (heightValues.length > 0) {
             height = heightValues[heightValues.length - 1].value;
+            height = Math.round(height * 100) / 100;
         }
         if (tempValues.length > 0) {
             temp = tempValues[tempValues.length - 1].value * 9 / 5 + 32;
+            temp = Math.round(temp * 100) / 100;
         }
         return [flow, height, temp];
     });
@@ -290,12 +327,10 @@ function _favWaterClick(evt) {
 function _favWaterRemove(evt) {
     // eslint-disable-next-line no-unused-vars
     const [state, water, _] = evt.target.id.split("_");
-    const result = window.confirm(`Are you sure you want to remove all of ${water}, ${state}?`)
-    if (!result) {
+    if (!window.confirm(`Are you sure you want to remove all of ${water}, ${state}?`)) {
         return;
     }
-
-    console.log(state, water);
+    // Remove all water that matches this waterbody
     var toRemove = [];
     getFavorites().forEach(fav => {
         if (fav.state == state && fav.water == water) {
@@ -307,13 +342,24 @@ function _favWaterRemove(evt) {
     updateFavoritesView();
 }
 
+function _favSiteRemove(evt) {
+    const siteId = evt.target.id.split("_")[0];
+    getFavorites().forEach(fav => {
+        if (fav.id == siteId) {
+            removeFavorite(fav);
+            updateFavoritesView();
+            return;
+        }
+    })
+}
+
 function createRemoveButton(idName, classType) {
     var removeCallback;
     if (classType == "water") {
         removeCallback = _favWaterRemove;
     }
-    else if (classType == "location") {
-        removeCallback = _favWaterRemove;
+    else if (classType == "site") {
+        removeCallback = _favSiteRemove;
     }
     else {
         throw Error(`Uknown remove button type: ${classType}`);
@@ -343,25 +389,21 @@ function createFavHeader(idName, text, type) {
         throw Error(`Unknown header type: ${type}`);
     }
 
-    var headerDiv = document.createElement("div");
+    let headerDiv = document.createElement("div");
     headerDiv.className = `${type}Header`;
 
     // Build the header
-    var stateHeader = document.createElement(elementType);
+    let stateHeader = document.createElement(elementType);
     stateHeader.id = `${idName}_Header`;
     stateHeader.className = `${type}HeaderText`;
     stateHeader.textContent = text;
-    stateHeader.style.display = "inline";
-    stateHeader.style.cursor = "pointer";
     stateHeader.addEventListener("click", clickListener);
 
     // Add the toggle button
-    var toggleButton = document.createElement('span');
+    let toggleButton = document.createElement('span');
     toggleButton.id = `${idName}_Toggle`;
     toggleButton.className = "toggleBtn";
     toggleButton.textContent = '▼'; // Down arrow for open state
-    toggleButton.style.marginLeft = '5px';
-    toggleButton.style.fontSize = '16px';
 
     // Add to the header
     stateHeader.appendChild(toggleButton);
@@ -373,6 +415,44 @@ function createFavHeader(idName, text, type) {
     }
 
     return headerDiv;
+}
+
+function createFavSite(fav) {
+    let siteDiv = document.createElement('div');
+    siteDiv.id = `${fav.id}_fav_div`;
+    siteDiv.className = 'siteDiv';
+
+    // Add name label
+    let siteNameLabel = document.createElement("p");
+    siteNameLabel.className = "siteNameText";
+    siteNameLabel.innerHTML = `<a href=${gaugeUrl(fav.state, fav.id, 30)} target=_blank>${fav.loc}</a>`;
+    siteDiv.appendChild(siteNameLabel);
+
+    // Add stats
+    let siteStats = document.createElement("p");
+    siteStats.className = "siteStatsText";
+    siteDiv.appendChild(siteStats);
+
+    // Update the stats for this item
+    getLatestValues(fav.id).then(
+        values => {
+            const [flow, height, temp] = values;
+            if (flow != undefined) {
+                siteStats.innerHTML += `${flow} cfs  `;
+            }
+            if (height != undefined) {
+                siteStats.innerHTML += `${height} ft   `;
+            }
+            if (temp != undefined) {
+                siteStats.innerHTML += `${temp} °F`
+            }
+        }
+    );
+
+    // Add remove button
+    siteDiv.appendChild(createRemoveButton(fav.id, 'site'));
+
+    return siteDiv;
 }
 
 function updateFavoritesView() {
@@ -411,18 +491,12 @@ function updateFavoritesView() {
         if (!(fav.water in waterDivs[fav.state])) {
             // Need to create a water div here
             var waterDiv = document.createElement('div');
+            waterDiv.id = `${fav.state}_${fav.water}_div`;
             waterDiv.className = "waterDiv";
             waterDiv.style.display = "none";
 
             let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
             waterDiv.appendChild(waterHeader);
-
-            // Create a list of water for this state
-            var waterList = document.createElement("ul");
-            waterList.style.display = "none";
-            waterList.id = `${fav.state}_${fav.water}_WaterList`;
-            waterList.className = "waterList";
-            waterDiv.appendChild(waterList);
 
             // Add this div to the overall div
             stateDiv.appendChild(waterDiv);
@@ -430,31 +504,11 @@ function updateFavoritesView() {
         }
         else {
             // Already have this water in favorites view
-            waterList = document.getElementById(`${fav.state}_${fav.water}_WaterList`);
+            waterDiv = document.getElementById(`${fav.state}_${fav.water}_div`);
         }
 
-        // Deal with each individual location inside of the water div
-        var waterListItem = document.createElement("li");
-        const url = gaugeUrl(fav.state, fav.id, 30);
-        waterListItem.innerHTML = `<a href=${url} target=_blank>${fav.loc}</a>`
-        waterList.appendChild(waterListItem);
-
-        // Update the stats for this item
-        getLatestValues(fav.id).then(
-            values => {
-                const [flow, height, temp] = values;
-                waterListItem.innerHTML += `<br>`
-                if (flow != undefined) {
-                    waterListItem.innerHTML += `${flow} cfs  `;
-                }
-                if (height != undefined) {
-                    waterListItem.innerHTML += `${height} ft   `;
-                }
-                if (temp != undefined) {
-                    waterListItem.innerHTML += `${temp} °F`
-                }
-            }
-        );
+        const siteItem = createFavSite(fav);
+        waterDiv.appendChild(siteItem);
     });
 
 
@@ -472,9 +526,10 @@ let favorites = updateFavoritesView();
 // Add these event listeners
 stateSelect.addEventListener("change", updateWaterSelect);
 waterSelect.addEventListener("change", updateSiteSelect);
-siteSelect.addEventListener("change", updateSiteFav);
+siteSelect.addEventListener("change", updateFavoriteStatus);
 exploreForm.addEventListener("submit", gotoGauge)
-favBtn.addEventListener("click", _favBtnClick);
+favSiteBtn.addEventListener("click", _favBtnClick);
+favWaterBtn.addEventListener("click", _favBtnClick);
 
 // Bind these to tab click
 for (let i = 0; i < tabs.length; i++) {
