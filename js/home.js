@@ -22,7 +22,7 @@ var sites = {};
 
 // Callback from state select, updates the waterbody select options
 // eslint-disable-next-line no-unused-vars
-function updateWaterSelect(_evt=undefined, siteId=undefined) {
+function updateWaterSelect(_evt = undefined, siteId = undefined) {
     waterSelect.innerHTML = '';
     // Get dict of sites for this state
     getSites(stateSelect.value).then(siteList => {
@@ -33,8 +33,8 @@ function updateWaterSelect(_evt=undefined, siteId=undefined) {
             option.value = key;
             option.text = key;
             waterSelect.appendChild(option);
-            for(let loc in sites[key]){
-                if(sites[key][loc] == siteId){
+            for (let loc in sites[key]) {
+                if (sites[key][loc] == siteId) {
                     waterSelect.value = key;
                 }
             }
@@ -42,13 +42,13 @@ function updateWaterSelect(_evt=undefined, siteId=undefined) {
         // Update the site selectron from the water
         updateSiteSelect(undefined, siteId);
     })
-    .catch(error => console.error('Error fetching locations:', error));
+        .catch(error => console.error('Error fetching locations:', error));
 }
 
 // Callback from the waterbody select, updates the site select options
 // eslint-disable-next-line no-unused-vars
-function updateSiteSelect(_evt=undefined, siteId=undefined) {
-    if(sites == undefined){
+function updateSiteSelect(_evt = undefined, siteId = undefined) {
+    if (sites == undefined) {
         console.warn("Site select update without sites defined!");
         return;
     }
@@ -61,10 +61,10 @@ function updateSiteSelect(_evt=undefined, siteId=undefined) {
         option.text = key;
         siteSelect.appendChild(option);
     });
-    if(siteId != undefined && siteId != ""){
+    if (siteId != undefined && siteId != "") {
         siteSelect.value = siteId;
     }
-    else{
+    else {
         siteSelect.selectedIndex = 0;
     }
     // Update the favorite btn based on status
@@ -72,11 +72,11 @@ function updateSiteSelect(_evt=undefined, siteId=undefined) {
 }
 
 // eslint-disable-next-line no-unused-vars
-function updateSiteFav(_evt=undefined) {
-    if(!isFavorite(siteSelect.value)){
+function updateSiteFav(_evt = undefined) {
+    if (!isFavorite(siteSelect.value)) {
         favBtn.style.backgroundColor = "#AAA";
     }
-    else{
+    else {
         favBtn.style.backgroundColor = "gold";
     }
 }
@@ -96,7 +96,7 @@ function openTab(evt) {
     // This gets the ID for the corresponding tabcontent class
     const id = evt.target.innerHTML;
 
-    if(id == "Favorites"){
+    if (id == "Favorites") {
         updateFavoritesView();
     }
 
@@ -105,7 +105,7 @@ function openTab(evt) {
     evt.currentTarget.className += " active";
 }
 
-function gaugeUrl(state, siteId, period){
+function gaugeUrl(state, siteId, period) {
     return `gaugeSite.html?state=${state}&site_id=${siteId}&periodDays=${period}`;
 }
 function gotoGauge(event) {
@@ -122,14 +122,14 @@ function gotoGauge(event) {
 
 function getFavorites() {
     const j = localStorage.getItem('favorites');
-    if(j == undefined){
+    if (j == undefined) {
         return [];
     }
     return JSON.parse(j);
 }
 
 function saveFavorites(favorites) {
-    if(favorites != undefined) {
+    if (favorites != undefined) {
         localStorage.setItem("favorites", JSON.stringify(favorites));
     }
 }
@@ -138,7 +138,7 @@ function isFavorite(siteId) {
     // Check for this site in favorites
     let found = false;
     getFavorites().forEach(fav => {
-        if(siteId == fav.id){
+        if (siteId == fav.id) {
             favBtn.style.backgroundColor = "gold";
             found = true;
             return;
@@ -150,8 +150,8 @@ function isFavorite(siteId) {
 function addFavorite() {
     // Get existing favorites
     var favorites = getFavorites();
-    
-    if(stateSelect.value == undefined || waterSelect.value == undefined || siteSelect.value == undefined || siteSelect.selectedIndex == -1){
+
+    if (stateSelect.value == undefined || waterSelect.value == undefined || siteSelect.value == undefined || siteSelect.selectedIndex == -1) {
         return false;
     }
 
@@ -163,12 +163,12 @@ function addFavorite() {
         id: siteSelect.value,
     };
 
-    if(newFav.state == "" || newFav.water == "" || newFav.loc == ""){
+    if (newFav.state == "" || newFav.water == "" || newFav.loc == "") {
         return false;
     }
 
     // Add if not present
-    if (!favorites.includes(newFav)){
+    if (!favorites.includes(newFav)) {
         // Add here
         favorites.push(newFav);
         saveFavorites(favorites);
@@ -180,18 +180,18 @@ function addFavorite() {
     return true;
 }
 
-function removeFavorite(fav){
+function removeFavorite(fav) {
     var favorites = getFavorites();
 
     let favIdx = -1;
-    for(let i = 0; i < favorites.length; i++){
-        if(favorites[i].id == fav.id){
+    for (let i = 0; i < favorites.length; i++) {
+        if (favorites[i].id == fav.id) {
             favIdx = i;
         }
     }
 
     // Early exit for not present
-    if(favIdx < 0){
+    if (favIdx < 0) {
         // Did not find this favorite
         return;
     }
@@ -209,43 +209,43 @@ function _favBtnClick(evt) {
     // Determine whether this is already a favorite (if so unfavorite)
     let dropFav = false;
     favorites.forEach(fav => {
-        if(fav.id == siteSelect.value){
+        if (fav.id == siteSelect.value) {
             // This is a match to an existing favorite, unfavorite
             removeFavorite(fav);
             dropFav = true;
         }
     })
-    if(!dropFav){
+    if (!dropFav) {
         addFavorite();
     }
 
     // Add a favorite (if we don't already have one)
     favBtn.style.backgroundColor = "#AAA";
-    if(!dropFav){
+    if (!dropFav) {
         // Set the color of the button
         favBtn.style.backgroundColor = "gold";
     }
 
     // Prevent this event from submitting the form
-    evt.preventDefault(); 
+    evt.preventDefault();
     evt.stopPropagation();
 }
 
-function getLatestValues(site){
+function getLatestValues(site) {
     // Return a spot result
     return getDataForSite(site).then(data => {
         // eslint-disable-next-line no-unused-vars
-        const[_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
+        const [_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
         var [flow, height, temp] = [undefined, undefined, undefined];
 
-        if(flowValues.length > 0) {
-            flow = flowValues[flowValues.length-1].value;
+        if (flowValues.length > 0) {
+            flow = flowValues[flowValues.length - 1].value;
         }
-        if(heightValues.length > 0){
-            height = heightValues[heightValues.length-1].value;
+        if (heightValues.length > 0) {
+            height = heightValues[heightValues.length - 1].value;
         }
-        if(tempValues.length> 0) {
-            temp = tempValues[tempValues.length-1].value * 9/5 + 32;
+        if (tempValues.length > 0) {
+            temp = tempValues[tempValues.length - 1].value * 9 / 5 + 32;
         }
         return [flow, height, temp];
     });
@@ -256,13 +256,13 @@ function _favStateClick(evt) {
     const toggleButton = document.getElementById(`${stateName}_Toggle`)
     const waterDivs = document.getElementById(`${stateName}_div`).getElementsByClassName("waterDiv");
 
-    for(let i = 0; i < waterDivs.length; i ++){
+    for (let i = 0; i < waterDivs.length; i++) {
         let waterDiv = waterDivs[i];
-        if(waterDiv.style.display == "block"){    
+        if (waterDiv.style.display == "block") {
             waterDiv.style.display = "none";
             toggleButton.textContent = '▼'; // Down arrow for closed state
         }
-        else{
+        else {
             waterDiv.style.display = "block";
             toggleButton.textContent = '▲'; // Up arrow for open state
         }
@@ -275,11 +275,11 @@ function _favWaterClick(evt) {
     const waterList = document.getElementById(`${stateName}_${waterName}_WaterList`);
     const toggleButton = document.getElementById(`${stateName}_${waterName}_Toggle`);
 
-    if(waterList.style.display == "inline"){
+    if (waterList.style.display == "inline") {
         waterList.style.display = "none";
         toggleButton.textContent = '▼'; // Down arrow for closed state
     }
-    else{
+    else {
         waterList.style.display = "inline";
         toggleButton.textContent = '▲'; // Up arrow for open state
     }
@@ -290,14 +290,14 @@ function _favWaterRemove(evt) {
     // eslint-disable-next-line no-unused-vars
     const [state, water, _] = evt.target.id.split("_");
     const result = window.confirm(`Are you sure you want to remove all of ${water}, ${state}?`)
-    if(!result){
+    if (!result) {
         return;
-    }    
+    }
 
     console.log(state, water);
     var toRemove = [];
     getFavorites().forEach(fav => {
-        if(fav.state == state && fav.water == water){
+        if (fav.state == state && fav.water == water) {
             toRemove.push(fav);
         }
     });
@@ -308,13 +308,13 @@ function _favWaterRemove(evt) {
 
 function createRemoveButton(idName, classType) {
     var removeCallback;
-    if(classType == "water"){
+    if (classType == "water") {
         removeCallback = _favWaterRemove;
     }
-    else if (classType == "location"){
+    else if (classType == "location") {
         removeCallback = _favWaterRemove;
     }
-    else{
+    else {
         throw Error(`Uknown remove button type: ${classType}`);
     }
     // Create the button and return it
@@ -326,19 +326,19 @@ function createRemoveButton(idName, classType) {
     return removeButton;
 }
 
-function createFavHeader(idName, text, type){
+function createFavHeader(idName, text, type) {
     var clickListener;
     var elementType;
-    
-    if(type == "state") {
+
+    if (type == "state") {
         clickListener = _favStateClick;
         elementType = "h4";
     }
-    else if(type == "water") {
+    else if (type == "water") {
         clickListener = _favWaterClick;
         elementType = "p";
     }
-    else{
+    else {
         throw Error(`Unknown header type: ${type}`);
     }
 
@@ -353,7 +353,7 @@ function createFavHeader(idName, text, type){
     stateHeader.style.display = "inline";
     stateHeader.style.cursor = "pointer";
     stateHeader.addEventListener("click", clickListener);
-    
+
     // Add the toggle button
     var toggleButton = document.createElement('span');
     toggleButton.id = `${idName}_Toggle`;
@@ -367,7 +367,7 @@ function createFavHeader(idName, text, type){
     headerDiv.appendChild(stateHeader);
 
     // Make the close button
-    if(type == "water"){
+    if (type == "water") {
         headerDiv.appendChild(createRemoveButton(idName, "water"));
     }
 
@@ -377,19 +377,19 @@ function createFavHeader(idName, text, type){
 function updateFavoritesView() {
     // Get favorites from browser
     const favorites = getFavorites();
-    
+
     // Clear existing
     favDiv.innerHTML = '';
 
     var waterDivs = {};
     favorites.forEach(fav => {
         // Deal with the state
-        if(!(fav.state in waterDivs)){
+        if (!(fav.state in waterDivs)) {
             // Need to create a state (div)
             var stateDiv = document.createElement('div');
             stateDiv.id = `${fav.state}_div`;
             stateDiv.className = "stateDiv";
-            
+
             // Create a header for this div
             let stateHeaderDiv = createFavHeader(fav.state, fav.state, 'state');
             // stateHeader.addEventListener("click", _favStateClick);
@@ -401,13 +401,13 @@ function updateFavoritesView() {
             // Update this to track it has been done
             waterDivs[fav.state] = {};
         }
-        else{
+        else {
             // Already have this state in favorites view
             stateDiv = document.getElementById(`${fav.state}_div`)
         }
 
         // Deal with the water body
-        if(!(fav.water in waterDivs[fav.state])){
+        if (!(fav.water in waterDivs[fav.state])) {
             // Need to create a water div here
             var waterDiv = document.createElement('div');
             waterDiv.className = "waterDiv";
@@ -420,14 +420,14 @@ function updateFavoritesView() {
             var waterList = document.createElement("ul");
             waterList.style.display = "none";
             waterList.id = `${fav.state}_${fav.water}_WaterList`;
-            waterList.className = "waterList";           
+            waterList.className = "waterList";
             waterDiv.appendChild(waterList);
 
             // Add this div to the overall div
             stateDiv.appendChild(waterDiv);
             waterDivs[fav.state][fav.water] = waterDiv;
         }
-        else{
+        else {
             // Already have this water in favorites view
             waterList = document.getElementById(`${fav.state}_${fav.water}_WaterList`);
         }
@@ -443,22 +443,22 @@ function updateFavoritesView() {
             values => {
                 const [flow, height, temp] = values;
                 waterListItem.innerHTML += `<br>`
-                if(flow != undefined){
+                if (flow != undefined) {
                     waterListItem.innerHTML += `${flow} cfs  `;
                 }
-                if(height != undefined){
+                if (height != undefined) {
                     waterListItem.innerHTML += `${height} ft   `;
                 }
-                if(temp != undefined){
+                if (temp != undefined) {
                     waterListItem.innerHTML += `${temp} °F`
                 }
             }
         );
     });
-    
+
 
     // Set a custom message here
-    if(favorites.length == 0){
+    if (favorites.length == 0) {
         favDiv.innerHTML = '<p style="color: gray">No Favorites</p>';
     }
 
@@ -476,16 +476,16 @@ exploreForm.addEventListener("submit", gotoGauge)
 favBtn.addEventListener("click", _favBtnClick);
 
 // Bind these to tab click
-for(let i = 0; i < tabs.length; i++){
+for (let i = 0; i < tabs.length; i++) {
     tabs[i].onclick = openTab;
 }
 
 // Check for no favorites, if no favorites to explore view
-if(favorites.length == 0){
+if (favorites.length == 0) {
     // This selects the "explore" tab
     tabs[1].click();
 }
-else{
+else {
     // This selects the "favorites" tab
     tabs[0].click();
 }

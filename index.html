@@ -1,60 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>USGS Site View</title>
-    <link rel="icon" type="image/x-icon" href="favicon.png">
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="icon" type="image/x-icon" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="tab">
+      <!-- Tab links -->
+      <button class="tablinks" id="favTab">Favorites</button>
+      <button class="tablinks" id="expTab">Explore</button>
+    </div>
 
-<div class="tab">
-    <!-- Tab links -->
-    <button class="tablinks" id="favTab">Favorites</button>
-    <button class="tablinks" id="expTab">Explore</button>
-</div>
+    <!-- Tab content -->
+    <div id="Favorites" class="tabcontent">
+      <!-- Add content for favorites here -->
+    </div>
 
-<!-- Tab content -->
-<div id="Favorites" class="tabcontent">
-    <!-- Add content for favorites here -->
-</div>
-
-<div id="Explore" class="tabcontent">
-    <p>Explore and favorite available river gauges</p>
-    <form id="exploreForm">
+    <div id="Explore" class="tabcontent">
+      <p>Explore and favorite available river gauges</p>
+      <form id="exploreForm">
         <label for="state"><b>State:</b></label>
         <select id="state" class="exploreSelect" name="state">
-            <!-- Auto populated -->
+          <!-- Auto populated -->
         </select>
-        
-        <br><br>
+
+        <br /><br />
 
         <label for="waterBody"><b>Water Body:</b></label>
         <select id="waterBody" class="exploreSelect">
-            <!-- Auto populated -->
+          <!-- Auto populated -->
         </select>
-        
-        <br><br>
-        
+
+        <br /><br />
+
         <label for="location"><b>Location:</b></label>
         <select id="location" class="exploreSelect">
-            <!-- Auto populated -->
+          <!-- Auto populated -->
         </select>
-            
-        <br><br>
-        
+
+        <br /><br />
+
         <label for="favBtn"><b>Favorite:</b></label>
         <button id="favBtn" title="Add to Favorites"></button>
-        <br>
-        <hr>
-        <br>
+        <br />
+        <hr />
+        <br />
         <label for="periodDays">Period (Days):</label>
-        <input type="number" id="periodDays" min="1" max="120">
+        <input type="number" id="periodDays" min="1" max="120" />
         <button id="viewBtn" type="submit">View Gauge</button>
-    </form>
-</div>
+      </form>
+    </div>
 
-<script type="module" src="js/home.js"></script>
-</body>
+    <script type="module" src="js/home.js"></script>
+  </body>
 </html>
