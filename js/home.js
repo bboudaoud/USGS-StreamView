@@ -164,9 +164,6 @@ function updateFavoriteInfo(_evt) {
     if (fav != undefined) {
         updateThresholdsFromFav(fav);
     }
-    else {
-        console.warn("undefined site...");
-    }
 }
 
 function favBtnClick(evt) {
