@@ -52,6 +52,9 @@ function openTab(evt) {
     if (id == "Favorites") {
         Favorites.updateView();
     }
+    else if (id == "Explore") {
+        updateWaterSelect();
+    }
 
     // Show the current tab, and add an "active" class to the button that opened the tab
     document.getElementById(id).style.display = "block";
@@ -167,51 +170,56 @@ function updateFavoriteInfo(_evt) {
 }
 
 function favBtnClick(evt) {
-    var mode;
-    if (evt.target.id == "favSite") {
-        mode = "site";
-    }
-    else if (evt.target.id == "favWaterbody") {
-        mode = "water";
-    }
-    else {
-        throw new Error(`Cannot handle callback from ${event.target.id}`)
-    }
-
-    // Determine whether this is already a favorite (if so unfavorite)
-    let dropFav = false;
-    if (mode == "site") {
-        dropFav = Favorites.remove(Favorites.getById(siteSelect.value));
-        if (!dropFav && siteSelect.selectedIndex >= 0) {
-            // Create a new favorite
-            const newFav = {
-                state: stateSelect.value,
-                water: waterSelect.value,
-                loc: siteSelect.options[siteSelect.selectedIndex].text,
-                id: siteSelect.value,
-            };
-            Favorites.add(newFav);
+    try {
+        var mode;
+        if (evt.target.id == "favSite") {
+            mode = "site";
         }
-    }
-    else if (mode == "water") {
-        // Add all of these for now
-        for (let i = 0; i < siteSelect.options.length; i++) {
-            const newFav = {
-                state: stateSelect.value,
-                water: waterSelect.value,
-                loc: siteSelect.options[i].text,
-                id: siteSelect.options[i].value,
-            };
-            Favorites.add(newFav);
+        else if (evt.target.id == "favWaterbody") {
+            mode = "water";
         }
+        else {
+            console.error(`Cannot handle callback from ${evt.target.id}`)
+            return;
+        }
+
+        // Determine whether this is already a favorite (if so unfavorite)
+        let droppedFav = false;
+        if (mode == "site") {
+            droppedFav = Favorites.remove(Favorites.getById(siteSelect.value));
+            if (!droppedFav && siteSelect.selectedIndex >= 0) {
+                // Create a new favorite
+                Favorites.add({
+                    state: stateSelect.value,
+                    water: waterSelect.value,
+                    loc: siteSelect.options[siteSelect.selectedIndex].text,
+                    id: siteSelect.value,
+                });
+            }
+        }
+        else if (mode == "water") {
+            // Add all of these for now
+            for (let i = 0; i < siteSelect.options.length; i++) {
+                Favorites.add({
+                    state: stateSelect.value,
+                    water: waterSelect.value,
+                    loc: siteSelect.options[i].text,
+                    id: siteSelect.options[i].value,
+                });
+            }
+        }
+
+        // Update the drawn status
+        updateFavoriteInfo();
     }
-
-    // Update the drawn status
-    updateFavoriteInfo();
-
-    // Prevent this event from submitting the form
-    evt.preventDefault();
-    evt.stopPropagation();
+    catch (error) {
+        console.error(error);
+    }
+    finally {
+        // Prevent this event from submitting the form
+        evt.preventDefault();
+        evt.stopPropagation();
+    }
 }
 
 function updateEntryUnitLabels(evt) {
@@ -263,33 +271,39 @@ function updateThresholdsFromFav(fav) {
 }
 
 function saveFavThresh(evt) {
-    // The favorite to update
-    let fav = Favorites.getById(siteSelect.value);
+    try {
+        // The favorite to update
+        let fav = Favorites.getById(siteSelect.value);
 
-    // Level entries
-    fav["levelUnits"] = document.querySelector(`input[name="level_mode"]:checked`).value;
-    Favorites.LEVEL_STAGES.forEach(level => {
-        const val = document.getElementById(`${level}_level`).value;
-        if (val != undefined && val != "") {
-            fav[`${level}Level`] = val;
-        }
-    });
+        // Level entries
+        fav["levelUnits"] = document.querySelector(`input[name="level_mode"]:checked`).value;
+        Favorites.LEVEL_STAGES.forEach(level => {
+            const val = document.getElementById(`${level}_level`).value;
+            if (val != undefined && val != "") {
+                fav[`${level}Level`] = val;
+            }
+        });
 
-    // Temperature entries
-    fav["tempUnits"] = document.querySelector(`input[name="temp_mode"]:checked`).value;
-    Favorites.TEMP_LEVELS.forEach(level => {
-        const val = document.getElementById(`${level}_temp`).value;
-        if (val != undefined && val != "") {
-            fav[`${level}Temp`] = val;
-        }
-    });
+        // Temperature entries
+        fav["tempUnits"] = document.querySelector(`input[name="temp_mode"]:checked`).value;
+        Favorites.TEMP_LEVELS.forEach(level => {
+            const val = document.getElementById(`${level}_temp`).value;
+            if (val != undefined && val != "") {
+                fav[`${level}Temp`] = val;
+            }
+        });
 
-    // Update this favorite
-    Favorites.update(fav);
-
-    // Prevent this event from submitting the form
-    evt.preventDefault();
-    evt.stopPropagation();
+        // Update this favorite
+        Favorites.update(fav);
+    }
+    catch (error) {
+        console.error(error);
+    }
+    finally {
+        // Prevent this event from submitting the form
+        evt.preventDefault();
+        evt.stopPropagation();
+    }
 }
 
 // Load the favorites here
@@ -302,8 +316,14 @@ siteSelect.addEventListener("change", updateFavoriteInfo);
 favSiteBtn.addEventListener("click", favBtnClick);
 favWaterBtn.addEventListener("click", favBtnClick);
 updateFavThreshBtn.addEventListener("click", saveFavThresh);
-viewBtn.onclick = gotoGauge;
-exploreForm.addEventListener("submit", gotoGauge)
+// exploreForm.addEventListener("submit", gotoGauge)
+
+// Add a listener that goes to gauge but stops form submission here
+viewBtn.addEventListener("click", function (evt) {
+    gotoGauge();
+    evt.preventDefault();
+    evt.stopPropagation();
+})
 
 // Add listeners to radio buttons
 for (let i = 0; i < modeChangeOptions.length; i++) {
@@ -319,6 +339,8 @@ for (let i = 0; i < tabs.length; i++) {
 if (favorites.length == 0) {
     // This selects the "explore" tab
     tabs[1].click();
+    // If going to explore mode populate the state dropdown
+    updateWaterSelect();
 }
 else {
     // This selects the "favorites" tab

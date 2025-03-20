@@ -80,8 +80,11 @@ export function add(fav) {
 }
 
 export function remove(fav) {
-    var favorites = getAll();
+    if (fav == undefined) {
+        return false;
+    }
 
+    let favorites = getAll();
     let favIdx = -1;
     for (let i = 0; i < favorites.length; i++) {
         if (favorites[i].id == fav.id) {
