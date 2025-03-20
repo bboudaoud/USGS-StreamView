@@ -1,0 +1,200 @@
+/* Default font for everything */
+* {
+  font-family: "Open Sans";
+}
+
+h1 {
+  font-size: 14pt;
+}
+
+/* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+
+.exploreSelect {
+  font-size: 12pt;
+}
+
+button.tablinks {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+#favDiv {
+  display: none;
+}
+
+.favLevelDiv {
+  display: inline-block;
+  vertical-align: top;
+  width: 40%;
+}
+
+.favTempDiv {
+  display: inline-block;
+  float: right;
+  width: 40%;
+  vertical-align: top;
+}
+
+.levelLabel,
+.tempLabel {
+  display: block;
+  font-weight: bold;
+}
+
+.levelEntry,
+.tempEntry {
+  display: inline;
+}
+
+.levelEntry{
+  width: 100px;
+}
+
+.tempEntry{
+  width: 40px;
+}
+
+.levelUnits,
+.tempUnits {
+  display: inline;
+}
+
+.modeRb {
+  display: inline-block;
+}
+
+.viewDiv {
+  display: inline-block;
+  position: relative;
+}
+
+.favBtn {
+  display: "inline-block";
+  vertical-align: middle;
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  background-color: #aaa; /* Star color */
+  border: none;
+  cursor: pointer;
+  clip-path: polygon(
+    50% 0%,
+    61% 35%,
+    98% 35%,
+    68% 57%,
+    79% 91%,
+    50% 70%,
+    21% 91%,
+    32% 57%,
+    2% 35%,
+    39% 35%
+  );
+  transition: background-color 0.3s ease;
+}
+
+.favBtn:hover {
+  background-color: gold;
+}
+
+.stateDiv {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  padding: 5px;
+}
+
+.stateHeader {
+  margin: 0;
+  font-size: 16pt;
+}
+
+.waterDiv {
+  padding-left: 20px;
+}
+
+.stateHeaderText,
+.waterHeaderText {
+  font-weight: bold;
+  display: inline;
+  cursor: pointer;
+}
+
+.waterHeader {
+  margin: 0;
+  padding-top: 10px;
+  font-size: 12pt;
+}
+
+.siteDiv {
+  margin-left: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.siteNameText {
+  display: inline;
+  /* font-weight: bold; */
+}
+
+.siteStatsDiv {
+  display: block;
+}
+
+.siteStatText {
+  display: inline;
+}
+
+.toggleBtn {
+  margin-left: 5px;
+  font-size: 12pt;
+}
+
+.waterRemoveBtn,
+.siteRemoveBtn {
+  display: inline;
+  float: right;
+  vertical-align: middle;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.waterRemoveBtn:hover,
+.siteRemoveBtn:hover {
+  color: red;
+}
+
+.siteRemoveBtn {
+  margin-right: 100px;
+}
