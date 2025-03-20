@@ -178,20 +178,10 @@ function favBtnClick(evt) {
         throw new Error(`Cannot handle callback from ${event.target.id}`)
     }
 
-    // This handles clicking the "add new favorite" (start) button in explore
-    const favorites = Favorites.getAll();
-
     // Determine whether this is already a favorite (if so unfavorite)
     let dropFav = false;
     if (mode == "site") {
-        favorites.forEach(fav => {
-            if (fav.id == siteSelect.value) {
-                // This is a match to an existing favorite, unfavorite
-                Favorites.remove(fav);
-                dropFav = true;
-                return;
-            }
-        })
+        dropFav = Favorites.remove(Favorites.getById(siteSelect.value));
         if (!dropFav && siteSelect.selectedIndex >= 0) {
             // Create a new favorite
             const newFav = {

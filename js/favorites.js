@@ -92,7 +92,7 @@ export function remove(fav) {
     // Early exit for not present
     if (favIdx < 0) {
         // Did not find this favorite
-        return;
+        return false;
     }
 
     // Splice around index/remove from this list
@@ -100,11 +100,19 @@ export function remove(fav) {
 
     // Remove the favorite from its list
     const favDiv = document.getElementById(`${fav.id}_fav_div`);
+    const waterDiv = favDiv.parentElement;
+
     favDiv.remove();
+
+    // Remove the water div if needed
+    if (waterDiv.childNodes.length < 2) {
+        waterDiv.remove();
+    }
 
     // Update the memory
     saveFavorites(favorites);
     console.log("REMOVE FAVORITE", fav);
+    return true;
 }
 
 export function update(fav) {
@@ -189,7 +197,7 @@ export function updateView(favContainer = favTab) {
             var waterDiv = document.createElement('div');
             waterDiv.id = `${fav.state}_${fav.water}_div`;
             waterDiv.className = "waterDiv";
-            waterDiv.style.display = "none";
+            waterDiv.style.display = stateDiv.style.display;
 
             let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
             waterDiv.appendChild(waterHeader);
@@ -249,15 +257,8 @@ function _favWaterRemove(evt) {
 
 function _favSiteRemove(evt) {
     const siteId = evt.target.id.split("_")[0];
-    const waterDiv = document.getElementById(`${siteId}_fav_div`).parentElement;
-
     // Find and remove the site
     remove(getById(siteId));
-
-    // Remove the water div if needed
-    if (waterDiv.childNodes.length < 2) {
-        waterDiv.remove();
-    }
 }
 
 function createRemoveButton(idName, classType) {
