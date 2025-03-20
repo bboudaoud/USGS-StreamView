@@ -72,6 +72,7 @@ export function add(fav) {
         // Add here
         favorites.push(fav);
         saveFavorites(favorites);
+        updateView();
         console.log("ADD FAVORITE", fav);
     }
     // This indicates that this is now/aready was a favorite
@@ -93,11 +94,17 @@ export function remove(fav) {
         // Did not find this favorite
         return;
     }
+
     // Splice around index/remove from this list
     favorites.splice(favIdx, 1);
-    console.log("REMOVE FAVORITE", fav);
+
+    // Remove the favorite from its list
+    const favDiv = document.getElementById(`${fav.id}_fav_div`);
+    favDiv.remove();
+
     // Update the memory
     saveFavorites(favorites);
+    console.log("REMOVE FAVORITE", fav);
 }
 
 export function update(fav) {
@@ -105,7 +112,7 @@ export function update(fav) {
     // Update this favorite
     for (let i = 0; i < favorites.length; i++) {
         if (favorites[i].id == fav.id) {
-            console.log("UPDATE FAVORITE", fav);
+            // console.log("UPDATE FAVORITE", fav);
             favorites[i] = fav;
             break;
         }
@@ -148,37 +155,37 @@ export function updateView(favContainer = favTab) {
     // Get favorites from browser
     const favorites = getAll();
 
-    // Clear existing
-    favContainer.innerHTML = '';
-
-    var waterDivs = {};
     favorites.forEach(fav => {
-        // Deal with the state
-        if (!(fav.state in waterDivs)) {
-            // Need to create a state (div)
+        // Easy here b/c we just have state divs
+        const stateNames = new Set(Array.from(favContainer.children).map(v => v.id.split("_")[0]));
+        if (!stateNames.has(fav.state)) {
+            // Need to create a new state (div)
             var stateDiv = document.createElement('div');
             stateDiv.id = `${fav.state}_div`;
             stateDiv.className = "stateDiv";
 
             // Create a header for this div
             let stateHeaderDiv = createFavHeader(fav.state, fav.state, 'state');
-            // stateHeader.addEventListener("click", _favStateClick);
             stateDiv.appendChild(stateHeaderDiv);
 
             // Add the state div to the favorites div
             favContainer.appendChild(stateDiv);
-
-            // Update this to track it has been done
-            waterDivs[fav.state] = {};
         }
         else {
             // Already have this state in favorites view
             stateDiv = document.getElementById(`${fav.state}_div`)
         }
 
+        // Get a set of valid waternames
+        let waterNames = new Set();
+        stateDiv.childNodes.forEach(v => {
+            if (v.className == "waterDiv") {
+                waterNames.add(v.id.split("_")[1]);
+            }
+        });
         // Deal with the water body
-        if (!(fav.water in waterDivs[fav.state])) {
-            // Need to create a water div here
+        if (!waterNames.has(fav.water)) {
+            // Need to create a new water div
             var waterDiv = document.createElement('div');
             waterDiv.id = `${fav.state}_${fav.water}_div`;
             waterDiv.className = "waterDiv";
@@ -189,16 +196,24 @@ export function updateView(favContainer = favTab) {
 
             // Add this div to the overall div
             stateDiv.appendChild(waterDiv);
-            waterDivs[fav.state][fav.water] = waterDiv;
         }
         else {
             // Already have this water in favorites view
             waterDiv = document.getElementById(`${fav.state}_${fav.water}_div`);
         }
 
-        var siteItem = createFavSite(fav);
-        siteItem.style.display = "none";
-        waterDiv.appendChild(siteItem);
+        // This is easy again at the bottom of the stack
+        const siteIds = new Set(Array.from(waterDiv.children).map((v => v.id.split("_")[0])));
+        if (siteIds.has(fav.id)) {
+            // Already exists, update it
+            update(fav);
+        }
+        else {
+            // Create a new stream div
+            var siteItem = createFavSite(fav);
+            siteItem.style.display = "none";
+            waterDiv.appendChild(siteItem);
+        }
     });
 
 
@@ -217,6 +232,7 @@ function _favWaterRemove(evt) {
     if (!window.confirm(`Are you sure you want to remove all of ${water}, ${state}?`)) {
         return;
     }
+
     // Remove all water that matches this waterbody
     var toRemove = [];
     getAll().forEach(fav => {
@@ -225,19 +241,23 @@ function _favWaterRemove(evt) {
         }
     });
     toRemove.forEach(fav => remove(fav));
-    // Update the view
-    updateView();
+
+    // Remove the waterbody div
+    const waterDiv = document.getElementById(`${state}_${water}_div`);
+    waterDiv.remove();
 }
 
 function _favSiteRemove(evt) {
     const siteId = evt.target.id.split("_")[0];
-    getAll().forEach(fav => {
-        if (fav.id == siteId) {
-            remove(fav);
-            updateView();
-            return;
-        }
-    })
+    const waterDiv = document.getElementById(`${siteId}_fav_div`).parentElement;
+
+    // Find and remove the site
+    remove(getById(siteId));
+
+    // Remove the water div if needed
+    if (waterDiv.childNodes.length < 2) {
+        waterDiv.remove();
+    }
 }
 
 function createRemoveButton(idName, classType) {

@@ -49,7 +49,6 @@ function openTab(evt) {
 
     // This gets the ID for the corresponding tabcontent class
     const id = evt.target.innerHTML;
-
     if (id == "Favorites") {
         Favorites.updateView();
     }
