@@ -80,11 +80,11 @@ button.tablinks {
   display: inline;
 }
 
-.levelEntry{
+.levelEntry {
   width: 100px;
 }
 
-.tempEntry{
+.tempEntry {
   width: 40px;
 }
 
@@ -197,4 +197,14 @@ button.tablinks {
 
 .siteRemoveBtn {
   margin-right: 100px;
+}
+
+.currentCondLabel,
+.currentCondValue,
+.currentCondUnits {
+  display: inline;
+}
+
+.currentCondLabel {
+  font-weight: bold;
 }

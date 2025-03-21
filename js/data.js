@@ -230,3 +230,26 @@ export function getDataForSite(siteId, periodDays = undefined) {
         })
         .catch(error => console.error('Error fetching data:', error));
 }
+
+export function getLatestValues(site) {
+    // Return a spot result
+    return getDataForSite(site).then(data => {
+        // eslint-disable-next-line no-unused-vars
+        const [_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
+        var [flow, height, temp] = [undefined, undefined, undefined];
+
+        if (flowValues.length > 0) {
+            flow = flowValues[flowValues.length - 1].value;
+            flow = Math.round(flow * 10) / 10;
+        }
+        if (heightValues.length > 0) {
+            height = heightValues[heightValues.length - 1].value;
+            height = Math.round(height * 100) / 100;
+        }
+        if (tempValues.length > 0) {
+            temp = tempValues[tempValues.length - 1].value * 9 / 5 + 32;
+            temp = Math.round(temp * 100) / 100;
+        }
+        return [flow, height, temp];
+    });
+}

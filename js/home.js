@@ -6,9 +6,8 @@ import { populateStateSelect } from "./states.js";
 
 // High-level
 const tabs = document.getElementsByClassName("tablinks");
-const exploreForm = document.getElementById("exploreForm");
 
-// Explore form
+// Explore
 const stateSelect = document.getElementById("state");
 // Add states to drop down
 populateStateSelect(stateSelect);
@@ -125,7 +124,7 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
     }
 
     // Update water and site favorites
-    updateFavoriteInfo();
+    updateSite();
 
     // Re-enable buttoons
     viewBtn.disabled = false;
@@ -134,7 +133,7 @@ function updateSiteSelect(_evt = undefined, siteId = undefined) {
 }
 
 // eslint-disable-next-line no-unused-vars
-function updateFavoriteInfo(_evt) {
+function updateSite(_evt) {
     // Update the water favorite button
     let fav_sites = [];
     Favorites.getAll().forEach(fav => {
@@ -167,6 +166,47 @@ function updateFavoriteInfo(_evt) {
     if (fav != undefined) {
         updateThresholdsFromFav(fav);
     }
+
+    // Update current conditions
+    updateCurrentConds();
+}
+
+function updateCurrentConds() {
+    const currFlow = document.getElementById("currentCondFlow");
+    const currFlowUnits = document.getElementById("currentCondFlowUnits");
+    const currHeight = document.getElementById("currentCondHeight");
+    const currHeightUnits = document.getElementById("currentCondHeightUnits");
+    const currTemp = document.getElementById("currentCondTemp");
+    const currTempUnits = document.getElementById("currentCondTempUnits");
+
+    const siteId = siteSelect.value;
+    Data.getLatestValues(siteId).then(
+        values => {
+            const [flowVal, heightVal, tempVal] = values;
+            currFlow.textContent = "--";
+            currHeight.textContent = "--";
+            if (flowVal != undefined) {
+                currFlow.textContent = flowVal;
+            }
+            if (heightVal != undefined) {
+                currHeight.textContent = heightVal;
+            }
+            const fav = Favorites.getById(siteId);
+            const flowColor = Favorites.getLevelColor(fav, flowVal, heightVal);
+            currFlow.style.color = flowColor;
+            currFlowUnits.style.color = flowColor;
+            currHeight.style.color = flowColor;
+            currHeightUnits.style.color = flowColor;
+
+            currTemp.textContent = "--";
+            if (tempVal != undefined) {
+                currTemp.textContent = tempVal;
+            }
+            const tempColor = Favorites.getTempColor(fav, tempVal);
+            currTemp.style.color = tempColor;
+            currTempUnits.style.color = tempColor;
+        }
+    )
 }
 
 function favBtnClick(evt) {
@@ -210,7 +250,7 @@ function favBtnClick(evt) {
         }
 
         // Update the drawn status
-        updateFavoriteInfo();
+        updateSite();
     }
     catch (error) {
         console.error(error);
@@ -312,11 +352,10 @@ let favorites = Favorites.updateView();
 // Add these event listeners
 stateSelect.addEventListener("change", updateWaterSelect);
 waterSelect.addEventListener("change", updateSiteSelect);
-siteSelect.addEventListener("change", updateFavoriteInfo);
+siteSelect.addEventListener("change", updateSite);
 favSiteBtn.addEventListener("click", favBtnClick);
 favWaterBtn.addEventListener("click", favBtnClick);
 updateFavThreshBtn.addEventListener("click", saveFavThresh);
-// exploreForm.addEventListener("submit", gotoGauge)
 
 // Add a listener that goes to gauge but stops form submission here
 viewBtn.addEventListener("click", function (evt) {

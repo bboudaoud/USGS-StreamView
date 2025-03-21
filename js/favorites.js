@@ -365,30 +365,10 @@ function createFavHeader(idName, text, type) {
     return headerDiv;
 }
 
-function getLatestValues(site) {
-    // Return a spot result
-    return Data.getDataForSite(site).then(data => {
-        // eslint-disable-next-line no-unused-vars
-        const [_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
-        var [flow, height, temp] = [undefined, undefined, undefined];
-
-        if (flowValues.length > 0) {
-            flow = flowValues[flowValues.length - 1].value;
-            flow = Math.round(flow * 10) / 10;
-        }
-        if (heightValues.length > 0) {
-            height = heightValues[heightValues.length - 1].value;
-            height = Math.round(height * 100) / 100;
-        }
-        if (tempValues.length > 0) {
-            temp = tempValues[tempValues.length - 1].value * 9 / 5 + 32;
-            temp = Math.round(temp * 100) / 100;
-        }
-        return [flow, height, temp];
-    });
-}
-
-function getTempColor(fav, value) {
+export function getTempColor(fav, value) {
+    if (fav == undefined) {
+        return "black";
+    }
     // See if we are in a range
     for (let i = 0; i < TEMP_LEVELS.length; i++) {
         const level = TEMP_LEVELS[i];
@@ -404,7 +384,10 @@ function getTempColor(fav, value) {
     return "black";
 }
 
-function getLevelColor(fav, flow, height) {
+export function getLevelColor(fav, flow, height) {
+    if (fav == undefined) {
+        return "black";
+    }
     // Give height priority
     var value;
     if (height != undefined && "levelUnits" in fav && fav.levelUnits == "ft") {
@@ -448,7 +431,7 @@ function createFavSite(fav) {
     siteDiv.appendChild(siteStats);
 
     // Update the stats for this item
-    getLatestValues(fav.id).then(
+    Data.getLatestValues(fav.id).then(
         values => {
             const [flowVal, heightVal, tempVal] = values;
             // Handle the level string
