@@ -57,7 +57,7 @@ function openTab(evt) {
 }
 
 // Check for no favorites, if no favorites to explore view
-let favorites = Favorites.updateView
+let favorites = Favorites.updateView();
 if (favorites.length == 0) {
     // This selects the "explore" tab
     tabs[1].click();
