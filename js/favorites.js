@@ -128,9 +128,9 @@ export function update(fav) {
             break;
         }
     }
+
     // Update favorites with this value
     saveFavorites(favorites);
-
 }
 
 export function download() {
@@ -160,80 +160,6 @@ export function upload() {
     });
     // Create this upload
     ulFav.click();
-}
-
-export function updateView(favContainer = favTab) {
-    // Get favorites from browser
-    const favorites = getAll();
-
-    favorites.forEach(fav => {
-        // Easy here b/c we just have state divs
-        const stateNames = new Set(Array.from(favContainer.children).map(v => v.id.split("_")[0]));
-        if (!stateNames.has(fav.state)) {
-            // Need to create a new state (div)
-            var stateDiv = document.createElement('div');
-            stateDiv.id = `${fav.state}_div`;
-            stateDiv.className = "stateDiv";
-
-            // Create a header for this div
-            let stateHeaderDiv = createFavHeader(fav.state, fav.state, 'state');
-            stateDiv.appendChild(stateHeaderDiv);
-
-            // Add the state div to the favorites div
-            favContainer.appendChild(stateDiv);
-        }
-        else {
-            // Already have this state in favorites view
-            stateDiv = document.getElementById(`${fav.state}_div`)
-        }
-
-        // Get a set of valid waternames
-        let waterNames = new Set();
-        stateDiv.childNodes.forEach(v => {
-            if (v.className == "waterDiv") {
-                waterNames.add(v.id.split("_")[1]);
-            }
-        });
-        // Deal with the water body
-        if (!waterNames.has(fav.water)) {
-            // Need to create a new water div
-            var waterDiv = document.createElement('div');
-            waterDiv.id = `${fav.state}_${fav.water}_div`;
-            waterDiv.className = "waterDiv";
-            waterDiv.style.display = stateDiv.style.display;
-
-            let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
-            waterDiv.appendChild(waterHeader);
-
-            // Add this div to the overall div
-            stateDiv.appendChild(waterDiv);
-        }
-        else {
-            // Already have this water in favorites view
-            waterDiv = document.getElementById(`${fav.state}_${fav.water}_div`);
-        }
-
-        // This is easy again at the bottom of the stack
-        const siteIds = new Set(Array.from(waterDiv.children).map((v => v.id.split("_")[0])));
-        if (siteIds.has(fav.id)) {
-            // Already exists, update it
-            update(fav);
-        }
-        else {
-            // Create a new stream div
-            var siteItem = createFavSite(fav);
-            siteItem.style.display = "none";
-            waterDiv.appendChild(siteItem);
-        }
-    });
-
-
-    // Set a custom message here
-    if (favorites.length == 0) {
-        favContainer.innerHTML = '<p style="color: gray">No Favorites</p>';
-    }
-
-    return favorites;
 }
 
 // Remove an entire waterbody
@@ -445,23 +371,137 @@ function createFavSite(fav) {
             let levelStr = ' ' + levels.join(', ') + ' ';
             if (levelStr.trim() != "") {
                 // Create a paragraph for level and add it to site stats
-                let levelP = document.createElement("p");
-                levelP.className = "siteStatText";
-                levelP.textContent = levelStr;
-                levelP.style.color = getLevelColor(fav, flowVal, heightVal);
-                siteStats.appendChild(levelP);
+                let levelStat = document.createElement("p");
+                levelStat.id = `${fav.id}_fav_level`;
+                levelStat.className = "siteStatText";
+                levelStat.textContent = levelStr;
+                levelStat.style.color = getLevelColor(fav, flowVal, heightVal);
+                siteStats.appendChild(levelStat);
             }
 
-            // Handle flow string
+            // Handle temperature
             if (tempVal != undefined) {
-                let tempP = document.createElement("p");
-                tempP.className = "siteStatText";
-                tempP.textContent = `${tempVal} °F`;
-                tempP.style.color = getTempColor(fav, tempVal);
-                siteStats.appendChild(tempP);
+                let tempStat = document.createElement("p");
+                tempStat.id = `${fav.id}_fav_temp`;
+                tempStat.className = "siteStatText";
+                tempStat.textContent = `${tempVal} °F`;
+                tempStat.style.color = getTempColor(fav, tempVal);
+                siteStats.appendChild(tempStat);
             }
         }
     );
 
     return siteDiv;
+}
+
+function updateFavSite(fav) {
+    // Update the stats for this item
+    Data.getLatestValues(fav.id).then(
+        values => {
+            const [flowVal, heightVal, tempVal] = values;
+            console.log(values, fav);
+            // Handle the level string
+            var levels = [];
+            if (flowVal != undefined) {
+                levels.push(`${flowVal} cfs`);
+            }
+            if (heightVal != undefined) {
+                levels.push(`${heightVal} ft`);
+            }
+            let levelStr = ' ' + levels.join(', ') + ' ';
+            if (levelStr.trim() != "") {
+                // Create a paragraph for level and add it to site stats
+                let levelStat = document.getElementById(`${fav.id}_fav_level`);
+                if (levelStat != undefined) {
+                    levelStat.textContent = levelStr;
+                    levelStat.style.color = getLevelColor(fav, flowVal, heightVal);
+                }
+            }
+
+            // Temperature
+            if (tempVal != undefined) {
+                let tempStat = document.getElementsById(`${fav.id}_fav_temp`);
+                if (tempStat != undefined) {
+                    tempStat.textContent = `${tempVal} °F`;
+                    tempStat.style.color = getTempColor(fav, tempVal);
+                }
+            }
+        }
+    );
+}
+
+export function updateView(favContainer = favTab) {
+    // Get favorites from browser
+    const favorites = getAll();
+
+    favorites.forEach(fav => {
+        // Easy here b/c we just have state divs
+        const stateNames = new Set(Array.from(favContainer.children).map(v => v.id.split("_")[0]));
+        if (!stateNames.has(fav.state)) {
+            // Need to create a new state (div)
+            var stateDiv = document.createElement('div');
+            stateDiv.id = `${fav.state}_div`;
+            stateDiv.className = "stateDiv";
+
+            // Create a header for this div
+            let stateHeaderDiv = createFavHeader(fav.state, fav.state, 'state');
+            stateDiv.appendChild(stateHeaderDiv);
+
+            // Add the state div to the favorites div
+            favContainer.appendChild(stateDiv);
+        }
+        else {
+            // Already have this state in favorites view
+            stateDiv = document.getElementById(`${fav.state}_div`)
+        }
+
+        // Get a set of valid waternames
+        let waterNames = new Set();
+        stateDiv.childNodes.forEach(v => {
+            if (v.className == "waterDiv") {
+                waterNames.add(v.id.split("_")[1]);
+            }
+        });
+        // Deal with the water body
+        if (!waterNames.has(fav.water)) {
+            // Need to create a new water div
+            var waterDiv = document.createElement('div');
+            waterDiv.id = `${fav.state}_${fav.water}_div`;
+            waterDiv.className = "waterDiv";
+            waterDiv.style.display = stateDiv.style.display;
+
+            let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
+            waterDiv.appendChild(waterHeader);
+
+            // Add this div to the overall div
+            stateDiv.appendChild(waterDiv);
+        }
+        else {
+            // Already have this water in favorites view
+            waterDiv = document.getElementById(`${fav.state}_${fav.water}_div`);
+        }
+
+        // This is easy again at the bottom of the stack
+        const siteIds = new Set(Array.from(waterDiv.children).map((v => v.id.split("_")[0])));
+        if (siteIds.has(fav.id)) {
+            // Already exists, update it
+            update(fav);
+            // Recolor conditions if needed
+            updateFavSite(fav);
+        }
+        else {
+            // Create a new stream div
+            var siteItem = createFavSite(fav);
+            siteItem.style.display = "none";
+            waterDiv.appendChild(siteItem);
+        }
+    });
+
+
+    // Set a custom message here
+    if (favorites.length == 0) {
+        favContainer.innerHTML = '<p style="color: gray">No Favorites</p>';
+    }
+
+    return favorites;
 }
