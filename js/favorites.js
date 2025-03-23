@@ -1,6 +1,7 @@
 "use strict";
 
 import * as Data from "./data.js";
+import * as Draggable from "./draggable.js";
 
 // Key to store the favorites in localStorage under
 const FAV_KEY = 'favorites';
@@ -23,6 +24,7 @@ const TEMP_COLORS = {
 
 // Elements
 const favTab = document.getElementById("Favorites");
+Draggable.setContainer(favTab);
 
 export function getAll() {
     const j = localStorage.getItem(FAV_KEY);
@@ -130,6 +132,22 @@ export function update(fav) {
     }
 
     // Update favorites with this value
+    saveFavorites(favorites);
+}
+
+export function updateOrder(){
+    var favorites = [];
+    // Get the site divs (shoud be in order)
+    const siteDivs = favTab.getElementsByClassName("siteDiv");
+    for(let i = 0; i < siteDivs.length; i++){
+        const siteId = siteDivs[i].id.split("_")[0];
+        let fav = getById(siteId);
+        if(fav != undefined){
+            // This is a valid favorite
+            favorites.push(fav);
+        }
+    };
+    // Update the favorites with the new list
     saveFavorites(favorites);
 }
 
@@ -340,7 +358,7 @@ export function getLevelColor(fav, flow, height) {
 function createFavSite(fav) {
     let siteDiv = document.createElement('div');
     siteDiv.id = `${fav.id}_fav_div`;
-    siteDiv.className = 'siteDiv';
+    siteDiv.className = "siteDiv draggable";
 
     // Add name label
     let siteNameLabel = document.createElement("p");
@@ -399,7 +417,6 @@ function updateFavSite(fav) {
     Data.getLatestValues(fav.id).then(
         values => {
             const [flowVal, heightVal, tempVal] = values;
-            console.log(values, fav);
             // Handle the level string
             var levels = [];
             if (flowVal != undefined) {
@@ -458,7 +475,7 @@ export function updateView(favContainer = favTab) {
         // Get a set of valid waternames
         let waterNames = new Set();
         stateDiv.childNodes.forEach(v => {
-            if (v.className == "waterDiv") {
+            if (v.className.includes("waterDiv")) {
                 waterNames.add(v.id.split("_")[1]);
             }
         });
@@ -493,6 +510,7 @@ export function updateView(favContainer = favTab) {
             // Create a new stream div
             var siteItem = createFavSite(fav);
             siteItem.style.display = "none";
+            Draggable.addDraggable(siteItem);
             waterDiv.appendChild(siteItem);
         }
     });

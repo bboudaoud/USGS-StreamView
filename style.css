@@ -56,6 +56,11 @@ button.tablinks {
   display: none;
 }
 
+#updateFavOrder{
+  float: right;
+  margin: 5px;
+}
+
 .favLevelDiv {
   display: inline-block;
   vertical-align: top;
@@ -138,10 +143,12 @@ button.tablinks {
 .stateHeader {
   margin: 0;
   font-size: 16pt;
+  user-select: none;
 }
 
 .waterDiv {
   padding-left: 1%;
+  user-select: none;
 }
 
 .stateHeaderText,
@@ -166,6 +173,13 @@ button.tablinks {
 
   border-radius: 5px;
   background-color: #eee;
+
+  user-select: none;
+  cursor: pointer;
+}
+
+.siteDiv.dragging{
+  cursor: grab;
 }
 
 .siteNameText {

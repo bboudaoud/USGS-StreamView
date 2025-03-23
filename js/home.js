@@ -22,6 +22,9 @@ viewBtn.addEventListener("click", function (evt) {
     evt.stopPropagation();
 });
 
+const saveFavOrderBtn = document.getElementById("updateFavOrder");
+saveFavOrderBtn.addEventListener("click", Favorites.updateOrder);
+
 const dlFavBtn = document.getElementById("dlFavBtn");
 dlFavBtn.onclick = Favorites.download;
 
