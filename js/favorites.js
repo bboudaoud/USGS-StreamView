@@ -420,7 +420,7 @@ function updateFavSite(fav) {
 
             // Temperature
             if (tempVal != undefined) {
-                let tempStat = document.getElementsById(`${fav.id}_fav_temp`);
+                let tempStat = document.getElementById(`${fav.id}_fav_temp`);
                 if (tempStat != undefined) {
                     tempStat.textContent = `${tempVal} °F`;
                     tempStat.style.color = getTempColor(fav, tempVal);
