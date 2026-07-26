@@ -34,6 +34,24 @@ export function gotoGauge() {
     window.open(Data.gaugeUrl(state, siteId, period), "_blank")
 }
 
+// Open Explore for a specific favorite site (e.g. to edit thresholds)
+export function selectFavoriteSite(state, siteId) {
+    // Switch to Explore tab without relying on openTab (avoids a racey reload)
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    const tabs = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tabs.length; i++) {
+        tabs[i].className = tabs[i].className.replace(" active", "");
+    }
+    document.getElementById("Explore").style.display = "block";
+    document.getElementById("expTab").className += " active";
+
+    stateSelect.value = state;
+    updateWaterSelect(undefined, siteId);
+}
+
 // Callback from state select, updates the waterbody select options
 // eslint-disable-next-line no-unused-vars
 export function updateWaterSelect(_evt = undefined, siteId = undefined) {

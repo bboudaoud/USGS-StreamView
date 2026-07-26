@@ -204,8 +204,14 @@ function _favWaterRemove(evt) {
 
 function _favSiteRemove(evt) {
     const siteId = evt.target.id.split("_")[0];
-    // Find and remove the site
-    remove(getById(siteId));
+    const fav = getById(siteId);
+    if (fav == undefined) {
+        return;
+    }
+    if (!window.confirm(`Are you sure you want to remove ${fav.loc}?`)) {
+        return;
+    }
+    remove(fav);
 }
 
 function createRemoveButton(idName, classType) {
@@ -299,11 +305,11 @@ function createFavHeader(idName, text, type) {
 
     // Add to the header
     stateHeader.appendChild(toggleButton);
-    if (type == "water") {
+    if (type == "water" || type == "state") {
         let dragHandle = document.createElement("span");
         dragHandle.className = "dragHandle";
-        dragHandle.title = "Drag to reorder river";
-        dragHandle.setAttribute("aria-label", "Drag to reorder river");
+        dragHandle.title = type == "state" ? "Drag to reorder state" : "Drag to reorder river";
+        dragHandle.setAttribute("aria-label", dragHandle.title);
         headerDiv.appendChild(dragHandle);
     }
     headerDiv.appendChild(stateHeader);
@@ -389,6 +395,16 @@ function createFavSite(fav) {
     siteStats.className = "siteStatsDiv";
     siteDiv.appendChild(siteStats);
 
+    // Link to Explore so thresholds can be edited
+    let levelsLink = document.createElement("a");
+    levelsLink.className = "siteLevelsLink";
+    levelsLink.href = "#";
+    levelsLink.title = "Edit thresholds in Explore";
+    levelsLink.setAttribute("aria-label", "Edit thresholds in Explore");
+    levelsLink.dataset.state = fav.state;
+    levelsLink.dataset.siteId = fav.id;
+    siteStats.appendChild(levelsLink);
+
     // Update the stats for this item
     Data.getLatestValues(fav.id).then(
         values => {
@@ -409,7 +425,7 @@ function createFavSite(fav) {
                 levelStat.className = "siteStatText";
                 levelStat.textContent = levelStr;
                 levelStat.style.color = getLevelColor(fav, flowVal, heightVal);
-                siteStats.appendChild(levelStat);
+                siteStats.insertBefore(levelStat, levelsLink);
             }
 
             // Handle temperature
@@ -419,7 +435,7 @@ function createFavSite(fav) {
                 tempStat.className = "siteStatText";
                 tempStat.textContent = `${tempVal} °F`;
                 tempStat.style.color = getTempColor(fav, tempVal);
-                siteStats.appendChild(tempStat);
+                siteStats.insertBefore(tempStat, levelsLink);
             }
         }
     );
@@ -473,11 +489,12 @@ export function updateView(favContainer = favTab) {
             // Need to create a new state (div)
             var stateDiv = document.createElement('div');
             stateDiv.id = `${fav.state}_div`;
-            stateDiv.className = "stateDiv";
+            stateDiv.className = "stateDiv draggable";
 
             // Create a header for this div
             let stateHeaderDiv = createFavHeader(fav.state, fav.state, 'state');
             stateDiv.appendChild(stateHeaderDiv);
+            Draggable.addDraggable(stateDiv, stateHeaderDiv.querySelector(".dragHandle"));
 
             // Add the state div to the favorites div
             favContainer.appendChild(stateDiv);

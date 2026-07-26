@@ -25,6 +25,16 @@ viewBtn.addEventListener("click", function (evt) {
 const saveFavOrderBtn = document.getElementById("updateFavOrder");
 saveFavOrderBtn.addEventListener("click", Favorites.updateOrder);
 
+// Favorites -> Explore deep link for editing thresholds
+document.getElementById("Favorites").addEventListener("click", function (evt) {
+    const levelsLink = evt.target.closest(".siteLevelsLink");
+    if (levelsLink == null) {
+        return;
+    }
+    evt.preventDefault();
+    Explore.selectFavoriteSite(levelsLink.dataset.state, levelsLink.dataset.siteId);
+});
+
 const dlFavBtn = document.getElementById("dlFavBtn");
 dlFavBtn.onclick = Favorites.download;
 

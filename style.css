@@ -199,13 +199,15 @@ button.tablinks {
 }
 
 .siteDiv.dragging,
-.waterDiv.dragging {
+.waterDiv.dragging,
+.stateDiv.dragging {
   opacity: 0.7;
   background-color: #ddd;
 }
 
 .siteDiv.dragging .dragHandle,
-.waterDiv.dragging > .waterHeader .dragHandle {
+.waterDiv.dragging > .waterHeader .dragHandle,
+.stateDiv.dragging > .stateHeader .dragHandle {
   cursor: grabbing;
 }
 
@@ -220,6 +222,19 @@ button.tablinks {
 
 .siteStatText {
   display: inline;
+}
+
+.siteLevelsLink {
+  display: inline-block;
+  margin-left: 8px;
+  width: 14px;
+  height: 14px;
+  vertical-align: middle;
+  text-decoration: none;
+  background:
+    linear-gradient(#555, #555) 0 bottom / 3px 7px no-repeat,
+    linear-gradient(#555, #555) 5px bottom / 3px 14px no-repeat,
+    linear-gradient(#555, #555) 10px bottom / 3px 10px no-repeat;
 }
 
 .toggleBtn {
