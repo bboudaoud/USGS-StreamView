@@ -289,3 +289,20 @@ button.tablinks {
 .currentCondLabel {
   font-weight: bold;
 }
+
+#currentCondFlowRow,
+#currentCondHeightRow,
+#currentCondTempRow {
+  margin-bottom: 0.4em;
+}
+
+#currentCondHeader {
+  margin-bottom: 2px;
+}
+
+#currentCondTimeText {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #777;
+  font-size: 0.9em;
+}

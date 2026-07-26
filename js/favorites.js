@@ -484,7 +484,7 @@ function createFavSite(fav) {
     // Add name label
     let siteNameLabel = document.createElement("p");
     siteNameLabel.className = "siteNameText";
-    siteNameLabel.innerHTML = `<a href=${Data.gaugeUrl(fav.state, fav.id, 30)} target=_blank>${fav.loc}</a>`;
+    siteNameLabel.innerHTML = `<a href=${Data.gaugeUrl(fav.state, fav.id, 7)} target=_blank>${fav.loc}</a>`;
     siteDiv.appendChild(siteNameLabel);
 
     // Add remove button

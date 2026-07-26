@@ -51,7 +51,7 @@
           type="number"
           id="periodDays"
           name="periodDays"
-          value="30"
+          value="7"
           min="1"
           max="120"
           required
@@ -60,6 +60,28 @@
         <label>days</label>
       </div>
     </form>
+    <hr />
+    <div id="currentCondDiv">
+      <h2 id="currentCondHeader">Current Conditions</h2>
+      <p id="currentCondTimeText">
+        Last reading @ <span id="currentCondTime">--</span>
+      </p>
+      <div id="currentCondFlowRow">
+        <p id="currentCondFlowLabel" class="currentCondLabel">Flow:</p>
+        <p id="currentCondFlow" class="currentCondValue">--</p>
+        <p id="currentCondFlowUnits" class="currentCondUnits">cfs</p>
+      </div>
+      <div id="currentCondHeightRow">
+        <p id="currentCondHeightLabel" class="currentCondLabel">Height:</p>
+        <p id="currentCondHeight" class="currentCondValue">--</p>
+        <p id="currentCondHeightUnits" class="currentCondUnits">ft</p>
+      </div>
+      <div id="currentCondTempRow">
+        <p id="currentCondTempLabel" class="currentCondLabel">Temperature:</p>
+        <p id="currentCondTemp" class="currentCondValue">--</p>
+        <p id="currentCondTempUnits" class="currentCondUnits">°F</p>
+      </div>
+    </div>
     <hr />
     <div id="plotDiv" style="width: 100%"></div>
     <div id="mapDiv" style="width: 100%"></div>

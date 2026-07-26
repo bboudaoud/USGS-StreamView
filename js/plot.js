@@ -7,7 +7,72 @@ const PLOT_DIV_NAME = 'plotDiv';
 const mapDiv = document.getElementById('mapDiv');
 const weatherDiv = document.getElementById('weatherDiv');
 
+function _latestReading(values) {
+    if (values == undefined || values.length == 0) {
+        return undefined;
+    }
+    return values[values.length - 1];
+}
 
+function updateCurrentConditions(data) {
+    // eslint-disable-next-line no-unused-vars
+    const [_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
+
+    const flowReading = _latestReading(flowValues);
+    const heightReading = _latestReading(heightValues);
+    const tempReading = _latestReading(tempValues);
+
+    const currFlow = document.getElementById("currentCondFlow");
+    const currHeight = document.getElementById("currentCondHeight");
+    const currTemp = document.getElementById("currentCondTemp");
+    const currTime = document.getElementById("currentCondTime");
+    const flowRow = document.getElementById("currentCondFlowRow");
+    const heightRow = document.getElementById("currentCondHeightRow");
+    const tempRow = document.getElementById("currentCondTempRow");
+
+    currFlow.textContent = "";
+    currHeight.textContent = "";
+    currTemp.textContent = "";
+    currTime.textContent = "--";
+
+    if (flowReading != undefined) {
+        currFlow.textContent = Math.round(parseFloat(flowReading.value) * 10) / 10;
+        flowRow.style.display = "";
+    }
+    else {
+        flowRow.style.display = "none";
+    }
+    if (heightReading != undefined) {
+        currHeight.textContent = Math.round(parseFloat(heightReading.value) * 100) / 100;
+        heightRow.style.display = "";
+    }
+    else {
+        heightRow.style.display = "none";
+    }
+    if (tempReading != undefined) {
+        const tempF = parseFloat(tempReading.value) * (9 / 5) + 32;
+        currTemp.textContent = Math.round(tempF * 100) / 100;
+        tempRow.style.display = "";
+    }
+    else {
+        tempRow.style.display = "none";
+    }
+
+    // Use the most recent timestamp among available series
+    var latestTime = undefined;
+    [flowReading, heightReading, tempReading].forEach(reading => {
+        if (reading == undefined || reading.dateTime == undefined) {
+            return;
+        }
+        const t = new Date(reading.dateTime);
+        if (latestTime == undefined || t > latestTime) {
+            latestTime = t;
+        }
+    });
+    if (latestTime != undefined) {
+        currTime.textContent = latestTime.toLocaleString();
+    }
+}
 
 function plotData(div, data, printMissing = false) {
     // Transform the data
@@ -131,6 +196,8 @@ export function updateView(data, verbose = false) {
         // If not valid then we don't have a valid site location anyways
         return false;
     }
+    // Show most recent readings above the plot
+    updateCurrentConditions(data);
     // Draw the maps from the site location
     drawMaps(data[1]);
     return true;
