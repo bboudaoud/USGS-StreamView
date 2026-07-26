@@ -14,6 +14,27 @@ function _latestReading(values) {
     return values[values.length - 1];
 }
 
+function _wrapPlotTitle(title, maxLineLength) {
+    const words = title.split(" ");
+    const lines = [];
+    var line = "";
+
+    words.forEach(word => {
+        const nextLine = line == "" ? word : `${line} ${word}`;
+        if (line != "" && nextLine.length > maxLineLength) {
+            lines.push(line);
+            line = word;
+        }
+        else {
+            line = nextLine;
+        }
+    });
+    if (line != "") {
+        lines.push(line);
+    }
+    return lines.join("<br>");
+}
+
 function updateCurrentConditions(data) {
     // eslint-disable-next-line no-unused-vars
     const [_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
@@ -170,6 +191,19 @@ function plotData(div, data, printMissing = false) {
     }
     else if (printMissing) {
         console.log(`No temperature for ${siteName}`);
+    }
+
+    // Wrap long site names and reserve room for both title and legend on mobile.
+    if (window.matchMedia("(max-width: 600px)").matches) {
+        const wrappedTitle = _wrapPlotTitle(siteName, 30);
+        layout.title = {
+            text: wrappedTitle,
+            font: { size: 16 },
+            y: 0.88,
+            yanchor: "top",
+        };
+        const titleLines = wrappedTitle.split("<br>").length;
+        layout.margin.t = (traces.length == 3 ? 130 : 100) + ((titleLines - 1) * 23);
     }
 
     // Create plot here (currently import work here is sloppy)
