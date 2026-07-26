@@ -146,6 +146,31 @@ button.tablinks {
   user-select: none;
 }
 
+.waterDiv.singleGauge {
+  padding: 5px;
+  margin-right: 1%;
+  margin-left: 1%;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+.waterDiv.singleGauge .waterHeader {
+  padding-top: 0;
+}
+
+.waterDiv.singleGauge .siteDiv {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border-radius: 0;
+}
+
+.inlineSiteName {
+  font-weight: normal;
+}
+
 .stateHeaderText,
 .waterHeaderText {
   font-weight: bold;

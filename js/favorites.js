@@ -113,6 +113,10 @@ export function remove(fav) {
     if (waterDiv.childNodes.length < 2) {
         waterDiv.remove();
     }
+    else {
+        // May have dropped to a single gauge; show it inline
+        syncWaterSiteDisplay(waterDiv);
+    }
 
     // Update the memory
     saveFavorites(favorites);
@@ -255,8 +259,13 @@ function _favStateClick(evt) {
 function _favWaterClick(evt) {
     // eslint-disable-next-line no-unused-vars
     const [stateName, waterName, _] = evt.target.id.split("_");
+    const waterDiv = document.getElementById(`${stateName}_${waterName}_div`);
+    const siteDivs = waterDiv.getElementsByClassName("siteDiv");
+    // Single-gauge rivers show data inline; no collapse toggle
+    if (siteDivs.length <= 1) {
+        return;
+    }
     const toggleButton = document.getElementById(`${stateName}_${waterName}_Toggle`);
-    const siteDivs = document.getElementById(`${stateName}_${waterName}_div`).getElementsByClassName("siteDiv");
 
     for (let i = 0; i < siteDivs.length; i++) {
         let siteDiv = siteDivs[i];
@@ -267,6 +276,97 @@ function _favWaterClick(evt) {
         else {
             siteDiv.style.display = "block";
             toggleButton.textContent = '▲'; // Up arrow for open state
+        }
+    }
+}
+
+// Single gauge: one card with river + site name, one drag handle.
+// Multiple gauges: keep the collapse dropdown.
+function syncWaterSiteDisplay(waterDiv) {
+    const siteDivs = waterDiv.getElementsByClassName("siteDiv");
+    const idName = waterDiv.id.replace(/_div$/, "");
+    const toggleButton = document.getElementById(`${idName}_Toggle`);
+    const headerText = document.getElementById(`${idName}_Header`);
+    let inlineSiteName = headerText != undefined
+        ? headerText.querySelector(".inlineSiteName")
+        : undefined;
+
+    if (siteDivs.length == 1) {
+        const siteDiv = siteDivs[0];
+        waterDiv.classList.add("singleGauge");
+
+        if (toggleButton != undefined) {
+            toggleButton.style.display = "none";
+        }
+        if (headerText != undefined) {
+            headerText.style.cursor = "default";
+        }
+
+        // One drag handle on the river card; hide the nested site handle/remove/name
+        const siteDrag = siteDiv.querySelector(".dragHandle");
+        const siteRemove = siteDiv.querySelector(".siteRemoveBtn");
+        const siteName = siteDiv.querySelector(".siteNameText");
+        if (siteDrag != undefined) {
+            siteDrag.style.display = "none";
+        }
+        if (siteRemove != undefined) {
+            siteRemove.style.display = "none";
+        }
+        if (siteName != undefined) {
+            siteName.style.display = "none";
+            if (headerText != undefined) {
+                if (inlineSiteName == undefined) {
+                    inlineSiteName = document.createElement("span");
+                    inlineSiteName.className = "inlineSiteName";
+                    if (toggleButton != undefined) {
+                        headerText.insertBefore(inlineSiteName, toggleButton);
+                    }
+                    else {
+                        headerText.appendChild(inlineSiteName);
+                    }
+                }
+                inlineSiteName.innerHTML = " - " + siteName.innerHTML;
+            }
+        }
+
+        siteDiv.style.display = "block";
+    }
+    else {
+        waterDiv.classList.remove("singleGauge");
+
+        if (inlineSiteName != undefined) {
+            inlineSiteName.remove();
+        }
+        if (toggleButton != undefined) {
+            toggleButton.style.display = "";
+        }
+        if (headerText != undefined) {
+            headerText.style.cursor = "pointer";
+        }
+
+        let anyVisible = false;
+        for (let i = 0; i < siteDivs.length; i++) {
+            const siteDrag = siteDivs[i].querySelector(".dragHandle");
+            const siteRemove = siteDivs[i].querySelector(".siteRemoveBtn");
+            const siteName = siteDivs[i].querySelector(".siteNameText");
+            if (siteDrag != undefined) {
+                siteDrag.style.display = "";
+            }
+            if (siteRemove != undefined) {
+                siteRemove.style.display = "";
+            }
+            if (siteName != undefined) {
+                siteName.style.display = "";
+            }
+            if (siteDivs[i].style.display == "block") {
+                anyVisible = true;
+            }
+        }
+        for (let i = 0; i < siteDivs.length; i++) {
+            siteDivs[i].style.display = anyVisible ? "block" : "none";
+        }
+        if (toggleButton != undefined) {
+            toggleButton.textContent = anyVisible ? '▲' : '▼';
         }
     }
 }
@@ -548,6 +648,11 @@ export function updateView(favContainer = favTab) {
         }
     });
 
+    // Single-gauge rivers show site data directly; multi-gauge keep toggles
+    const waterDivs = favContainer.getElementsByClassName("waterDiv");
+    for (let i = 0; i < waterDivs.length; i++) {
+        syncWaterSiteDisplay(waterDivs[i]);
+    }
 
     // Set a custom message here
     if (favorites.length == 0) {
