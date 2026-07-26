@@ -299,6 +299,13 @@ function createFavHeader(idName, text, type) {
 
     // Add to the header
     stateHeader.appendChild(toggleButton);
+    if (type == "water") {
+        let dragHandle = document.createElement("span");
+        dragHandle.className = "dragHandle";
+        dragHandle.title = "Drag to reorder river";
+        dragHandle.setAttribute("aria-label", "Drag to reorder river");
+        headerDiv.appendChild(dragHandle);
+    }
     headerDiv.appendChild(stateHeader);
 
     // Make the close button
@@ -353,12 +360,20 @@ export function getLevelColor(fav, flow, height) {
     if ("too_highLevel" in fav && value >= fav.too_highLevel) {
         return "darkred";
     }
+    return "black";
 }
 
 function createFavSite(fav) {
     let siteDiv = document.createElement('div');
     siteDiv.id = `${fav.id}_fav_div`;
     siteDiv.className = "siteDiv draggable";
+
+    // Drag handle for mobile-friendly reorder
+    let dragHandle = document.createElement("span");
+    dragHandle.className = "dragHandle";
+    dragHandle.title = "Drag to reorder gauge";
+    dragHandle.setAttribute("aria-label", "Drag to reorder gauge");
+    siteDiv.appendChild(dragHandle);
 
     // Add name label
     let siteNameLabel = document.createElement("p");
@@ -484,11 +499,12 @@ export function updateView(favContainer = favTab) {
             // Need to create a new water div
             var waterDiv = document.createElement('div');
             waterDiv.id = `${fav.state}_${fav.water}_div`;
-            waterDiv.className = "waterDiv";
+            waterDiv.className = "waterDiv draggable";
             waterDiv.style.display = stateDiv.style.display;
 
             let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
             waterDiv.appendChild(waterHeader);
+            Draggable.addDraggable(waterDiv, waterHeader.querySelector(".dragHandle"));
 
             // Add this div to the overall div
             stateDiv.appendChild(waterDiv);
@@ -510,7 +526,7 @@ export function updateView(favContainer = favTab) {
             // Create a new stream div
             var siteItem = createFavSite(fav);
             siteItem.style.display = "none";
-            Draggable.addDraggable(siteItem);
+            Draggable.addDraggable(siteItem, siteItem.querySelector(".dragHandle"));
             waterDiv.appendChild(siteItem);
         }
     });

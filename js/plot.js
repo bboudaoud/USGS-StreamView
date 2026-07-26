@@ -16,22 +16,28 @@ function plotData(div, data, printMissing = false) {
 
     // Storage for this method
     var traces = [];
+    var hasTemp = tempValues.length > 0;
     // Base figure layout
     var layout = {
         title: siteName,
-        yaxis: { title: 'Streamflow (cfs)' },
-        yaxis3: {
-            title: 'Gage Height (ft)',
-            overlaying: 'y',
-            side: 'right'
-        },
+        yaxis: { title: 'Streamflow (cfs)', automargin: true },
         legend: {
             orientation: 'h',
             x: 0.5,
             y: 1,
             xanchor: 'center',
             yanchor: 'bottom',
-        }
+        },
+        margin: { t: 100 },
+    };
+    if (heightValues.length > 0) {
+        // Only add the overlaid right axis when height data exists
+        layout.yaxis3 = {
+            title: 'Gage Height (ft)',
+            overlaying: 'y',
+            side: 'right',
+            automargin: true,
+        };
     }
     var config = {
         responsive: true,
@@ -41,7 +47,8 @@ function plotData(div, data, printMissing = false) {
     if (flowValues.length > 0) {
         traces.push({
             x: flowValues.map(v => v.dateTime),
-            y: flowValues.map(v => v.value),
+            // USGS returns values as strings; coerce so autorange covers true extremes
+            y: flowValues.map(v => parseFloat(v.value)),
             name: 'Streamflow (cfs)',
             type: 'scatter',
             mode: 'lines',
@@ -51,13 +58,13 @@ function plotData(div, data, printMissing = false) {
         });
     }
     else if (printMissing) {
-        console.log(`No flow for ${location}`);
+        console.log(`No flow for ${siteName}`);
     }
 
     if (heightValues.length > 0) {
         traces.push({
             x: heightValues.map(v => v.dateTime),
-            y: heightValues.map(v => v.value),
+            y: heightValues.map(v => parseFloat(v.value)),
             type: 'scatter',
             mode: 'lines',
             marker: { color: 'blue' },
@@ -67,13 +74,13 @@ function plotData(div, data, printMissing = false) {
         });
     }
     else if (printMissing) {
-        console.log(`No height for ${location}`);
+        console.log(`No height for ${siteName}`);
     }
 
-    if (tempValues.length > 0) {
+    if (hasTemp) {
         traces.push({
             x: tempValues.map(v => v.dateTime),
-            y: tempValues.map(v => v.value * (9 / 5) + 32),
+            y: tempValues.map(v => parseFloat(v.value) * (9 / 5) + 32),
             name: "Temperature (°F)",
             type: 'scatter',
             mode: 'lines',
@@ -82,10 +89,16 @@ function plotData(div, data, printMissing = false) {
             yaxis: "y2",
         });
 
-        // Modify the layout here for a 2nd plot
-        layout.grid = { rows: 2, columns: 1 };
-        layout.xaxis2 = { matches: 'x' };
-        layout.yaxis2 = { title: "Temperature (°F)" };
+        // Explicit domains (not layout.grid): overlaid yaxis3 otherwise keeps
+        // domain [0,1] and draws over the temperature panel.
+        layout.yaxis.domain = [0.4, 1];
+        layout.yaxis2 = {
+            title: "Temperature (°F)",
+            domain: [0, 0.32],
+            automargin: true,
+        };
+        layout.xaxis = { anchor: 'y' };
+        layout.xaxis2 = { matches: 'x', anchor: 'y2' };
     }
     else if (printMissing) {
         console.log(`No temperature for ${siteName}`);

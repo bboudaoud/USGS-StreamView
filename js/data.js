@@ -164,14 +164,20 @@ export function getSites(state, valid_names = ["Gage height", "Streamflow", "Tem
         .catch(error => console.error('Error fetching locations:', error));
 }
 
+// USGS IV uses -999999 as the missing-data sentinel
+const USGS_NO_DATA = -999999;
+
 // Utility method for reading a time series below
 function _get_time_series(data, varName) {
     const timeSeries = data.value.timeSeries;
     for (let i = 0; i < timeSeries.length; i++) {
         const ts = timeSeries[i];
         if (ts.variable.variableName.includes(varName)) {
-            // Found a match
-            return ts.values[0].value;
+            // Found a match; drop missing / non-numeric readings
+            return ts.values[0].value.filter(v => {
+                const n = parseFloat(v.value);
+                return !isNaN(n) && n !== USGS_NO_DATA;
+            });
         }
     }
     return [];
@@ -239,15 +245,15 @@ export function getLatestValues(site) {
         var [flow, height, temp] = [undefined, undefined, undefined];
 
         if (flowValues.length > 0) {
-            flow = flowValues[flowValues.length - 1].value;
+            flow = parseFloat(flowValues[flowValues.length - 1].value);
             flow = Math.round(flow * 10) / 10;
         }
         if (heightValues.length > 0) {
-            height = heightValues[heightValues.length - 1].value;
+            height = parseFloat(heightValues[heightValues.length - 1].value);
             height = Math.round(height * 100) / 100;
         }
         if (tempValues.length > 0) {
-            temp = tempValues[tempValues.length - 1].value * 9 / 5 + 32;
+            temp = parseFloat(tempValues[tempValues.length - 1].value) * 9 / 5 + 32;
             temp = Math.round(temp * 100) / 100;
         }
         return [flow, height, temp];

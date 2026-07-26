@@ -285,7 +285,7 @@ function saveFavThresh(evt) {
         Favorites.LEVEL_STAGES.forEach(level => {
             const val = document.getElementById(`${level}_level`).value;
             if (val != undefined && val != "") {
-                fav[`${level}Level`] = val;
+                fav[`${level}Level`] = parseFloat(val);
             }
         });
 
@@ -294,7 +294,7 @@ function saveFavThresh(evt) {
         Favorites.TEMP_LEVELS.forEach(level => {
             const val = document.getElementById(`${level}_temp`).value;
             if (val != undefined && val != "") {
-                fav[`${level}Temp`] = val;
+                fav[`${level}Temp`] = parseFloat(val);
             }
         });
 
