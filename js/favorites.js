@@ -24,7 +24,7 @@ const TEMP_COLORS = {
 
 // Elements
 const favTab = document.getElementById("Favorites");
-Draggable.setContainer(favTab);
+Draggable.setContainer(favTab, updateOrder);
 
 export function getAll() {
     const j = localStorage.getItem(FAV_KEY);

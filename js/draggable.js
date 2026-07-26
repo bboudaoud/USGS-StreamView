@@ -2,6 +2,7 @@
 
 // Active pointer drag (handle-based; works on touch and mouse)
 var activeDrag = null;
+var onReorder = null;
 
 function getDragAfterElement(container, y) {
     // Only reorder among sibling .draggable children
@@ -56,10 +57,15 @@ function endDrag() {
     window.removeEventListener('pointermove', onPointerMove);
     window.removeEventListener('pointerup', endDrag);
     window.removeEventListener('pointercancel', endDrag);
+
+    if (onReorder != null) {
+        onReorder();
+    }
 }
 
-export function setContainer(container) {
-    // Kept for API compatibility. Pointer drag uses the item's parent, not a container listener.
+export function setContainer(container, reorderCallback) {
+    // Pointer drag uses the item's parent; optional callback persists order on drop
+    onReorder = reorderCallback;
 }
 
 export function addDraggable(element, handle) {

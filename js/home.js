@@ -22,9 +22,6 @@ viewBtn.addEventListener("click", function (evt) {
     evt.stopPropagation();
 });
 
-const saveFavOrderBtn = document.getElementById("updateFavOrder");
-saveFavOrderBtn.addEventListener("click", Favorites.updateOrder);
-
 // Favorites -> Explore deep link for editing thresholds
 document.getElementById("Favorites").addEventListener("click", function (evt) {
     const levelsLink = evt.target.closest(".siteLevelsLink");

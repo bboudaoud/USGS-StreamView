@@ -56,11 +56,6 @@ button.tablinks {
   display: none;
 }
 
-#updateFavOrder{
-  float: right;
-  margin: 5px;
-}
-
 .favLevelDiv {
   display: inline-block;
   vertical-align: top;
