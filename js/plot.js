@@ -92,6 +92,9 @@ function plotData(div, data, printMissing = false) {
         // Explicit domains (not layout.grid): overlaid yaxis3 otherwise keeps
         // domain [0,1] and draws over the temperature panel.
         layout.yaxis.domain = [0.4, 1];
+        if (layout.yaxis3 != undefined) {
+            layout.yaxis3.domain = [0.4, 1];
+        }
         layout.yaxis2 = {
             title: "Temperature (°F)",
             domain: [0, 0.32],
