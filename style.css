@@ -228,8 +228,15 @@ button.tablinks {
   cursor: grabbing;
 }
 
-.siteNameText {
+/* The anchor is listed too, the global "*" font-family beats inheritance */
+.siteNameText,
+.siteNameText a {
   display: inline;
+  font-size: 11pt;
+  /* Narrow faces keep the long gauge names from wrapping */
+  font-family: "Open Sans Condensed", "Arial Narrow", "Open Sans", sans-serif;
+  font-stretch: condensed;
+  letter-spacing: -0.01em;
   /* font-weight: bold; */
 }
 
