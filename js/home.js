@@ -1,5 +1,6 @@
 "use strict";
 
+import * as Data from './data.js';
 import * as Explore from './explore.js';
 import * as Favorites from "./favorites.js";
 
@@ -30,6 +31,16 @@ document.getElementById("Favorites").addEventListener("click", function (evt) {
     }
     evt.preventDefault();
     Explore.selectFavoriteSite(levelsLink.dataset.state, levelsLink.dataset.siteId);
+});
+
+// Favorites conditions text opens the site view, same as the site name link
+document.getElementById("Favorites").addEventListener("click", function (evt) {
+    const statText = evt.target.closest(".siteStatText");
+    if (statText == null) {
+        return;
+    }
+    evt.preventDefault();
+    window.open(Data.gaugeUrl(statText.dataset.state, statText.dataset.siteId, 7), "_blank");
 });
 
 const dlFavBtn = document.getElementById("dlFavBtn");

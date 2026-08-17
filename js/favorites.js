@@ -467,7 +467,7 @@ function createFavSite(fav) {
     // Add name label
     let siteNameLabel = document.createElement("p");
     siteNameLabel.className = "siteNameText";
-    siteNameLabel.innerHTML = `<a href=${Data.gaugeUrl(fav.state, fav.id, 7)} target=_blank>${Data.shortName(fav.loc)}</a>`;
+    siteNameLabel.innerHTML = `<a href=${Data.gaugeUrl(fav.state, fav.id, 7)} target=_blank title="Open site view">${Data.shortName(fav.loc)}</a>`;
     siteDiv.appendChild(siteNameLabel);
 
     // Add remove button
@@ -506,6 +506,9 @@ function createFavSite(fav) {
                 let levelStat = document.createElement("p");
                 levelStat.id = `${fav.id}_fav_level`;
                 levelStat.className = "siteStatText";
+                levelStat.title = "Open site view";
+                levelStat.dataset.state = fav.state;
+                levelStat.dataset.siteId = fav.id;
                 levelStat.textContent = levelStr;
                 levelStat.style.color = getLevelColor(fav, flowVal, heightVal);
                 siteStats.insertBefore(levelStat, levelsLink);
@@ -516,6 +519,9 @@ function createFavSite(fav) {
                 let tempStat = document.createElement("p");
                 tempStat.id = `${fav.id}_fav_temp`;
                 tempStat.className = "siteStatText";
+                tempStat.title = "Open site view";
+                tempStat.dataset.state = fav.state;
+                tempStat.dataset.siteId = fav.id;
                 tempStat.textContent = `${tempVal} °F`;
                 tempStat.style.color = getTempColor(fav, tempVal);
                 siteStats.insertBefore(tempStat, levelsLink);

@@ -259,6 +259,7 @@ button.tablinks {
 
 .siteStatText {
   display: inline;
+  cursor: pointer;
 }
 
 .siteLevelsLink {
