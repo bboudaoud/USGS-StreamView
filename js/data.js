@@ -201,7 +201,13 @@ export function getDataForSite(siteId, periodDays = undefined) {
         url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${siteId}&period=${period}&parameterCd=00060,00065,00010`;
 
     }
-    return fetch(url).then(response => response.json())
+    return fetch(url).then(response => {
+        if (!response.ok) {
+            // USGS returns an HTML error page on failure, so don't try to parse it as JSON
+            throw new Error(`USGS request failed for site ${siteId}: ${response.status} ${response.statusText}`);
+        }
+        return response.json();
+    })
         .then(data => {
             const flowVarName = "Streamflow";
             const heightVarName = "Gage height";
@@ -234,7 +240,10 @@ export function getDataForSite(siteId, periodDays = undefined) {
             return [siteName, siteLoc, flowValues, heightValues, tempValues];
 
         })
-        .catch(error => console.error('Error fetching data:', error));
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            throw error;
+        });
 }
 
 export function getLatestValues(site) {
@@ -257,5 +266,5 @@ export function getLatestValues(site) {
             temp = Math.round(temp * 100) / 100;
         }
         return [flow, height, temp];
-    });
+    }).catch(() => [undefined, undefined, undefined]);
 }
