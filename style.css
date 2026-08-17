@@ -1,6 +1,7 @@
-/* Default font for everything */
+/* Default font for everything; Open Sans is not installed everywhere, so
+   fall back through the common system sans instead of the browser default */
 * {
-  font-family: "Open Sans";
+  font-family: "Open Sans", "Segoe UI", Arial, sans-serif;
 }
 
 h1 {
