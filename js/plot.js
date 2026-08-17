@@ -1,5 +1,7 @@
 "use strict";
 
+import * as Data from './data.js';
+
 
 // Divs
 const PLOT_DIV_NAME = 'plotDiv';
@@ -99,13 +101,14 @@ function plotData(div, data, printMissing = false) {
     // Transform the data
     // eslint-disable-next-line no-unused-vars
     const [siteName, _, flowValues, heightValues, tempValues] = data;
+    const shortSiteName = Data.shortName(siteName);
 
     // Storage for this method
     var traces = [];
     var hasTemp = tempValues.length > 0;
     // Base figure layout
     var layout = {
-        title: siteName,
+        title: shortSiteName,
         yaxis: { title: 'Streamflow (cfs)', automargin: true },
         legend: {
             orientation: 'h',
@@ -195,7 +198,7 @@ function plotData(div, data, printMissing = false) {
 
     // Wrap long site names and reserve room for both title and legend on mobile.
     if (window.matchMedia("(max-width: 600px)").matches) {
-        const wrappedTitle = _wrapPlotTitle(siteName, 30);
+        const wrappedTitle = _wrapPlotTitle(shortSiteName, 30);
         layout.title = {
             text: wrappedTitle,
             font: { size: 16 },

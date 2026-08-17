@@ -69,7 +69,7 @@ export function updateWaterSelect(_evt = undefined, siteId = undefined) {
         Object.keys(sites).forEach(key => {
             const option = document.createElement('option');
             option.value = key;
-            option.text = key;
+            option.text = Data.shortName(key);
             waterSelect.appendChild(option);
             for (let loc in sites[key]) {
                 if (sites[key][loc] == siteId) {
@@ -96,7 +96,7 @@ export function updateSiteSelect(_evt = undefined, siteId = undefined) {
     Object.keys(sites[water]).forEach(key => {
         const option = document.createElement('option');
         option.value = sites[water][key];
-        option.text = key;
+        option.text = Data.shortName(key);
         siteSelect.appendChild(option);
     });
     if (siteId != undefined && siteId != "") {

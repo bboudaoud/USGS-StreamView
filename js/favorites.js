@@ -467,7 +467,7 @@ function createFavSite(fav) {
     // Add name label
     let siteNameLabel = document.createElement("p");
     siteNameLabel.className = "siteNameText";
-    siteNameLabel.innerHTML = `<a href=${Data.gaugeUrl(fav.state, fav.id, 7)} target=_blank>${fav.loc}</a>`;
+    siteNameLabel.innerHTML = `<a href=${Data.gaugeUrl(fav.state, fav.id, 7)} target=_blank>${Data.shortName(fav.loc)}</a>`;
     siteDiv.appendChild(siteNameLabel);
 
     // Add remove button
@@ -605,7 +605,7 @@ export function updateView(favContainer = favTab) {
             const stateCollapsed = stateToggle != undefined && stateToggle.textContent == '▼';
             waterDiv.style.display = stateCollapsed ? "none" : "block";
 
-            let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
+            let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, Data.shortName(fav.water), 'water');
             waterDiv.appendChild(waterHeader);
             Draggable.addDraggable(waterDiv, waterHeader.querySelector(".dragHandle"));
 

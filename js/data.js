@@ -50,6 +50,21 @@ const LOC_RENAME = {
     "NR": "NEAR",
 }
 
+// Shorten a name for display only; the stored/canonical names keep their long form
+export function shortName(name) {
+    if (name == undefined) {
+        return name;
+    }
+    // Drop the trailing state initials (e.g. ", VA")
+    let short = name.replace(/,\s*[A-Za-z]{2}$/, "");
+    // Expand any abbreviation that did not go through the split (e.g. "NR" -> "NEAR")
+    for (let abbr in LOC_RENAME) {
+        short = short.replace(new RegExp(`(^|\\s)${abbr}(\\s)`, "i"), `$1${LOC_RENAME[abbr]}$2`);
+    }
+    // "AT" adds nothing to the display name, the long form keeps the word
+    return short.replace(/(^|\s)AT\s/i, "$1");
+}
+
 function _splitNameLoc(name) {
     var first_idx = 1e9;
     var body = undefined;
