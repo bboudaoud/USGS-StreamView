@@ -245,7 +245,7 @@ function _favStateClick(evt) {
 
     for (let i = 0; i < waterDivs.length; i++) {
         let waterDiv = waterDivs[i];
-        if (waterDiv.style.display == "block") {
+        if (waterDiv.style.display != "none") {
             waterDiv.style.display = "none";
             toggleButton.textContent = '▼'; // Down arrow for closed state
         }
@@ -301,32 +301,18 @@ function syncWaterSiteDisplay(waterDiv) {
         if (headerText != undefined) {
             headerText.style.cursor = "default";
         }
+        if (inlineSiteName != undefined) {
+            inlineSiteName.remove();
+        }
 
-        // One drag handle on the river card; hide the nested site handle/remove/name
+        // One drag handle on the river card; hide the nested site handle/remove
         const siteDrag = siteDiv.querySelector(".dragHandle");
         const siteRemove = siteDiv.querySelector(".siteRemoveBtn");
-        const siteName = siteDiv.querySelector(".siteNameText");
         if (siteDrag != undefined) {
             siteDrag.style.display = "none";
         }
         if (siteRemove != undefined) {
             siteRemove.style.display = "none";
-        }
-        if (siteName != undefined) {
-            siteName.style.display = "none";
-            if (headerText != undefined) {
-                if (inlineSiteName == undefined) {
-                    inlineSiteName = document.createElement("span");
-                    inlineSiteName.className = "inlineSiteName";
-                    if (toggleButton != undefined) {
-                        headerText.insertBefore(inlineSiteName, toggleButton);
-                    }
-                    else {
-                        headerText.appendChild(inlineSiteName);
-                    }
-                }
-                inlineSiteName.innerHTML = " - " + siteName.innerHTML;
-            }
         }
 
         siteDiv.style.display = "block";
@@ -348,15 +334,11 @@ function syncWaterSiteDisplay(waterDiv) {
         for (let i = 0; i < siteDivs.length; i++) {
             const siteDrag = siteDivs[i].querySelector(".dragHandle");
             const siteRemove = siteDivs[i].querySelector(".siteRemoveBtn");
-            const siteName = siteDivs[i].querySelector(".siteNameText");
             if (siteDrag != undefined) {
                 siteDrag.style.display = "";
             }
             if (siteRemove != undefined) {
                 siteRemove.style.display = "";
-            }
-            if (siteName != undefined) {
-                siteName.style.display = "";
             }
             if (siteDivs[i].style.display == "block") {
                 anyVisible = true;
@@ -401,7 +383,8 @@ function createFavHeader(idName, text, type) {
     let toggleButton = document.createElement('span');
     toggleButton.id = `${idName}_Toggle`;
     toggleButton.className = "toggleBtn";
-    toggleButton.textContent = '▼';
+    // State rivers are visible on load; water gauges start collapsed
+    toggleButton.textContent = type == "state" ? '▲' : '▼';
 
     // Add to the header
     stateHeader.appendChild(toggleButton);
@@ -617,7 +600,10 @@ export function updateView(favContainer = favTab) {
             var waterDiv = document.createElement('div');
             waterDiv.id = `${fav.state}_${fav.water}_div`;
             waterDiv.className = "waterDiv draggable";
-            waterDiv.style.display = stateDiv.style.display;
+            // Match the state's current expand/collapse state (tracked by its toggle arrow)
+            const stateToggle = document.getElementById(`${fav.state}_Toggle`);
+            const stateCollapsed = stateToggle != undefined && stateToggle.textContent == '▼';
+            waterDiv.style.display = stateCollapsed ? "none" : "block";
 
             let waterHeader = createFavHeader(`${fav.state}_${fav.water}`, fav.water, 'water');
             waterDiv.appendChild(waterHeader);
