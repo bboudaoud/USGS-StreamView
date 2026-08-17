@@ -147,28 +147,24 @@ button.tablinks {
 }
 
 .waterDiv.singleGauge {
-  padding: 5px;
-  margin-right: 1%;
-  margin-left: 1%;
-  margin-top: 5px;
-  margin-bottom: 5px;
-  border-radius: 5px;
-  background-color: #eee;
+  padding-left: 1%;
+  background-color: transparent;
 }
 
 .waterDiv.singleGauge .waterHeader {
-  padding-top: 0;
+  padding-top: 10px;
 }
 
 .waterDiv.singleGauge .siteDiv {
   padding: 0;
+  padding-left: 36px;
   margin: 0;
   background-color: transparent;
   border-radius: 0;
 }
 
-.inlineSiteName {
-  font-weight: normal;
+.waterDiv.singleGauge .siteStatsDiv {
+  padding-left: 0;
 }
 
 .stateHeaderText,
@@ -185,6 +181,7 @@ button.tablinks {
 }
 
 .siteDiv {
+  container-type: inline-size;
   padding: 5px;
   margin-right: 1%;
   margin-left: 1%;
@@ -238,6 +235,18 @@ button.tablinks {
 
 .siteStatsDiv {
   display: block;
+  padding-left: 36px;
+}
+
+@container (min-width: 30rem) {
+  .siteStatsDiv {
+    display: inline;
+    padding-left: 0;
+  }
+
+  .siteStatsDiv::before {
+    content: " - ";
+  }
 }
 
 .siteStatText {
@@ -266,6 +275,7 @@ button.tablinks {
 .siteRemoveBtn {
   display: inline;
   float: right;
+  margin-right: 5px;
   vertical-align: middle;
   cursor: pointer;
   transition: color 0.3s ease;
@@ -274,10 +284,6 @@ button.tablinks {
 .waterRemoveBtn:hover,
 .siteRemoveBtn:hover {
   color: red;
-}
-
-.siteRemoveBtn {
-  margin-right: 5px;
 }
 
 .currentCondLabel,
