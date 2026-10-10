@@ -452,7 +452,7 @@ export function getLevelColor(fav, flow, height) {
     return "black";
 }
 
-function createFavSite(fav) {
+function createFavSite(fav, latestValues) {
     let siteDiv = document.createElement('div');
     siteDiv.id = `${fav.id}_fav_div`;
     siteDiv.className = "siteDiv draggable";
@@ -489,9 +489,9 @@ function createFavSite(fav) {
     siteStats.appendChild(levelsLink);
 
     // Update the stats for this item
-    Data.getLatestValues(fav.id).then(
-        values => {
-            const [flowVal, heightVal, tempVal] = values;
+    latestValues.then(
+        latest => {
+            const [flowVal, heightVal, tempVal] = latest[fav.id] ?? [undefined, undefined, undefined];
             // Handle the level string
             var levels = [];
             if (flowVal != undefined) {
@@ -532,11 +532,11 @@ function createFavSite(fav) {
     return siteDiv;
 }
 
-function updateFavSite(fav) {
+function updateFavSite(fav, latestValues) {
     // Update the stats for this item
-    Data.getLatestValues(fav.id).then(
-        values => {
-            const [flowVal, heightVal, tempVal] = values;
+    latestValues.then(
+        latest => {
+            const [flowVal, heightVal, tempVal] = latest[fav.id] ?? [undefined, undefined, undefined];
             // Handle the level string
             var levels = [];
             if (flowVal != undefined) {
@@ -570,6 +570,8 @@ function updateFavSite(fav) {
 export function updateView(favContainer = favTab) {
     // Get favorites from browser
     const favorites = getAll();
+    // One batched USGS request for all favorites' current values
+    const latestValues = Data.getLatestValuesBatch(favorites.map(fav => fav.id));
 
     favorites.forEach(fav => {
         // Easy here b/c we just have state divs
@@ -629,11 +631,11 @@ export function updateView(favContainer = favTab) {
             // Already exists, update it
             update(fav);
             // Recolor conditions if needed
-            updateFavSite(fav);
+            updateFavSite(fav, latestValues);
         }
         else {
             // Create a new stream div
-            var siteItem = createFavSite(fav);
+            var siteItem = createFavSite(fav, latestValues);
             siteItem.style.display = "none";
             Draggable.addDraggable(siteItem, siteItem.querySelector(".dragHandle"));
             waterDiv.appendChild(siteItem);

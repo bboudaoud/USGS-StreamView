@@ -2,7 +2,6 @@ import json
 import sys
 
 from pathlib import Path
-from tqdm import tqdm
 
 import usgs_reader
 import usgs_types
@@ -67,12 +66,9 @@ siteList = usgs_types.load_json_sites(
 
 if REMOVE_INACTIVE:
     # Filter site list
-    to_remove = []
     orig_count = len(siteList)
-    for idx, site in tqdm(enumerate(siteList), desc="Checking active", total=orig_count):
-        reader = usgs_reader.GageSiteReader(id = site.id)
-        if not reader.check_active():
-            to_remove.append(site)
+    active_ids = usgs_reader.get_active_site_ids([site.id for site in siteList])
+    to_remove = [site for site in siteList if site.id not in active_ids]
 
     print(f"Removing {len(to_remove)} / {orig_count} ({100*len(to_remove)/orig_count:.2f}%) inactive gauges!")
     # Remove these unused items

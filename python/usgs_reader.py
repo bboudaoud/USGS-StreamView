@@ -3,6 +3,24 @@ from typing import Any
 
 import usgs_types
 
+# USGS IV accepts up to 100 sites per request
+MAX_SITES_PER_REQUEST = 100
+
+
+def get_active_site_ids(ids: list[str], inLastDays: int = 14) -> set[str]:
+    """Return the ids of sites with at least one reading in the last inLastDays days"""
+    active = set()
+    for i in range(0, len(ids), MAX_SITES_PER_REQUEST):
+        sites = ",".join(ids[i:i + MAX_SITES_PER_REQUEST])
+        url = f"https://waterservices.usgs.gov/nwis/iv/?format=json&sites={sites}&period=P{inLastDays}D&parameterCd=00060,00065,00010"
+        resp = requests.get(url)
+        if not resp.ok:
+            raise ValueError(f"Invalid response: {resp}")
+        for ts in resp.json()["value"]["timeSeries"]:
+            if len(usgs_types.TimeSeries.from_dict(ts)) > 0:
+                active.add(usgs_types.SiteInfo.from_dict(ts).id)
+    return active
+
 
 class GageSiteReader:
     def __init__(self, id: str):

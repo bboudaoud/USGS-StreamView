@@ -261,25 +261,76 @@ export function getDataForSite(siteId, periodDays = undefined) {
         });
 }
 
+// Round the latest reading of each series for spot display
+function _latestValues(flowValues, heightValues, tempValues) {
+    var [flow, height, temp] = [undefined, undefined, undefined];
+
+    if (flowValues.length > 0) {
+        flow = parseFloat(flowValues[flowValues.length - 1].value);
+        flow = Math.round(flow * 10) / 10;
+    }
+    if (heightValues.length > 0) {
+        height = parseFloat(heightValues[heightValues.length - 1].value);
+        height = Math.round(height * 100) / 100;
+    }
+    if (tempValues.length > 0) {
+        temp = parseFloat(tempValues[tempValues.length - 1].value) * 9 / 5 + 32;
+        temp = Math.round(temp * 100) / 100;
+    }
+    return [flow, height, temp];
+}
+
 export function getLatestValues(site) {
     // Return a spot result
     return getDataForSite(site).then(data => {
         // eslint-disable-next-line no-unused-vars
         const [_siteName, _siteLoc, flowValues, heightValues, tempValues] = data;
-        var [flow, height, temp] = [undefined, undefined, undefined];
-
-        if (flowValues.length > 0) {
-            flow = parseFloat(flowValues[flowValues.length - 1].value);
-            flow = Math.round(flow * 10) / 10;
-        }
-        if (heightValues.length > 0) {
-            height = parseFloat(heightValues[heightValues.length - 1].value);
-            height = Math.round(height * 100) / 100;
-        }
-        if (tempValues.length > 0) {
-            temp = parseFloat(tempValues[tempValues.length - 1].value) * 9 / 5 + 32;
-            temp = Math.round(temp * 100) / 100;
-        }
-        return [flow, height, temp];
+        return _latestValues(flowValues, heightValues, tempValues);
     }).catch(() => [undefined, undefined, undefined]);
+}
+
+// USGS IV accepts up to 100 sites per request
+const MAX_SITES_PER_REQUEST = 100;
+
+// Spot results for many sites, keyed by site id (sites with no data are omitted)
+export function getLatestValuesBatch(siteIds) {
+    let requests = [];
+    for (let i = 0; i < siteIds.length; i += MAX_SITES_PER_REQUEST) {
+        const sites = siteIds.slice(i, i + MAX_SITES_PER_REQUEST).join(",");
+        const url = `https://waterservices.usgs.gov/nwis/iv/?format=json&sites=${sites}&parameterCd=00060,00065,00010`;
+        requests.push(fetch(url).then(response => {
+            if (!response.ok) {
+                // USGS returns an HTML error page on failure, so don't try to parse it as JSON
+                throw new Error(`USGS request failed for sites ${sites}: ${response.status} ${response.statusText}`);
+            }
+            return response.json();
+        })
+            .then(data => data.value.timeSeries)
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                return [];
+            }));
+    }
+    return Promise.all(requests).then(results => {
+        // Group the time series by site so variable lookups don't mix sites
+        let bySite = {};
+        results.flat().forEach(ts => {
+            const siteId = ts.sourceInfo.siteCode[0].value;
+            if (!(siteId in bySite)) {
+                bySite[siteId] = [];
+            }
+            bySite[siteId].push(ts);
+        });
+
+        let latest = {};
+        for (let siteId in bySite) {
+            const data = { value: { timeSeries: bySite[siteId] } };
+            latest[siteId] = _latestValues(
+                _get_time_series(data, "Streamflow"),
+                _get_time_series(data, "Gage height"),
+                _get_time_series(data, "Temperature, water"),
+            );
+        }
+        return latest;
+    });
 }
